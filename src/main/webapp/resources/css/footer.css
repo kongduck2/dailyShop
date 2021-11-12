@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+footer {
+	position: relative;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	 height: auto;
+	 background-color: black;
+	 display: block;
+	 padding:0 38px;
+	 box-sizing:border-box;
+     margin-top:150px;
+}
+.footer__logo{
+    list-style: none;
+    display: flex;
+    font-size: 20px;
+    padding-left: 0px;
+    color:white;
+    -webkit-filter:grayscale(100%);
+    filter: gray;
+    justify-content: center;
+    padding:40px 0 15px;
+    margin:0;
+}
+.footer__logo li {
+    padding: 0px 4px;
+    display: flex;
+    align-items: center;
+}
+.footer__logo li a {
+	text-decoration:none;
+    line-height:30px;
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+}
+.footer__logo li img{
+	width:25px;
+}
+.footer__menu{
+    display:flex;
+    list-style: none;
+    padding-left: 0px;
+    margin-top: 0.85em;
+    margin-bottom:25px;
+    justify-content: center;
+
+}
+.footer__menu li{
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition:background 0.3s;
+}
+.footer__menu li:hover{
+    background: #f9c07f;
+    border-radius: 20px;
+    transition:background 0.3s;
+}
+.footer__menu li a{
+	text-decoration: none;
+	color:#fff;
+	font-size:14px;
+	transition:color 0.3s;
+}
+.footer__menu li:hover a{
+	color:#000;
+	transition:color 0.3s;
+	font-weight:500;
+}
+.footer__sns{
+    display:flex;
+    list-style: none;
+    padding-left: 0px;
+    margin-top: 0.85em;
+    margin-bottom:0;
+    justify-content: center;
+  
+}
+.footer__sns li a{
+	width:37px;
+	height:37px;
+    border-radius: 37px;
+    transition:all 0.3s;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    border:1px solid #fff;
+    text-decoration: none;
+    margin:0 4px;
+    color:#fff;
+}
+.footer__sns li a i{
+    color:#fff;
+    transition:all 0.3s;
+}
+.footer__sns li a:hover{
+    background: #f9c07f;
+    color:#000;
+    border:1px solid #f9c07f;
+    transition:all 0.3s;
+}
+.footer__sns li a:hover i{
+    color:#000;
+    transition:all 0.3s;
+}
+footer p{
+	color:#fff;
+	padding: 33px 0 43px;
+    font-size: 11px; 
+    text-align: center;
+    margin:0;
+}
+
+@media screen and (max-width:768px){
+	footer{
+		position:abolute;
+		padding:0 17px;
+		margin-top:0;
+	}
+	.footer__menu li{
+	    padding: 8px;
+	}
+}
+
+@media screen and (max-width:400px){
+	.footer__menu li a {
+	    font-size: 13px;
+	}
+}

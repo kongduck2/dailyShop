@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis가 데이터베이스에 연결하기 위한 설정(config)파일 -->
+<configuration>
+ 	<typeAliases>
+ 	</typeAliases>
+</configuration>
+
+
