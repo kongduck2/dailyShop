@@ -15,6 +15,6 @@
 				<li><a href="#"><i class="fa fa-git"></i></a></li>
 				<li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
 			</ul>
-			<p>Copyright © 2021 JSP5JO</p>
+			<p>Copyright © Yuilsang</p>
 		</div>
 	</footer>
