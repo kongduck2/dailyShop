@@ -8,12 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>댕냥이의 일상</title>
 
-<!-- 부트스트랩 CDN -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css?v=3">
 <!-- 부트스트랩 css 사용 -->
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css?v=3">
@@ -29,16 +23,53 @@
 				<a href="#"><img
 					src="#" id="#" /></a>
 			</div>
-			<!-- search -->
-			<form id="#" method="POST"
-				action="#">
-				<button class="#">
-					<i class="tiny material-icons">search</i> <!-- 검색 아이콘 -->
-				</button>
-				<input name="#" placeholder="상품명을 입력하세요"
-					class="#" />
-			</form>
 		</div>
+		<!-- 네비게이션 바 -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            강아지
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">사료</a></li>
+            <li><a class="dropdown-item" href="#">간식</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">장난감</a></li>
+            <li><a class="dropdown-item" href="#">패션</a></li>
+            <li><a class="dropdown-item" href="#">미용·목욕</a></li>
+            <li><a class="dropdown-item" href="#">외출</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            고양이
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">사료</a></li>
+            <li><a class="dropdown-item" href="#">간식</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">장난감</a></li>
+            <li><a class="dropdown-item" href="#">패션</a></li>
+            <li><a class="dropdown-item" href="#">미용·목욕</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">사용후기</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">고객센터</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="상품명을 입력하세요" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">search</button>
+      </form>
+    </div>
+  </div>
+</nav>
 		
 		
 	</header>

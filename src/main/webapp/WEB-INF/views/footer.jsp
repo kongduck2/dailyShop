@@ -1,20 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 	<footer>
-			<div>
-			<ul class="footer__menu">
-				<li><a href="category.do">카테고리</a></li>
-				<li><a href="">전문분야 등록</a></li>
-				<li><a href="write.do">글쓰기</a></li>
-				<li><a href="">고객센터</a></li>
-			</ul>
-			<ul class="footer__sns">
-				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-				<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-				<li><a href="#"><i class="fa fa-git"></i></a></li>
-				<li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-			</ul>
+	
+	<hr>
+	 <div>
+		<div>
+		<h3>댕냥이의 일상</h3>
 			<p>Copyright © Yuilsang</p>
+			<div>사업자등록번호:123-45-678910 </div>
+			<div>대표 : 유일상</div>
+			<div>주소 : 서울</div>
+			<div></div>
 		</div>
+		<div class="footer-division-1">
+			<div class="footer-tel">고객센터 1234-5678</div>
+			<div class="footer-text">영업시간 : AM 10:00 ~ PM 17:00(주말 및 공휴일 휴무)</div>
+			<div class="footer-text">점심시간 : PM 12:30 ~ PM 13:30</div>
+		</div>
+	 </div>
+	 <div>
+		<div >
+			<h2 >ACCOUNT INFO</h2>
+			<ul ></ul>
+		</div>
+	 </div>	
 	</footer>
