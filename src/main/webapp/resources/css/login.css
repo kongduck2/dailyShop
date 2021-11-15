@@ -1,22 +1,15 @@
 @charset "UTF-8";
-*{
-  margin: 0px;
-  padding: 0px;
-  text-decoration: none;
-  font-family:sans-serif;
-}
 
 .kakaoLogo{
 	margin-top: 20px;
 }
 
 .loginForm {
-  margin:auto;
   position:absolute;
-  width:350px;
+  width:450px;
   height:450px;
   padding: 30px, 20px;
-  background-color:#FFFFFF;
+  background-color:#f8f9fa;
   text-align:center;
   top:50%;
   left:50%;
@@ -116,4 +109,11 @@
 }
 .bottomText > a:hover:before, .bottomText > a:focus:before, .bottomText > a:active:before {
   right: 0;
+}
+
+.login-div{
+	display: flex;
+	margin: 400px;
+	justify-content: center;
+	width: 70%;
 }

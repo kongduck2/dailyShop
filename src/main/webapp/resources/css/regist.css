@@ -1,0 +1,8 @@
+@charset "UTF-8";
+.regist-form{
+	display: flex;
+	margin: 200px;
+	justify-content: center;
+	width: 70%;
+	align-items: center;
+}

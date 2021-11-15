@@ -29,7 +29,7 @@
 			</ul>
 			<ul class="top-ul">
 				<li class="top-text"><a href="login" >로그인</a></li>
-				<li class="top-text"><a href="#" >회원가입</a></li>
+				<li class="top-text"><a href="regist" >회원가입</a></li>
 				<li class="top-text"><a href="#" >마이페이지</a></li>
 				<li class="top-text"><a href="#" >장바구니</a></li>
 			</ul>
