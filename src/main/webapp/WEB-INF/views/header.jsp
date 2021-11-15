@@ -14,14 +14,27 @@
  <!-- 부트스트랩 js 사용 -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.js"></script>
+  <script src="https://kit.fontawesome.com/cd773dc079.js" crossorigin="anonymous"></script>
 </head>
 
 
 <body>
 <header>
-	<div>
-	</div>
-		<!-- logo -->
+<!-- 상단 옵션 -->
+	<!-- sns 로고 -->
+		<div class="top-div">
+			<ul class="top-ul">
+				<li class="top-sns"><a href="#"><i class="fab fa-facebook-square fa-2x"></i></a></li>
+				<li class="top-sns"><a href="#"><i class="fab fa-instagram fa-2x"></i></a></li>
+			</ul>
+			<ul class="top-ul">
+				<li class="top-text"><a href="#" class="text-end">로그인,로그아웃</a></li>
+				<li class="top-text"><a href="#" class="text-end">회원가입</a></li>
+				<li class="top-text"><a href="#" class="text-end">마이페이지</a></li>
+				<li class="top-text"><a href="#" class="text-end">장바구니</a></li>
+			</ul>
+		</div>
+		<!-- 로고 -->
 		<div class="logo">
 		 <span>
 			<a href="${pageContext.request.contextPath}"><img
@@ -31,12 +44,15 @@
 		<!-- 네비게이션 바 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">BEST</a>
+    <a class="navbar-brand" href="#">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">BEST</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             강아지

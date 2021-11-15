@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap');
+*{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
 .logo{
 	text-align: center;
 }
@@ -6,4 +10,32 @@
 }
 .navbar-brand{
 	margin-left: 40px;
+}
+.top-div{
+	display:flex;
+	justify-content: space-between;
+}
+
+.top-ul{
+	display:flex;
+    list-style: none;
+    padding-left: 0px;
+    margin-top: 0.85em;
+    margin-bottom:0;
+}
+.top-sns > a{
+    color : gray;
+    display:flex;
+    align-items:center;
+    text-decoration: none;
+    margin:0 10px;
+}
+.top-text > a{
+    color:gray;
+    display:flex;
+    text-decoration: none;
+    margin:0 10px;
+}
+input[type=search]{
+	width: 300px;
 }
