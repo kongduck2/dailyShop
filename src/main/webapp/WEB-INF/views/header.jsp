@@ -15,18 +15,26 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.js"></script>
 </head>
+
+
 <body>
 <header>
+	<div>
+	</div>
 		<!-- logo -->
-		<div id="header-first">
-			<div id="#">
-				<a href="#"><img
-					src="#" id="#" /></a>
-			</div>
+		<div class="logo">
+		 <span>
+			<a href="${pageContext.request.contextPath}"><img
+				src="${pageContext.request.contextPath}/resources/image/logo.jpg" class="header-logo" alt="logo"/></a>
+		 </span>
 		</div>
 		<!-- 네비게이션 바 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
+    <a class="navbar-brand" href="#">BEST</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
@@ -36,8 +44,6 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">사료</a></li>
             <li><a class="dropdown-item" href="#">간식</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">장난감</a></li>
             <li><a class="dropdown-item" href="#">패션</a></li>
             <li><a class="dropdown-item" href="#">미용·목욕</a></li>
             <li><a class="dropdown-item" href="#">외출</a></li>
@@ -50,8 +56,6 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">사료</a></li>
             <li><a class="dropdown-item" href="#">간식</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">장난감</a></li>
             <li><a class="dropdown-item" href="#">패션</a></li>
             <li><a class="dropdown-item" href="#">미용·목욕</a></li>
           </ul>
@@ -64,15 +68,13 @@
         </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="상품명을 입력하세요" aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">search</button>
+        <input class="form-control me-2" type="search" placeholder="상품명을 입력하세요." aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
       </form>
     </div>
   </div>
 </nav>
-		
-		
-	</header>
+</header>
 
 </body>
 </html>
