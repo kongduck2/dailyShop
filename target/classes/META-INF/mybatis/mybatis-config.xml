@@ -5,6 +5,7 @@
 <!-- mybatis가 데이터베이스에 연결하기 위한 설정(config)파일 -->
 <configuration>
  	<typeAliases>
+ 		<typeAlias type="com.nyang.shop.model.User" alias="User"/>
  	</typeAliases>
 </configuration>
 

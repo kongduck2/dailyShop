@@ -25,7 +25,7 @@
 		<property name="configLocation" value="classpath:META-INF/mybatis/mybatis-config.xml"/>
 		<property name="mapperLocations">
 			<list>
-				<!-- <value>classpath:META-INF/mybatis/freeboard.xml</value> xml 경로작성-->			
+				 <value>classpath:META-INF/mybatis/user.xml</value>			
 			</list>
 		</property>
 	
