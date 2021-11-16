@@ -11,4 +11,5 @@ public interface UserMapper {
 	int insert(User user);
 	int update(User user);
 	int delete(int idx);
+	int emailCheck(String email);
 }

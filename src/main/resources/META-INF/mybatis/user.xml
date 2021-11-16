@@ -8,7 +8,7 @@
 		from user where email=#{email} and password=sha2(#{password},256)
 	</select>
 	
-	<select id="selectAll" resultType="User" > <!-- id는 식별자  --> 
+	<select id="selectAll" resultType="User" > 
 		select * from user
 	</select>
 	
@@ -23,12 +23,15 @@
 		insert into user(email,password,phone,address,regist_type,name)
 		values (#{email},sha2(#{password},256),#{phone},#{address},#{regist_type},#{name})
 	</insert>
-	<!-- 파라미터: 실행에 필요한 데이터. #{ } 기호로 표시. resultType: 실행 후 리턴되는 데이터 타입.-->
 	<update id="update" parameterType="User">
-	update user set phone=#{phone},address=#{address} where idx=#{idx}
+		update user set phone=#{phone},address=#{address} where idx=#{idx}
 	</update>
 	<delete id="delete" parameterType="int" >
-	delete from user where idx=#{idx}
+		delete from user where idx=#{idx}
 	</delete>
+	
+	<select id="emailCheck" parameterType="String" resultType="int"> <!-- email 중복체크 -->
+		select count(*) from user where email = #{email}
+	</select>
   
   </mapper>

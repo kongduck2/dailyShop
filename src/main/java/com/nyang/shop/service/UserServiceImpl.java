@@ -46,4 +46,9 @@ public class UserServiceImpl implements UserService {
 		return dao.delete(idx);
 	}
 
+	@Override
+	public int emailCheck(String email) {
+		return dao.emailCheck(email);
+	}
+
 }

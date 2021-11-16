@@ -1,8 +1,19 @@
 @charset "UTF-8";
 .regist-form{
 	display: flex;
-	margin: 200px;
+	margin-top : 100px;
+	margin: auto;
 	justify-content: center;
 	width: 70%;
 	align-items: center;
+}
+#regist-btn{
+	align-content: center;
+	align-items: center;
+}
+#checkbtn{
+	margin-top: 8px;
+}
+h3{
+	margin-top: 100px;
 }
