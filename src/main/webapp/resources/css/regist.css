@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .regist-form{
+	height : 120%;
 	display: flex;
 	margin-top : 100px;
 	margin: auto;
@@ -8,7 +9,9 @@
 	align-items: center;
 }
 #regist-btn{
-	align-content: center;
+	width : 200px;
+	justify-content: center;
+	margin 0 auto;
 	align-items: center;
 }
 #checkbtn{
@@ -17,3 +20,21 @@
 h3{
 	margin-top: 100px;
 }
+
+*{margin: 0;padding: 0;box-sizing: border-box}
+body{background-color: #f7f7f7;}
+ul>li{list-style: none}
+a{text-decoration: none;}
+.checkInput::after{content: "";display: block;clear: both;}
+.checkAllInput::after{content: "";display: block;clear: both;}
+
+#joinForm{width: 120%;margin: 80px auto;}
+ul.join_box{border: 1px solid #ddd;background-color: #fff;}
+.checkBox,.checkBox>ul{position: relative;}
+.checkBox>ul>li{float: left;}
+.checkBox>ul>li:first-child{width: 85%;padding: 15px;font-weight: 600;color: #888;}
+.checkBox>ul>li:nth-child(2){position: absolute;top: 50%;right: 30px;margin-top: -12px;}
+.checkBox textarea{width: 96%;height: 90px; margin: 10px 2%;background-color: #f7f7f7;color: #888; border: none;}
+
+
+
