@@ -137,14 +137,10 @@ $(document).ready(function(){
 <!-- header -->
 <%@ include file="../header.jsp"%>
 
-<form action="" id="joinForm">
-        </form>
-
-
 <div class="regist-form">
-	<form class="row g-4" action="userRegist" onsubmit="return registCheck()" id="joinForm" >
+	<form class="row g-4" action="userRegist" onsubmit="return registCheck()" id="joinForm" method="post">
 	<h3>회원등록</h3>
-	<input type="hidden" name="regist_type" value=""/> <!-- 카카오 회원가입시 넘어가는값 1 기본 회원가입시 0  -->
+	<input type="hidden" name="regist_type" value="${kakao}"/> <!-- 카카오 회원가입시 넘어가는값 1 기본 회원가입시 0  -->
 	  <div class="col-md-5">
 	    <label for="email" class="form-label">* 이메일(아이디)</label>
 	    <input name="email" type="email" class="form-control" id="email" required>
@@ -162,7 +158,7 @@ $(document).ready(function(){
 	    <label for="address" class="form-label">* 주소</label> <!-- 카카오 주소 api 사용 -->
 	    <input name="address" type="text" class="form-control" id="address" required>
 	    <label for="addressDetail" class="form-label">상세주소</label> 
-	    <input name="addressDetail" type="text" class="form-control" id="addressDetail" required>
+	    <input name="addressDetail" type="text" class="form-control" id="addressDetail" >
 	  </div>
 	  <div class="col-md-6">
 	    <label for="name" class="form-label">* 이름</label>
@@ -170,7 +166,7 @@ $(document).ready(function(){
 	  </div>
 	  <div class="col-md-3">
 	    <label for="phone" class="form-label">* 휴대전화('-' 제외)</label>
-	    <input name="phone" type="text" class="form-control" id="phone">
+	    <input name="phone" type="text" class="form-control" id="phone" maxlength="11">
 	     <label id="pnCheckMsg"></label>
 	  </div>
 	  
