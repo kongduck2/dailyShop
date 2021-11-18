@@ -1,12 +1,10 @@
 @charset "UTF-8";
-
 .pw-form{
   position:absolute;
   width:370px;
   height:250px;
   text-align:center;
-  top:50%;
-  left:40%;
+  justify-content:center;
 }
 .pw-form >button[type=submit]{
 	margin-top: 10px;

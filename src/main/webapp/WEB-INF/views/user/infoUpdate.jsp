@@ -18,7 +18,7 @@
 
 
 <div class="update-form">
-	<form class="row g-4" action="userUpdate" onsubmit="return registCheck()" id="joinForm" method="post">
+	<form class="row g-4" action="userUpdate" onsubmit="return registCheck()" method="post">
 		<input type="hidden" value="${user.idx }">
 	<h3>회원정보 수정</h3>
 	  <div class="col-md-5">
