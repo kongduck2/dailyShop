@@ -26,6 +26,7 @@
 		<property name="mapperLocations">
 			<list>
 				 <value>classpath:META-INF/mybatis/user.xml</value>			
+				 <value>classpath:META-INF/mybatis/product.xml</value>			
 			</list>
 		</property>
 	

@@ -6,6 +6,7 @@
 <configuration>
  	<typeAliases>
  		<typeAlias type="com.nyang.shop.model.User" alias="User"/>
+ 		<typeAlias type="com.nyang.shop.model.Product" alias="Product"/>
  	</typeAliases>
 </configuration>
 

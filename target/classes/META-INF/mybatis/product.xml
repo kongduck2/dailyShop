@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.nyang.shop.dao.ProductMapper">
+  	<select id="getAll" resultType="Product" parameterType="String"> <!-- 카테고리별 전체목록 가져오기 -->
+  		select * from product where category = #{category}
+  		order by idx desc
+  	</select>
+  	
+  	<insert id="insert" parameterType="Product"> <!-- admin 상품 추가 -->
+  		insert into Product(category,thumbnailImg,detailImg,price)
+  		values(#{category},#{thumbnailImg},#{detailImg},#{price})
+  	</insert>
+  
+  </mapper>

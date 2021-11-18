@@ -21,7 +21,7 @@ public class UserController {
 	
 	//회원가입 뷰페이지 이동
 	@RequestMapping(value = "/regist", method = RequestMethod.GET)
-	public String registMove() {
+	public String moveRegist() {
 		return "/user/regist";
 	}
 	
@@ -43,14 +43,13 @@ public class UserController {
     
     //마이페이지 이동
     @RequestMapping(value = "/myPage" , method = RequestMethod.GET)
-    public String mypageMove() {
-    	
+    public String moveMyPage() {
     	return "/user/myPage";
     }
     
     //회원정보수정 비밀번호체크 이동
     @RequestMapping(value = "/infoUpdatePwCheck" , method = RequestMethod.GET)
-    public String pwCheckMove() {
+    public String movePwCheck() {
     	return "/user/infoUpdatePwCheck";
     }
     

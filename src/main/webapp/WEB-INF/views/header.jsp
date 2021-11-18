@@ -29,6 +29,8 @@
 				<li class="top-sns"><a href="https://www.instagram.com/?hl=ko" target="_blank"><i class="fab fa-instagram fa-2x"></i></a></li>
 			</ul>
 			<ul class="top-ul">
+				<!-- admin용 상품추가 -->
+				<li class="top-text"><a href="addProduct" >상품추가</a></li>
 			<c:if test="${sessionScope.user == null}"> 	<!-- 비로그인 상태 -->
 				<li class="top-text"><a href="login" >로그인</a></li>
 				<li class="top-text"><a href="regist" >회원가입</a></li>
