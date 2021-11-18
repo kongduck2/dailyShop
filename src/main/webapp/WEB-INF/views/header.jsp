@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,14 +25,27 @@
 	<!-- sns 로고 -->
 		<div class="top-div">
 			<ul class="top-ul">
-				<li class="top-sns"><a href="#"><i class="fab fa-facebook-square fa-2x"></i></a></li>
-				<li class="top-sns"><a href="#"><i class="fab fa-instagram fa-2x"></i></a></li>
+				<li class="top-sns"><a href="https://ko-kr.facebook.com/"><i class="fab fa-facebook-square fa-2x"></i></a></li>
+				<li class="top-sns"><a href="https://www.instagram.com/?hl=ko"><i class="fab fa-instagram fa-2x"></i></a></li>
 			</ul>
 			<ul class="top-ul">
+			<c:if test="${sessionScope.user == null}"> 	<!-- 비로그인 상태 -->
 				<li class="top-text"><a href="login" >로그인</a></li>
 				<li class="top-text"><a href="regist" >회원가입</a></li>
-				<li class="top-text"><a href="#" >마이페이지</a></li>
+			</c:if>
+			
+			<c:if test="${sessionScope.user != null}"> <!-- 로그인 상태 -->
+				<li class="top-text"><a href="logout" >로그아웃</a></li>
+				<li class="top-text" id="mypage-menu"><a href="mypage" >마이페이지</a>
+					<!-- 드롭다운 마이페이지,주문내역조회,회원정보수정 -->
+					<ul class="mypage-sub">
+						<li><a href="#">주문내역조회</a></li>
+						<li><a href="#">관심목록</a></li>
+						<li><a href="#">회원정보수정</a></li>
+					</ul>
+				</li>
 				<li class="top-text"><a href="#" >장바구니</a></li>
+			</c:if>
 			</ul>
 		</div>
 		<!-- 로고 -->

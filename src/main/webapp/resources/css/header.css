@@ -39,3 +39,46 @@
 input[type=search]{
 	width: 300px;
 }
+
+#mypage-menu{
+	margin: 0 auto;
+	/*overflow: hidden;*/
+	text-align: center;
+	position: relative;
+}
+
+#mypage-menu:hover .mypage-sub{
+	display: block;
+}
+
+.mypage-sub{
+	height: 100px;
+	position: absolute;
+	display: none;
+	background-color: #edf5ee;
+	border-radius: 10px;
+	transition: 0.5s;
+	width: 100%;
+	text-align: center;
+    margin: 0;
+    padding: 0;
+    
+}
+.mypage-sub > li {
+	margin-top: 6px;
+}
+
+.mypage-sub > li > a{
+	font-size: 13px;
+	color: black;
+	text-decoration: none;
+}
+.mypage-sub > li > a:hover{
+	transition: ease 0.5s;
+	background-color: #bbc2bc;
+	border-radius: 5px;
+}
+
+
+
+
