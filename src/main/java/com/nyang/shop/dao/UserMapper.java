@@ -12,4 +12,5 @@ public interface UserMapper {
 	int update(User user);
 	int delete(int idx);
 	int emailCheck(String email);
+	int pwCheck(User user);
 }

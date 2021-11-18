@@ -12,4 +12,5 @@ public interface UserService {
 	int update(User user);
 	int delete(int idx);
 	int emailCheck(String email);
+	boolean pwCheck(User vo,String password);
 }

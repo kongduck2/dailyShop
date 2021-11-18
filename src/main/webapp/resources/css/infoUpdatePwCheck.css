@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.pw-form{
+  position:absolute;
+  width:370px;
+  height:250px;
+  text-align:center;
+  top:50%;
+  left:40%;
+}
+.pw-form >button[type=submit]{
+	margin-top: 10px;
+	width: 150px;
+	background-color: #ccebcc;
+	border: white;
+	color: #9bb99b;
+}
+
+.pw-form > p{
+	font-size: 13px;
+}

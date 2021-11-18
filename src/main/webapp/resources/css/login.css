@@ -9,9 +9,8 @@
   width:450px;
   height:450px;
   padding: 30px, 20px;
-  background-color:#f8f9fa;
   text-align:center;
-  top:50%;
+  top:65%;
   left:50%;
   transform: translate(-50%,-50%);
   border-radius: 15px;

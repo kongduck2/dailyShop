@@ -1,0 +1,21 @@
+@charset "UTF-8";
+.update-form{
+	height : 90%;
+	display: flex;
+	margin-top : 100px;
+	margin: auto;
+	justify-content: center;
+	width: 70%;
+	align-items: center;
+}
+.col-12 > .btn {
+	width : 200px;
+	justify-content: center;
+	margin 0 auto;
+	margin-right: 8px;
+	align-items: center;
+}
+h3{
+	margin-top: 100px;
+}
+

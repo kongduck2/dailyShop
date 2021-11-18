@@ -51,4 +51,14 @@ public class UserServiceImpl implements UserService {
 		return dao.emailCheck(email);
 	}
 
+	@Override
+	public boolean pwCheck(User user,String password) {
+		user.setPassword(password);
+		if(dao.pwCheck(user) !=0) {//결과값 1
+			return true;
+		}else {//결과값 0
+			return false;
+		}
+	}
+
 }
