@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 	<title>댕냥이의 일상</title>
@@ -37,59 +38,26 @@
 	
 	 <div class="container">	
 		<!-- best 상품 나열 -->
-		<div class="row">
-			<div class="col-md-4 m-2">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <p class="card-text">내용</p>
-				  </div>
-				</div>
-			</div>
-			<div class="col-md-4 m-2">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <p class="card-text">내용</p>
-				  </div>
-				</div>
-			</div>
-			<div class="col-md-4 m-2">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <p class="card-text">내용</p>
-				  </div>
-				</div>
-			</div>
-		</div>
 		
-		<div class="row">
-			<div class="col-md-4">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <p class="card-text">내용</p>
-				  </div>
-				</div>
+			<div class="row">
+				<c:forEach var="item" items="${list }">
+					<c:set var="fileArr" value="${fn:split(item.thumbnailImg,',')}"/>
+					<div class="col">
+						<c:forEach var="img" items="${fileArr }">
+							<div class="card" style="width: 18rem;">
+							  <img src="/upload/${img }" class="card-img-top" alt="thumbnailImg">
+							  <div class="card-body">
+							    <p class="card-text">${item.price }</p>
+							  </div>
+							</div>
+						</c:forEach>	  
+					</div>
+				</c:forEach>	
 			</div>
-			<div class="col-md-4">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <p class="card-text">내용</p>
-				  </div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <p class="card-text">내용</p>
-				  </div>
-				</div>
-			</div>
-		</div>
+		
+
+		
+		
 	</div>
 		
 		<!-- 펫 new 시간남으면  -->

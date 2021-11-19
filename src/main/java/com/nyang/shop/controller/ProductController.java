@@ -9,6 +9,7 @@ import com.nyang.shop.model.Product;
 import com.nyang.shop.service.ProductService;
 
 @Controller
+@RequestMapping({"/","/product"})
 public class ProductController {
 	
 	private final ProductService service;
@@ -17,17 +18,15 @@ public class ProductController {
 		this.service = service;
 	}
 
-	//상품추가 페이지로 이동
 	@RequestMapping(value = "/addProduct", method = RequestMethod.GET)
 	public String moveAddProduct() {
 		return "/product/addProduct";
 	}
 	
-	
 	//상품추가
 	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
 	public String addProduct(Product vo , Model model) {
-		if(vo.getCategory() == null) {
+		if(vo.getCategory() == "x") {
 			model.addAttribute("message","카테고리 값을 입력해주세요.");
 			model.addAttribute("url","addProduct");
 		}else {
@@ -37,4 +36,7 @@ public class ProductController {
 		}
 		return "/util/alertPage";
 	}
+	
+	//상품 뿌리기 (테스트)
+	
 }

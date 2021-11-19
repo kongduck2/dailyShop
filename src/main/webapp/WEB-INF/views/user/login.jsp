@@ -7,7 +7,7 @@
 </head>
 <body>
 <!-- header -->
-<%@ include file="header.jsp"%>
+<%@ include file="../header.jsp"%>
 
 <div class="login-div">
 <!-- 기본 로그인 form 태그 -->
@@ -34,6 +34,6 @@
 </div>
 
 <!-- footer -->
-<%@ include file="footer.jsp"%>
+<%@ include file="../footer.jsp"%>
 </body>
 </html>

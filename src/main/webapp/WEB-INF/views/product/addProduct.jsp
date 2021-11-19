@@ -5,13 +5,30 @@
 <head>
 <meta charset="UTF-8">
 <title>댕냥이의 일상</title>
+
+<script> function setImg(event) {
+	for (var image of event.target.files) {
+		var reader = new FileReader();
+		
+		reader.onload = function(event) {
+			var img = document.createElement("img");
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#imageContainer").appendChild(img);
+			};
+			console.log(image);
+			reader.readAsDataURL(image); 
+			}
+	}
+</script>
+
 </head>
 <body>
 
 <%@ include file="../header.jsp"%>
 
 
-	<form action="addProduct" method="post" enctype="multipart/form-data">
+	<form action="addProduct" method="post" enctype="multipart/form-data" class="addForm">
+	 <div>
 		<input type="text" name="name" placeholder="상품명" required>
 		<select name="category" required>
 		    <option value="x">카테고리</option>
@@ -25,16 +42,22 @@
 		    <option value="c-fashion">고양이 패션</option>
 		    <option value="c-care">고양이 미용·목욕</option>
 		</select>
-		<input type="text" name="price" placeholder="가격 " required>
-		<br>
-		 <br> 
-		<table id="fileview">
-		<tr><td><input name="files" type="file"  accept="image/*"  
-		 placeholder="썸네일 이미지 파일" required></td></tr>
-		<tr><td><input name="files" type="file"  accept="image/*"  
-		 placeholder="상세 이미지 파일" required></td></tr>
-		</table>
-		<input type="submit" value="전송">
+	 </div>
+	 <div>	
+		<input type="number" name="price" placeholder="가격 " required>
+	 </div>
+	 <div class="file-div">	
+		<label for="files" class="form-label">썸네일 이미지 등록</label>
+		<input name="files" type="file" id="files" accept="image/*" onchange="setImg(event);" required>
+	 </div>
+	 <div class="file-div">	 
+		<label for="files" class="form-label">제품상세 이미지 등록</label>
+		<input name="files" type="file" id="files" accept="image/*" onchange="setImg(event);" required>
+	 </div>
+		 <div id="imageContainer">이미지 미리보기 </div>
+	 <div>	 
+		<input type="submit" value="등록" >
+	 </div>	
 	</form>
 
 <%@ include file="../footer.jsp"%>

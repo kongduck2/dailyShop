@@ -20,12 +20,12 @@ public class LoginController {
 		this.service = service;
 	}
 	
-	@RequestMapping(value = "login",method = RequestMethod.GET)
+	@RequestMapping(value = "/login",method = RequestMethod.GET)
 	public String login(String alert,Model model) {
-		return "login"; //로그인 버튼 -> login.jsp(뷰) - > 로그인정보 입력후 버튼 ->
+		return "/user/login"; //로그인 버튼 -> login.jsp(뷰) - > 로그인정보 입력후 버튼 ->
 	}
 	
-	@RequestMapping(value = "login",method = RequestMethod.POST)
+	@RequestMapping(value = "/login",method = RequestMethod.POST)
 	public String loginOk(String email,String password,Model model) {
 		User result = service.login(User.builder().email(email).password(password).build());
 		if(result != null) { //로그인 성공
@@ -38,10 +38,10 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping(value = "logout")
+	@RequestMapping(value = "/logout")
 	public String logout(SessionStatus status) {// @SessionAttributes로 설정된것은 SessionStatus로 지운다.
 		status.setComplete(); //@SessionAttributes 로 설정된 애트리뷰트를 clear 한다.
-		return "redirect:/";
+		return "home";
 	}
 	//status.setComplete(); - JSESSIONID 는 변하지 않고 @SessionAttributes로 설정된 애트리뷰트 값을 clear한다.
 	//						- HttpSession의 removeAttribute() 메소드 동작과 유사

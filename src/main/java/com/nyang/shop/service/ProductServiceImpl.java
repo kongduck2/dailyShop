@@ -41,11 +41,11 @@ public class ProductServiceImpl implements ProductService {
             	if(dif == 0) {
             		fileName = "tImg_" + f.getOriginalFilename();
             		newPath = path + "\\" + fileName;   //업로드경로+파일명
-            		vo.setThumbnailImg(fileName);
+            		vo.setThumbnailImg(fileName+",");
             	}else {
             		fileName = "dImg_" + f.getOriginalFilename();
             		newPath = path + "\\" + fileName;   //업로드경로+파일명
-            		vo.setDetailImg(fileName);
+            		vo.setDetailImg(fileName+",");
             	}
                   File upfile = new File(newPath); 
                   try {

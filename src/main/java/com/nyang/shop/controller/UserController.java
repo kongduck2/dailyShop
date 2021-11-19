@@ -11,6 +11,7 @@ import com.nyang.shop.model.User;
 import com.nyang.shop.service.UserService;
 
 @Controller
+@RequestMapping({"/","/user"})
 public class UserController {
 	
 	private final UserService service;
