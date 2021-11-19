@@ -24,11 +24,17 @@ public class ProductController {
 	}
 	
 	
-	@RequestMapping(value = "/addProduct", method = RequestMethod.GET)
-	public String addProduct(Product vo ,Model model) {
-		service.insert(vo);
-    	model.addAttribute("message","상품추가 되었습니다.");
-    	model.addAttribute("url","addProduct");
+	//상품추가
+	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
+	public String addProduct(Product vo , Model model) {
+		if(vo.getCategory() == null) {
+			model.addAttribute("message","카테고리 값을 입력해주세요.");
+			model.addAttribute("url","addProduct");
+		}else {
+			service.insert(vo);
+			model.addAttribute("message","상품추가 되었습니다.");
+			model.addAttribute("url","addProduct");
+		}
 		return "/util/alertPage";
 	}
 }

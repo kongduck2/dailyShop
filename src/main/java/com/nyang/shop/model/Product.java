@@ -1,6 +1,5 @@
 package com.nyang.shop.model;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class Product {
 	private int idx;
 	private String category;
+	private String name;
 	private String thumbnailImg;
 	private String detailImg;
 	private int price;
