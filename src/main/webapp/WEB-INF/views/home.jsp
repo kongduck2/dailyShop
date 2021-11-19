@@ -37,14 +37,28 @@
 	</div>
 	
 	 <div class="container">	
+	 
+	 		<!-- 중간 배너 -->
+	<div class="row" id="midBanner">
+		<div class="col-md-4">
+			<a href="#"><img src="${pageContext.request.contextPath}/resources/image/mid-b1.jpeg" class="img-fluid" alt="중간배너"></a>
+		</div>
+		<div class="col-md-4">
+			<a href="#"><img src="${pageContext.request.contextPath}/resources/image/mid-b2.jpeg" class="img-fluid" alt="중간배너"></a>
+		</div>
+		<div class="col-md-4">
+			<a href="#"><img src="${pageContext.request.contextPath}/resources/image/mid-b3.jpeg" class="img-fluid" alt="중간배너"></a>
+		</div>
+	</div>		
+	
 		<!-- best 상품 나열 -->
-		
 			<div class="row">
+				<h2 class="text-center">BEST</h2>
 				<c:forEach var="item" items="${list }">
 					<c:set var="fileArr" value="${fn:split(item.thumbnailImg,',')}"/>
 					<div class="col">
 						<c:forEach var="img" items="${fileArr }">
-							<div class="card" style="width: 18rem;">
+							<div class="card" style="width: 18rem;" id="card">
 							  <img src="/upload/${img }" class="card-img-top" alt="thumbnailImg">
 							  <div class="card-body">
 							    <p class="card-text">${item.price }</p>
@@ -54,16 +68,7 @@
 					</div>
 				</c:forEach>	
 			</div>
-		
-
-		
-		
 	</div>
-		
-		<!-- 펫 new 시간남으면  -->
-		<div>
-		</div>
-	
 </section>
 
 <!-- footer -->

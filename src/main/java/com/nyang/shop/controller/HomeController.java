@@ -19,6 +19,7 @@ public class HomeController {
 		this.service = service;
 	}
 
+	//홈화면 BEST 상품 리스트 뿌리기 soldCount 높은순 desc
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		List<Product> list = service.getAll("d-feed");

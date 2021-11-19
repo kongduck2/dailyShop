@@ -17,6 +17,7 @@ public class Product {
 	private int idx;
 	private String category;
 	private String name;
+	private int soldCount;
 	private String thumbnailImg;
 	private String detailImg;
 	private int price;
