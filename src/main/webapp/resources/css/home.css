@@ -12,3 +12,15 @@
 #midBanner { 
 	margin-top: 70px;
 }
+.productName{
+	font-weight: bold;
+ 	font-family: "Roboto","Arial","Nanum Gothic","Malgun Gothic","맑은 고딕","Dotum","돋움","Apple SD Gothic Neo","AppleGothic",sans-serif;
+ 	text-align: center;
+}
+.productPrice{
+ 	border-top: solid 1px gray;
+	list-style:none;
+	display:block;
+	text-align: center;
+	margin: 5px auto;
+}

@@ -1,12 +1,18 @@
 @charset "UTF-8";
-.pw-form{
-  position:absolute;
-  width:370px;
-  height:250px;
-  text-align:center;
-  justify-content:center;
+
+.Frame{
+	display: flex;
+	justify-content:center;
+	margin: 15% auto;
 }
-.pw-form >button[type=submit]{
+.pwForm{
+	position:absolute;
+	width:370px;
+	height:250px;
+	text-align:center;
+	justify-content:center;
+}
+.pwForm >button[type=submit]{
 	margin-top: 10px;
 	width: 150px;
 	background-color: #ccebcc;
@@ -14,6 +20,6 @@
 	color: #9bb99b;
 }
 
-.pw-form > p{
+.pwForm > p{
 	font-size: 13px;
 }

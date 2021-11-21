@@ -2,6 +2,8 @@ package com.nyang.shop.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -28,6 +30,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public int insert(Product vo) {
+		
+		DecimalFormat df = new DecimalFormat("###,###,###");
+		vo.setPrice(df.format(Integer.parseInt(vo.getPrice())));
 		
 		List<MultipartFile> files = vo.getFiles();
 		int dif = 0; //파일명 변경을 위한 변수

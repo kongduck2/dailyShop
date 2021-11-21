@@ -20,7 +20,7 @@ public class Product {
 	private int soldCount;
 	private String thumbnailImg;
 	private String detailImg;
-	private int price;
+	private String price;
 	//파일 첨부 입력 값 저장을을 위한 MultipartFile 타입
 	private List<MultipartFile> files;
 }

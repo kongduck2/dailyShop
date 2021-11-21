@@ -59,9 +59,12 @@
 					<div class="col">
 						<c:forEach var="img" items="${fileArr }">
 							<div class="card" style="width: 18rem;" id="card">
-							  <img src="/upload/${img }" class="card-img-top" alt="thumbnailImg">
+							  <a href="#"><img src="/upload/${img }" class="card-img-top" alt="thumbnailImg"></a>
 							  <div class="card-body">
-							    <p class="card-text">${item.price }</p>
+							    <div>
+							    	<div class="productName">${item.name }</div>
+							    		<div class="productPrice">${item.price}원</div>
+							    </div>	
 							  </div>
 							</div>
 						</c:forEach>	  
