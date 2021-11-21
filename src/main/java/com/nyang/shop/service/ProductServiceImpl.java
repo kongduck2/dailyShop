@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		List<MultipartFile> files = vo.getFiles();
 		int dif = 0; //파일명 변경을 위한 변수
-	    String path = "d:\\upload";
+	    String path = "c:\\upload";
 	    String newPath = null;
 	    String fileName = null;
 	    
