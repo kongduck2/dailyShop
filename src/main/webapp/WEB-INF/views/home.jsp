@@ -10,7 +10,6 @@
 <!-- header -->
 <%@ include file="header.jsp"%>
 
-<section>
 
 	<!-- 배너 -->
 	<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -37,7 +36,6 @@
 	
 	<!-- container 시작 -->
 	 <div class="container">	
-	 
 	 		<!-- 중간 배너 -->
 	<div class="row" id="midBanner">
 		<div class="col-md-4">
@@ -77,7 +75,6 @@
 				</c:forEach>	
 			</div>
 	</div>
-</section>
 
 <!-- footer -->
 <%@ include file="footer.jsp"%>

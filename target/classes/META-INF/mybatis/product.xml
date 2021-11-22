@@ -13,8 +13,12 @@
   	</select>
   	
   	<insert id="insert" parameterType="Product"> <!-- admin 상품 추가 -->
-  		insert into Product(category,name,thumbnailImg,detailImg,price)
-  		values(#{category},#{name},#{thumbnailImg},#{detailImg},#{price})
+  		insert into product(category,name,thumbnailImg,detailImg1,detailImg2,detailImg3,option1,option2,option3,option4,price)
+  		values(#{category},#{name},#{thumbnailImg},#{detailImg1},#{detailImg2},#{detailImg3},#{option1},#{option2},#{option3},#{option4},#{price})
   	</insert>
+  	
+  	<select id="getOne" resultType="Product" parameterType="int">
+  		select * from product where idx = #{idx}
+  	</select>
   
   </mapper>

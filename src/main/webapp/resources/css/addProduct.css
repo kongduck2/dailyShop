@@ -2,10 +2,10 @@
 
 .addForm {
   position:absolute;
-  width:450px;
+  width:650px;
   height:450px;
   padding: 30px, 20px;
-  top:65%;
+  top:55%;
   left:50%;
   transform: translate(-50%,-50%);
 }

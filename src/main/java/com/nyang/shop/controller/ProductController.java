@@ -52,11 +52,16 @@ public class ProductController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(String category , Model model) {
 		List<Product> list = service.getAll(category);
-		model.addAttribute("category", service.categoryName(category));// 카테고리 이름
+		model.addAttribute("category", service.categoryName(category)); // 카테고리별 이름출력
 		model.addAttribute("list", list);
 		return "/product/list";
 	}
 	
+	@RequestMapping(value = "/detail",method = RequestMethod.GET)
+	public String detail(int idx, Model model) {
+		model.addAttribute("product",service.getOne(idx)); //디테일이미지,썸네일이미지담긴 vo
+		return "/product/detail";
+	}
 }
 
 

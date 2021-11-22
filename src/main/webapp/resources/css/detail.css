@@ -1,0 +1,122 @@
+.detailTextTable{
+	border-collapse:separate;
+	border-spacing: 0 20px;
+	border-top: solid 2px black ;
+	border-bottom: solid 2px #bbc2bc ;
+    font-family: "Roboto","Arial","Nanum Gothic","Malgun Gothic","맑은 고딕","Dotum","돋움","Apple SD Gothic Neo","AppleGothic",sans-serif;
+    width: 480px;
+}
+.detailTextTable > tr > td,th{
+	width: 240px;
+}
+.detailName{
+	border-bottom: solid 1px #bbc2bc ;
+	padding-bottom: 15px;
+	text-align: left;
+}
+.detailPrice{
+	text-align: left;	
+}
+.detailText{
+	font-size: 13px;
+	text-align: left;	
+}
+.quantityTable{
+	margin-top:30px;
+	font-family: "Roboto","Arial","Nanum Gothic","Malgun Gothic","맑은 고딕","Dotum","돋움","Apple SD Gothic Neo","AppleGothic",sans-serif;
+	font-size: 13px;
+}
+.quantityThead{
+	border: solid 1px #bbc2bc ;
+	text-align: center;
+}
+.quantityTbody{
+	text-align: center;
+	border-spacing: 0;
+    border-collapse: collapse;
+}
+.quantityThead > tr > td{
+	width: 160px;
+	padding:10px;
+	border: solid 1px #bbc2bc ;
+}
+.quantityTbody > tr > td{
+	width: 160px;
+	padding:10px;
+	border-bottom: solid 1px #bbc2bc ;
+}
+.quantity > input{
+	width: 30px !important;
+	text-align: center;
+}
+.quantity{
+	display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.total{
+	padding: 20px;
+	text-align: right;
+}
+.total > span{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.favoriteButton , .cartButton{
+	width: 160px;
+	height: 60px;
+	background-color:white;
+	border: solid 1px #bbc2bc;
+	border-radius: 5px;
+}
+.favoriteButton:hover , .cartButton:hover{
+	border: solid 3px gray;
+}
+
+.buyButton{
+	width: 160px;
+	height: 60px;
+	border: solid 1px #bbc2bc;
+	border-radius: 5px;
+	background-color: black;
+	color: white;
+}
+.buyButton:hover{
+	-webkit-transition-duration: 0.4s;
+	background-color: white;
+	color: black;
+}
+
+#detailBox{
+	margin-top: 100px;
+	padding-top: 100px;
+	text-align: center;
+}
+
+#guideBox{
+	margin-top: 100px;
+	padding-top: 100px;
+	text-align: center;
+}
+#guideVarDiv{
+	margin-top: 100px;
+	border-top: solid 1px #bbc2bc ;
+}
+#guideVarDiv > div{
+	text-align: center;
+}
+.guideVar {
+	border: solid 1px black;
+    margin-left:auto; 
+    margin-right:auto;
+	border-collapse:separate;
+	border-spacing: 30px;
+}
+.guideVar >tr> td{
+	width: 200px;
+}
+
+
+

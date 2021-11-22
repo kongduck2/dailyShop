@@ -46,13 +46,29 @@
 	 <div>	
 		<input type="number" name="price" placeholder="가격 " required>
 	 </div>
+	 <div>	
+		<input type="text" name="option1" placeholder="옵션명1">
+		<input type="text" name="option2" placeholder="옵션명2">
+	 </div>
+	 <div>	
+		<input type="text" name="option3" placeholder="옵션명3">
+		<input type="text" name="option4" placeholder="옵션명4">
+	 </div>
 	 <div class="file-div">	
 		<label for="files" class="form-label">썸네일 이미지 등록</label>
 		<input name="files" type="file" id="files" accept="image/*" onchange="setImg(event);" required>
 	 </div>
 	 <div class="file-div">	 
-		<label for="files" class="form-label">제품상세 이미지 등록</label>
+		<label for="files" class="form-label">제품상세 이미지 등록1</label>
 		<input name="files" type="file" id="files" accept="image/*" onchange="setImg(event);" required>
+	 </div>
+	 <div class="file-div">	 
+		<label for="files" class="form-label">제품상세 이미지 등록2</label>
+		<input name="files" type="file" id="files" accept="image/*" onchange="setImg(event);">
+	 </div>
+	 <div class="file-div">	 
+		<label for="files" class="form-label">제품상세 이미지 등록3</label>
+		<input name="files" type="file" id="files" accept="image/*" onchange="setImg(event);">
 	 </div>
 		 <div id="imageContainer">이미지 미리보기 </div>
 	 <div>	 

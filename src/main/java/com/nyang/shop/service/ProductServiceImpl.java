@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,15 +44,30 @@ public class ProductServiceImpl implements ProductService {
 	    //이미지파일 전송 부분
     	if (files != null && files.size() > 0) { //첨부된 파일이 있을 때 첨부된 파일리스트에 하나씩 upload 폴더로 전송
             for (MultipartFile f : files) {	
-            	if(dif == 0) {
+            	switch (dif) {
+				case 0:
             		fileName = "tImg_" + f.getOriginalFilename();
             		newPath = path + "\\" + fileName;   //업로드경로+파일명
             		vo.setThumbnailImg(fileName+",");
-            	}else {
+					break;
+				case 1:
             		fileName = "dImg_" + f.getOriginalFilename();
             		newPath = path + "\\" + fileName;   //업로드경로+파일명
-            		vo.setDetailImg(fileName+",");
-            	}
+            		vo.setDetailImg1(fileName+",");
+            		break;
+				case 2:
+					fileName = "dImg_" + f.getOriginalFilename();
+					newPath = path + "\\" + fileName;   //업로드경로+파일명
+					vo.setDetailImg2(fileName+",");
+					break;
+				case 3:
+					fileName = "dImg_" + f.getOriginalFilename();
+					newPath = path + "\\" + fileName;   //업로드경로+파일명
+					vo.setDetailImg3(fileName+",");
+					break;
+				default:
+					break;
+				}
                   File upfile = new File(newPath); 
                   try {
 					f.transferTo(upfile); 
@@ -78,6 +95,16 @@ public class ProductServiceImpl implements ProductService {
 		else if(category.equals("d-toy")||category.equals("c-toy")) category="장난감";
 		else if(category.equals("d-walk")) category="산책·외출";
 		return category;
+	}
+
+	@Override
+	public Product getOne(int idx) {
+		Product vo = dao.getOne(idx);
+		vo.setDetailImg1(vo.getDetailImg1().substring(0, vo.getDetailImg1().length()-1)); //,제외
+		vo.setDetailImg2(vo.getDetailImg2().substring(0, vo.getDetailImg2().length()-1)); 
+		vo.setDetailImg3(vo.getDetailImg3().substring(0, vo.getDetailImg3().length()-1)); 
+		vo.setThumbnailImg(vo.getThumbnailImg().substring(0, vo.getThumbnailImg().length()-1));
+		return vo;
 	}
 
 }
