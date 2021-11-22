@@ -35,12 +35,12 @@
 		    <option value="d-feed">강아지 사료</option>
 		    <option value="d-snack">강아지 간식 </option>
 		    <option value="d-fashion">강아지 패션</option>
-		    <option value="d-care">강아지 미용·목욕</option>
+		    <option value="d-toy">강아지 장난감</option>
 		    <option value="d-walk">강아지 외출</option>
 		    <option value="c-feed">고양이 사료</option>
 		    <option value="c-snack">고양이 간식</option>
 		    <option value="c-fashion">고양이 패션</option>
-		    <option value="c-care">고양이 미용·목욕</option>
+		    <option value="c-toy">고양이 장난감</option>
 		</select>
 	 </div>
 	 <div>	

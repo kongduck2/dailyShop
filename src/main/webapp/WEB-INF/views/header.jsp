@@ -60,25 +60,25 @@
 		<!-- 네비게이션 바 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Home</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
          <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">BEST</a>
+          <a class="nav-link active" aria-current="page" href="best">BEST</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             강아지
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">사료</a></li>
-            <li><a class="dropdown-item" href="#">간식</a></li>
-            <li><a class="dropdown-item" href="#">패션</a></li>
-            <li><a class="dropdown-item" href="#">미용·목욕</a></li>
-            <li><a class="dropdown-item" href="#">외출</a></li>
+            <li><a class="dropdown-item" href="list?category=d-feed">사료</a></li>
+            <li><a class="dropdown-item" href="list?category=d-snack">간식</a></li>
+            <li><a class="dropdown-item" href="list?category=d-fashion">패션</a></li>
+            <li><a class="dropdown-item" href="list?category=d-toy">장난감</a></li>
+            <li><a class="dropdown-item" href="list?category=d-walk">외출</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -86,10 +86,10 @@
             고양이
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">사료</a></li>
-            <li><a class="dropdown-item" href="#">간식</a></li>
-            <li><a class="dropdown-item" href="#">패션</a></li>
-            <li><a class="dropdown-item" href="#">미용·목욕</a></li>
+            <li><a class="dropdown-item" href="list?category=c-feed">사료</a></li>
+            <li><a class="dropdown-item" href="list?category=c-snack">간식</a></li>
+            <li><a class="dropdown-item" href="list?category=c-fashion">패션</a></li>
+            <li><a class="dropdown-item" href="list?category=c-toy">장난감</a></li>
           </ul>
         </li>
         <li class="nav-item">

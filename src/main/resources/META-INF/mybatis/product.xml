@@ -8,6 +8,10 @@
   		order by idx desc
   	</select>
   	
+  	<select id="bestGetAll" resultType="Product" > <!-- BEST 목록 가져오기 -->
+  		select * from product order by soldCount desc
+  	</select>
+  	
   	<insert id="insert" parameterType="Product"> <!-- admin 상품 추가 -->
   		insert into Product(category,name,thumbnailImg,detailImg,price)
   		values(#{category},#{name},#{thumbnailImg},#{detailImg},#{price})

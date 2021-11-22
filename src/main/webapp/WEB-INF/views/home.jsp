@@ -10,7 +10,6 @@
 <!-- header -->
 <%@ include file="header.jsp"%>
 
-<!-- container 시작 -->
 <section>
 
 	<!-- 배너 -->
@@ -36,6 +35,7 @@
 	  </button>
 	</div>
 	
+	<!-- container 시작 -->
 	 <div class="container">	
 	 
 	 		<!-- 중간 배너 -->
@@ -61,8 +61,13 @@
 							<div class="card" style="width: 18rem;" id="card">
 							  <a href="#"><img src="/upload/${img }" class="card-img-top" alt="thumbnailImg"></a>
 							  <div class="card-body">
-							    <div>
+							    <div class="card-text">
+							    <c:if test="${fn:length(item.name) <= 20 }"> <!-- 한줄일때 경계선 높낮이 다름 -->
+							    	<div class="productName" style="line-height : 47px;">${item.name }</div>
+							    </c:if>
+							    <c:if test="${fn:length(item.name) > 20 }">
 							    	<div class="productName">${item.name }</div>
+							    </c:if>	
 							    		<div class="productPrice">${item.price}원</div>
 							    </div>	
 							  </div>

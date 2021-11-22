@@ -1,5 +1,8 @@
 package com.nyang.shop.controller;
 
+import java.util.List;
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +40,23 @@ public class ProductController {
 		return "/util/alertPage";
 	}
 	
-	//상품 뿌리기 (테스트)
+	//BEST 상품 리스트 뿌리기 soldCount 높은순 
+	@RequestMapping(value = "/best", method = RequestMethod.GET)
+	public String best(Model model) {
+		List<Product> list = service.bestGetAll();
+		model.addAttribute("list", list);
+		return "/product/best";
+	}
+	
+	//카테고리별 상품 리스트 뿌리기  
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String list(String category , Model model) {
+		List<Product> list = service.getAll(category);
+		model.addAttribute("category", service.categoryName(category));// 카테고리 이름
+		model.addAttribute("list", list);
+		return "/product/list";
+	}
 	
 }
+
+

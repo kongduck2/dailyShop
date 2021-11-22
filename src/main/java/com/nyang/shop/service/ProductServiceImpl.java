@@ -24,13 +24,12 @@ public class ProductServiceImpl implements ProductService {
 	
 
 	@Override
-	public List<Product> getAll(String category) {
+	public List<Product> getAll(String category) { //카테고리별 목록 전체 가져오기
 		return dao.getAll(category);
 	}
 
 	@Override
 	public int insert(Product vo) {
-		
 		DecimalFormat df = new DecimalFormat("###,###,###");
 		vo.setPrice(df.format(Integer.parseInt(vo.getPrice())));
 		
@@ -64,6 +63,21 @@ public class ProductServiceImpl implements ProductService {
          }
       
 		return dao.insert(vo);
+	}
+
+	@Override
+	public List<Product> bestGetAll() {
+		return dao.bestGetAll();
+	}
+	
+	@Override
+	public String categoryName(String category) {
+		if(category.equals("d-feed") || category.equals("c-feed")) category ="사료";
+		else if(category.equals("d-snack")||category.equals("c-snack")) category="간식";
+		else if(category.equals("d-fashion")||category.equals("c-fashion")) category="패션";
+		else if(category.equals("d-toy")||category.equals("c-toy")) category="장난감";
+		else if(category.equals("d-walk")) category="산책·외출";
+		return category;
 	}
 
 }
