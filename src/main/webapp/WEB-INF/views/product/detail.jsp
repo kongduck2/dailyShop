@@ -5,8 +5,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>댕냥이의 일상</title>
+<script type="text/javascript">
+	
+
+		//옵션선택
+ function selectOnChange(o){
+	 	const x = document.getElementById("selectBox").selectedIndex;
+		const y = document.getElementById("selectBox").options;
+		let idx = y[x].index;
+		let option = document.getElementById("optionText");
+		const text = o.options[o.selectedIndex].text;
+		const value = o.value;
+		
+		if(value != ""){
+			document.getElementById('optionText'+idx).innerText = text;
+			document.getElementById('optionTbody'+idx).style.display='table-row-group';
+		//selectBox.options[selectBox.selectedIndex].text
+		}
+	}; 
+	
+</script>
 </head>
 <body>
 
@@ -43,6 +64,23 @@
     			<td class="detailText">배송비</td>
     			<td class="detailText">3,000원 (50,000원 이상 구매 시 무료)</td>
     		</tr>
+   		<c:if test="${product.option1 != ''}"> <!-- 옵션이 2개이상일 경우 -->
+    		<tr>
+    			<td class="detailText">옵션</td>
+    			<td class="detailText"><select name="selectBox" id="selectBox" onchange="selectOnChange(this)">
+    				<option value="">--[필수] 옵션을 선택해주세요.--</option>
+    				<option value="option1">${product.option1 }</option>
+    				<option value="option2">${product.option2 }</option>
+    			<c:if test="${product.option3 != ''}">	
+    				<option value="option3">${product.option3 }</option>
+    			</c:if>	
+    			<c:if test="${product.option4 != ''}">	
+    				<option value="option4" id="option4">${product.option3 }</option>
+    			</c:if>	
+    				</select>
+    			</td>
+    		</tr>
+    	</c:if>	
     	</table>
     	
     	<!-- 제품 주문 수량 -->
@@ -55,19 +93,42 @@
     			</tr>
     		</thead>
     		
-    		<tbody class="quantityTbody">
-    			<tr>
-    				<td>${product.name }</td>
-    				<td>
-    				<span class="upDownImg"> <a href="#"><img alt="downButton" src="${pageContext.request.contextPath}/resources/image/btn_count_down.gif"></a></span>
-    				<span class="quantity"><input id="quantity" name="quantity" value="1" type="text">
-    					<span class="upDownImg"> 
-    					<a href="#"><img alt="upButton" src="${pageContext.request.contextPath}/resources/image/btn_count_up.gif"></a>
-    					</span>
-    				</span></td>
-    				<td>${product.price }원</td>
-    			</tr>
-    		</tbody>	
+    	<!-- 옵션값 없을때 기본 상품명 추가 -->
+	    	<c:if test="${product.option1 eq ''}">	
+	    		<tbody class="quantityTbody" >
+	    			<tr>
+	    				<td>${product.name }</td>
+	    				<td>
+	    				<span class="upDownImg"> <a href="#"><img alt="downButton" src="${pageContext.request.contextPath}/resources/image/btn_count_down.gif"></a></span>
+	    				<span class="quantity"><input id="quantity" name="quantity" value="1" type="text">
+	    					<span class="upDownImg"> 
+	    					<a href="#"><img alt="upButton" src="${pageContext.request.contextPath}/resources/image/btn_count_up.gif"></a>
+	    					</span>
+	    				</span></td>
+	    				<td>${product.price }원</td>
+	    			</tr>
+	    		</tbody>	
+	    	</c:if>
+	    	
+	    	<c:if test="${product.option1 != ''}">	
+   			<c:forEach var="i" begin="1" step="1" end="4">
+	    		<tbody class="quantityTbody" id="optionTbody${i }" >
+		    		<tr>
+	    				<td id="optionText${i }"></td>
+	    				<td>
+	    				<span class="upDownImg"> <a href="#"><img alt="downButton" src="${pageContext.request.contextPath}/resources/image/btn_count_down.gif"></a></span>
+	    				<span class="quantity"><input id="quantity" name="quantity" value="1" type="text">
+	    					<span class="upDownImg"> 
+	    					<a href="#"><img alt="upButton" src="${pageContext.request.contextPath}/resources/image/btn_count_up.gif"></a>
+	    					</span>
+	    					<a href="#"><img alt="delButton" src="${pageContext.request.contextPath}/resources/image/btn_delete.gif"></a>
+	    				</span></td>
+	    				<td>${product.price }원</td>
+	    			</tr>
+	    		</tbody>
+	    	</c:forEach>	
+	    	</c:if>
+	    		
     	</table>
     	<div class="col-lg-9">
     		<div class="total">Total : <span>${product.price}원</span></div>
@@ -87,38 +148,48 @@
     </div>
   </div>
   
-  <div class="row" id="guideVarDiv">
+  <!-- 상단 가이드바 (상품정보) -->
+  <div class="row" id="topGuideVar">
   	<div class="col-md-12">
-  		<table class="guideVar">
-  			<tr>
-  				<td>상품정보</td>
-  				<td>구매안내</td>
-  				<td>상품후기</td>
-  			</tr>
-  		</table>
+		<ul class="guideVar">
+			<li class="guideText"><a href="#topGuideVar">상품정보</a></li>
+			<li class="guideText"><a href="#middleGuideVar">구매안내</a></li>
+			<li class="guideText"><a href="#bottomGuideVar">상품후기</a></li>
+		</ul>  		
   	</div>
   </div>
   
   <!-- 디테일 이미지 -->
   <div class="row" id="detailBox">
   	<div class="col-md-12">
-		<img alt="디테일 이미지" src="/upload/${product.detailImg1 }">  	
+		<img alt="디테일 이미지1" src="/upload/${product.detailImg1 }">  	
   	</div>
   </div>
-  <c:if test="${!(product.detailImg2 eq 'dImg_2,') }"> <!-- 기본 설정이름 -->
+  <c:if test="${!(product.detailImg2 eq 'dImg_') }"> <!-- 기본 설정이름 -->
 	  <div class="row" id="detailBox2">
   		<div class="col-md-12">
-			<img alt="디테일 이미지" src="/upload/${product.detailImg2 }">  	
+			<img alt="디테일 이미지2" src="/upload/${product.detailImg2 }">  	
 	  	</div>
 	  </div>  
   </c:if>
-  <c:if test="${!(product.detailImg3 eq 'dImg_3,') }"> <!-- 기본 설정이름 -->
+  <c:if test="${!(product.detailImg3 eq 'dImg_')}"> <!-- 기본 설정이름 -->
 	  <div class="row" id="detailBox3">
   		<div class="col-md-12">
-			<img alt="디테일 이미지" src="/upload/${product.detailImg3 }">  	
+			<img alt="디테일 이미지3" src="/upload/${product.detailImg3 }">  	
 	  	</div>
 	  </div>  
   </c:if>
+  
+  <!-- 중간 가이드바 (구매안내)-->
+  <div class="row" id="middleGuideVar">
+  	<div class="col-md-12">
+		<ul class="guideVar">
+			<li class="guideText"><a href="#topGuideVar">상품정보</a></li>
+			<li class="guideText"><a href="#middleGuideVar">구매안내</a></li>
+			<li class="guideText"><a href="#bottomGuideVar">상품후기</a></li>
+		</ul>  		
+  	</div>
+  </div>
   
   <!-- 가이드 이미지 -->
   <div class="row" id="guideBox">
@@ -126,6 +197,18 @@
 		<img alt="가이드 이미지" src="${pageContext.request.contextPath}/resources/image/guide.jpg">  	
   	</div>
   </div>
+  
+    <!-- 하단 가이드바 (후기) -->
+  <div class="row" id="bottomGuideVar">
+  	<div class="col-md-12">
+		<ul class="guideVar">
+			<li class="guideText"><a href="#topGuideVar">상품정보</a></li>
+			<li class="guideText"><a href="#middleGuideVar">구매안내</a></li>
+			<li class="guideText"><a href="#bottomGuideVar">상품후기</a></li>
+		</ul>  		
+  	</div>
+  </div>
+  
   
 </div><!-- container end -->
 

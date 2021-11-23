@@ -59,7 +59,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "/detail",method = RequestMethod.GET)
 	public String detail(int idx, Model model) {
-		model.addAttribute("product",service.getOne(idx)); //디테일이미지,썸네일이미지담긴 vo
+		model.addAttribute("product",service.getOne(idx)); 
 		return "/product/detail";
 	}
 }

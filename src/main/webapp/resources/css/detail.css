@@ -100,23 +100,37 @@
 	padding-top: 100px;
 	text-align: center;
 }
-#guideVarDiv{
+#topGuideVar,#middleGuideVar,#bottomGuideVar{
 	margin-top: 100px;
 	border-top: solid 1px #bbc2bc ;
 }
-#guideVarDiv > div{
-	text-align: center;
-}
 .guideVar {
-	border: solid 1px black;
-    margin-left:auto; 
-    margin-right:auto;
-	border-collapse:separate;
-	border-spacing: 30px;
+	display:flex;
+	justify-content:center;
+	list-style:none;
 }
-.guideVar >tr> td{
-	width: 200px;
+.guideText{
+	padding-left: 150px;
+	padding-right: 150px;
+	padding-top: 23px;
+	font-size: 20px;
+	vertical-align: middle;
 }
 
-
+.guideText > a{
+	display:block;
+	width:150px;
+	height:40px;
+	border-radius: 6px;
+	color: gray;
+	text-decoration: none;
+}
+.guideText > a:hover{
+	-webkit-transition-duration: 0.4s;
+	background-color: #f5f5f5;
+	color: black;
+}
+#optionTbody1,#optionTbody2,#optionTbody3,#optionTbody4{
+	display: none;
+}
 
