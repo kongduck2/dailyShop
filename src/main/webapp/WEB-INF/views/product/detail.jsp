@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>댕냥이의 일상</title>
-<script type="text/javascript">
+<script type="text/javascript" defer>
 	
 
 		//옵션선택
@@ -26,6 +26,31 @@
 		//selectBox.options[selectBox.selectedIndex].text
 		}
 	}; 
+	
+function plus(){
+	
+}	
+
+function change(){
+	let quantity = document.getElementsByClassName('quantity');
+	let sum = document.getElementsByClassName('sumPrice'); //getElementsByClassName 반환값 배열
+	let price = document.getElementById('sellPrice');
+	let totalPrice = document.getElementById('totalPrice');
+	let totalQuantity = 0;
+		
+		for (let i = 0; i < quantity.length; i++) {
+		if (quantity[i].value == '' || quantity[i].value < 0) { 
+			quantity[i].value = 0;
+		}
+			totalQuantity += parseInt(quantity[i].value); //타입이 객체기떄문에 Int타입으로 파싱
+		}
+		
+		for (let i = 0; i < sum.length; i++) { //상품별 총합
+			sum[i].innerText = (parseInt(quantity[i].value) * parseInt(price.value.replace(',',''))).toLocaleString('ko-KR')+'원';
+		}
+		//토탈가격
+		totalPrice.innerText = (parseInt(totalQuantity) * parseInt(price.value.replace(',',''))).toLocaleString('ko-KR')+'원';
+}  
 	
 </script>
 </head>
@@ -75,7 +100,7 @@
     				<option value="option3">${product.option3 }</option>
     			</c:if>	
     			<c:if test="${product.option4 != ''}">	
-    				<option value="option4" id="option4">${product.option3 }</option>
+    				<option value="option4">${product.option4 }</option>
     			</c:if>	
     				</select>
     			</td>
@@ -99,39 +124,43 @@
 	    			<tr>
 	    				<td>${product.name }</td>
 	    				<td>
-	    				<span class="upDownImg"> <a href="#"><img alt="downButton" src="${pageContext.request.contextPath}/resources/image/btn_count_down.gif"></a></span>
-	    				<span class="quantity"><input id="quantity" name="quantity" value="1" type="text">
+	    				<input type="hidden" id="sellPrice" value="${product.price }">
+	    				<span class="upDownImg"><img onclick="minus()" id="downButton" alt="downButton" src="${pageContext.request.contextPath}/resources/image/btn_count_down.gif"></span>
+	    				<span class="quantitySpan"><input class="quantity" id="quantity" name="quantity" value="1" type="number" onchange="change()">
 	    					<span class="upDownImg"> 
-	    					<a href="#"><img alt="upButton" src="${pageContext.request.contextPath}/resources/image/btn_count_up.gif"></a>
+	    					<img onclick="plus()" id="upButton" alt="upButton" src="${pageContext.request.contextPath}/resources/image/btn_count_up.gif">
 	    					</span>
+	    					<img onclick="delete()" id="delButton" alt="delButton" src="${pageContext.request.contextPath}/resources/image/btn_delete.gif">
 	    				</span></td>
-	    				<td>${product.price }원</td>
+	    				<td class="sumPrice">${product.price }원</td>
 	    			</tr>
 	    		</tbody>	
 	    	</c:if>
 	    	
+	    <!-- 옵션값 있는경우 -->
 	    	<c:if test="${product.option1 != ''}">	
-   			<c:forEach var="i" begin="1" step="1" end="4">
-	    		<tbody class="quantityTbody" id="optionTbody${i }" >
-		    		<tr>
-	    				<td id="optionText${i }"></td>
-	    				<td>
-	    				<span class="upDownImg"> <a href="#"><img alt="downButton" src="${pageContext.request.contextPath}/resources/image/btn_count_down.gif"></a></span>
-	    				<span class="quantity"><input id="quantity" name="quantity" value="1" type="text">
-	    					<span class="upDownImg"> 
-	    					<a href="#"><img alt="upButton" src="${pageContext.request.contextPath}/resources/image/btn_count_up.gif"></a>
-	    					</span>
-	    					<a href="#"><img alt="delButton" src="${pageContext.request.contextPath}/resources/image/btn_delete.gif"></a>
-	    				</span></td>
-	    				<td>${product.price }원</td>
-	    			</tr>
-	    		</tbody>
-	    	</c:forEach>	
+	   			<c:forEach var="i" begin="1" step="1" end="4">
+		    		<tbody class="quantityTbody" id="optionTbody${i }" >
+			    		<tr>
+		    				<td id="optionText${i }"></td>
+		    				<td>
+		    				<input type="hidden" id="sellPrice" value="${product.price }">
+		    				<span class="upDownImg"><img onclick="minus()" id="downButton" alt="downButton" src="${pageContext.request.contextPath}/resources/image/btn_count_down.gif"></span>
+		    				<span class="quantitySpan"><input class="quantity" id="quantity" name="quantity" value="0" type="text" onchange="change()">
+		    					<span class="upDownImg"> 
+		    					<img onclick="plus()" id="upButton" alt="upButton" src="${pageContext.request.contextPath}/resources/image/btn_count_up.gif">
+		    					</span>
+		    					<img onclick="delete()" id="delButton" alt="delButton" src="${pageContext.request.contextPath}/resources/image/btn_delete.gif">
+		    				</span></td>
+		    				<td class="sumPrice">${product.price }원</td>
+		    			</tr>
+		    		</tbody>
+		    	</c:forEach>	
 	    	</c:if>
 	    		
     	</table>
     	<div class="col-lg-9">
-    		<div class="total">Total : <span>${product.price}원</span></div>
+    		<div class="total" >Total : <span id="totalPrice" >${product.price}원</span></div>
     	</div>	
     	<!-- 제품 상세부분 조작 버튼 -->
     	<div class="row" id="detailbutton">
