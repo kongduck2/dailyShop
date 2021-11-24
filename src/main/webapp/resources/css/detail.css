@@ -46,7 +46,7 @@
 	border-bottom: solid 1px #bbc2bc ;
 }
 .quantitySpan > input{
-	width: 30px !important;
+	width: 40px !important;
 	text-align: center;
 }
 .quantitySpan{
@@ -133,7 +133,11 @@
 #optionTbody1,#optionTbody2,#optionTbody3,#optionTbody4{
 	display: none;
 }
-
-#downButton:hover,#upButton:hover,#delButton:hover{
+.quantitySpan > input[type="number"]::-webkit-outer-spin-button:hover,
+.quantitySpan > input[type="number"]::-webkit-inner-spin-button:hover{
+	cursor: pointer;
+}
+#delButton:hover{
 	cursor: pointer;	
 }
+

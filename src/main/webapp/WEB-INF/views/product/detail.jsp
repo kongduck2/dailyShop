@@ -12,25 +12,24 @@
 	
 
 		//옵션선택
- function selectOnChange(o){
+function selectOnChange(o){
 	 	const x = document.getElementById("selectBox").selectedIndex;
 		const y = document.getElementById("selectBox").options;
 		let idx = y[x].index;
 		let option = document.getElementById("optionText");
 		const text = o.options[o.selectedIndex].text;
 		const value = o.value;
+		let quantity = document.getElementById('optionTbody'+idx).childNodes[1].querySelector(".quantity");//선택된 값의 자식 input값
 		
 		if(value != ""){
 			document.getElementById('optionText'+idx).innerText = text;
+			quantity.value = 1;
+			change();
 			document.getElementById('optionTbody'+idx).style.display='table-row-group';
 		//selectBox.options[selectBox.selectedIndex].text
 		}
 	}; 
-	
-function plus(){
-	
-}	
-
+	//제품 수량별 가격변경
 function change(){
 	let quantity = document.getElementsByClassName('quantity');
 	let sum = document.getElementsByClassName('sumPrice'); //getElementsByClassName 반환값 배열
@@ -51,6 +50,14 @@ function change(){
 		//토탈가격
 		totalPrice.innerText = (parseInt(totalQuantity) * parseInt(price.value.replace(',',''))).toLocaleString('ko-KR')+'원';
 }  
+	//옵션 삭제버튼 클릭했을때 quantity value 0되고 디스플레이 none
+function del(d){
+	d.parentNode.firstChild.value = 0 ;//선택된 제품 quantity 값 0으로 수정(선택자 input태그)
+	change();	//적용
+	d.parentNode.parentNode.parentNode.parentNode.style.display = 'none'; //선택된 제품 숨기기(선택자 tbody태그)
+}
+	
+	
 	
 </script>
 </head>
@@ -125,12 +132,7 @@ function change(){
 	    				<td>${product.name }</td>
 	    				<td>
 	    				<input type="hidden" id="sellPrice" value="${product.price }">
-	    				<span class="upDownImg"><img onclick="minus()" id="downButton" alt="downButton" src="${pageContext.request.contextPath}/resources/image/btn_count_down.gif"></span>
 	    				<span class="quantitySpan"><input class="quantity" id="quantity" name="quantity" value="1" type="number" onchange="change()">
-	    					<span class="upDownImg"> 
-	    					<img onclick="plus()" id="upButton" alt="upButton" src="${pageContext.request.contextPath}/resources/image/btn_count_up.gif">
-	    					</span>
-	    					<img onclick="delete()" id="delButton" alt="delButton" src="${pageContext.request.contextPath}/resources/image/btn_delete.gif">
 	    				</span></td>
 	    				<td class="sumPrice">${product.price }원</td>
 	    			</tr>
@@ -145,12 +147,8 @@ function change(){
 		    				<td id="optionText${i }"></td>
 		    				<td>
 		    				<input type="hidden" id="sellPrice" value="${product.price }">
-		    				<span class="upDownImg"><img onclick="minus()" id="downButton" alt="downButton" src="${pageContext.request.contextPath}/resources/image/btn_count_down.gif"></span>
-		    				<span class="quantitySpan"><input class="quantity" id="quantity" name="quantity" value="0" type="text" onchange="change()">
-		    					<span class="upDownImg"> 
-		    					<img onclick="plus()" id="upButton" alt="upButton" src="${pageContext.request.contextPath}/resources/image/btn_count_up.gif">
-		    					</span>
-		    					<img onclick="delete()" id="delButton" alt="delButton" src="${pageContext.request.contextPath}/resources/image/btn_delete.gif">
+		    				<span class="quantitySpan"><input class="quantity" id="quantity" name="quantity" value="0" type="number" onchange="change()">
+		    					<img onclick="del(this)" id="delButton" alt="delButton" src="${pageContext.request.contextPath}/resources/image/btn_delete.gif">
 		    				</span></td>
 		    				<td class="sumPrice">${product.price }원</td>
 		    			</tr>
@@ -160,7 +158,14 @@ function change(){
 	    		
     	</table>
     	<div class="col-lg-9">
+    	<!-- 옵션값 없는경우 -->
+    	<c:if test="${product.option1 eq ''}">	
     		<div class="total" >Total : <span id="totalPrice" >${product.price}원</span></div>
+    	</c:if>	
+    	<!-- 옵션값 있는경우 -->
+    	<c:if test="${product.option1 != ''}">	
+    		<div class="total" >Total : <span id="totalPrice" >0원</span></div>
+    	</c:if>	
     	</div>	
     	<!-- 제품 상세부분 조작 버튼 -->
     	<div class="row" id="detailbutton">
