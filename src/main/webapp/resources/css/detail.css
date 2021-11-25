@@ -133,10 +133,20 @@
 #optionTbody1,#optionTbody2,#optionTbody3,#optionTbody4{
 	display: none;
 }
+
 .quantitySpan > input[type="number"]::-webkit-outer-spin-button:hover,
 .quantitySpan > input[type="number"]::-webkit-inner-spin-button:hover{
 	cursor: pointer;
+   -webkit-appearance: "Always Show Up/Down Arrows";
+   opacity: 1;
 }
+
+.quantitySpan > input[type="number"]::-webkit-outer-spin-button,
+.quantitySpan > input[type="number"]::-webkit-inner-spin-button{
+   -webkit-appearance: "Always Show Up/Down Arrows";
+   opacity: 1;
+}
+
 #delButton:hover{
 	cursor: pointer;	
 }

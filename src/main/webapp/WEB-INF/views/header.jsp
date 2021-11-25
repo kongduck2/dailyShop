@@ -46,7 +46,7 @@
 						<li><a href="infoUpdatePwCheck">회원정보수정</a></li>
 					</ul>
 				</li>
-				<li class="top-text"><a href="#" >장바구니</a></li>
+				<li class="top-text"><a href="cart" >장바구니</a></li>
 			</c:if>
 			</ul>
 		</div>

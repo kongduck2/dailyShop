@@ -1,23 +1,32 @@
 package com.nyang.shop.controller;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.nyang.shop.model.Cart;
 import com.nyang.shop.model.User;
+import com.nyang.shop.service.CartService;
 import com.nyang.shop.service.UserService;
 
 @Controller
 @RequestMapping({"/","/user"})
 public class UserController {
 	
-	private final UserService service;
+	private final UserService uService;
 	
-	public UserController(UserService service) {
-		this.service = service;
+	private final CartService cService;
+	
+	public UserController(UserService uService,CartService cService) {
+		this.uService = uService;
+		this.cService=cService;
 	}
 	
 	//회원가입 뷰페이지 이동
@@ -30,13 +39,13 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/regist", method = RequestMethod.POST)
     public String emailCheck(String email, Model model) {
-        return String.valueOf(service.emailCheck(email));
+        return String.valueOf(uService.emailCheck(email));
     }
     
     //유저정보 등록
     @RequestMapping(value = "/userRegist", method = RequestMethod.POST)
     public String userInsert(User user, Model model) {
-    	service.insert(user);
+    	uService.insert(user);
     	model.addAttribute("message",user.getName()+"님 회원가입을 축하드립니다!");
     	model.addAttribute("url","/dailyshop");
     	return "/util/alertPage";
@@ -57,7 +66,7 @@ public class UserController {
     //비밀번호 확인
     @RequestMapping(value = "/pwCheck" , method = RequestMethod.POST)
     public String pwCheck(@SessionAttribute("user")User user, String password ,Model model) { //세션에 저장된(로그인된) 유저 객체사용
-    	if(service.pwCheck(user, password)) { //비밀번호 일치
+    	if(uService.pwCheck(user, password)) { //비밀번호 일치
     		return "/user/infoUpdate";
     	}else { //불일치 
         	model.addAttribute("message","비밀번호가 올바르지 않습니다.");
@@ -69,10 +78,30 @@ public class UserController {
     //회원정보수정
     @RequestMapping(value = "/userUpdate" , method = RequestMethod.POST)
     public String userUpdate(User user,Model model) {
-    	service.update(user);
+    	uService.update(user);
     	model.addAttribute("message", "회원정보수정이 완료되었습니다.");
     	model.addAttribute("url", "/dailyshop");
     	return "/util/alertPage";
+    }
+    
+    //카트 이동
+    @RequestMapping(value = "/cart" , method = RequestMethod.GET)
+    public String moveCart() {
+    	return "/user/cart";
+    }
+    
+    @ResponseBody //@ResponseBody로 결과 ajax에응답
+    @RequestMapping(value = "/addCart" , method = RequestMethod.POST)
+    public String addCart(@RequestParam Map<String,String> idx, Model model) { //@RequestParam로 파라미터 형식으로 받기
+    	if(cService.findProduct(Integer.parseInt(idx.get("pIdx")))) { //장바구니에 같은 상품이 있는경우
+    		return "1";
+    	}else {
+    		Cart cart = Cart.builder().userIdx(Integer.parseInt(idx.get("uIdx")))
+    				.productIdx(Integer.parseInt(idx.get("pIdx"))).build();
+    		cService.insert(cart);
+    		return "0";
+    	}
+    	
     }
 	   
 	 

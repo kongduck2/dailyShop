@@ -8,8 +8,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 카카오 주소 api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/regist.js"></script>
-
 </head>
 <body>
 <!-- header -->
@@ -140,6 +138,6 @@ o 로그 기록
 
 <!-- footer -->
 <%@ include file="../footer.jsp"%>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/regist.js" defer></script>
 </body>
 </html>

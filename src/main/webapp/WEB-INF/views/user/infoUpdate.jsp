@@ -9,13 +9,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 카카오 주소 api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/infoUpdate.js"></script>
 </head>
 <body>
 
 <%@ include file="../header.jsp"%>
-
-
 
 <div class="update-form">
 	<form class="row g-4" action="userUpdate" onsubmit="return registCheck()" method="post">
@@ -55,10 +52,7 @@
 	</form>
 </div>
 
-
-
-
 <%@ include file="../footer.jsp"%>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/infoUpdate.js" defer></script>
 </body>
 </html>

@@ -2,13 +2,16 @@ package com.nyang.shop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.nyang.shop.model.Product;
+import com.nyang.shop.model.User;
 import com.nyang.shop.service.ProductService;
 
 @Controller
@@ -58,7 +61,10 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/detail",method = RequestMethod.GET)
-	public String detail(int idx, Model model) {
+	public String detail(HttpSession session,int idx, Model model) {
+		if(session.getAttribute("user") != null) {
+			model.addAttribute("user", (User) session.getAttribute("user"));
+		}
 		model.addAttribute("product",service.getOne(idx)); 
 		return "/product/detail";
 	}

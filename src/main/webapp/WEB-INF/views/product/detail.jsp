@@ -8,58 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>댕냥이의 일상</title>
-<script type="text/javascript" defer>
-	
 
-		//옵션선택
-function selectOnChange(o){
-	 	const x = document.getElementById("selectBox").selectedIndex;
-		const y = document.getElementById("selectBox").options;
-		let idx = y[x].index;
-		let option = document.getElementById("optionText");
-		const text = o.options[o.selectedIndex].text;
-		const value = o.value;
-		let quantity = document.getElementById('optionTbody'+idx).childNodes[1].querySelector(".quantity");//선택된 값의 자식 input값
-		
-		if(value != ""){
-			document.getElementById('optionText'+idx).innerText = text;
-			quantity.value = 1;
-			change();
-			document.getElementById('optionTbody'+idx).style.display='table-row-group';
-		//selectBox.options[selectBox.selectedIndex].text
-		}
-	}; 
-	//제품 수량별 가격변경
-function change(){
-	let quantity = document.getElementsByClassName('quantity');
-	let sum = document.getElementsByClassName('sumPrice'); //getElementsByClassName 반환값 배열
-	let price = document.getElementById('sellPrice');
-	let totalPrice = document.getElementById('totalPrice');
-	let totalQuantity = 0;
-		
-		for (let i = 0; i < quantity.length; i++) {
-		if (quantity[i].value == '' || quantity[i].value < 0) { 
-			quantity[i].value = 0;
-		}
-			totalQuantity += parseInt(quantity[i].value); //타입이 객체기떄문에 Int타입으로 파싱
-		}
-		
-		for (let i = 0; i < sum.length; i++) { //상품별 총합
-			sum[i].innerText = (parseInt(quantity[i].value) * parseInt(price.value.replace(',',''))).toLocaleString('ko-KR')+'원';
-		}
-		//토탈가격
-		totalPrice.innerText = (parseInt(totalQuantity) * parseInt(price.value.replace(',',''))).toLocaleString('ko-KR')+'원';
-}  
-	//옵션 삭제버튼 클릭했을때 quantity value 0되고 디스플레이 none
-function del(d){
-	d.parentNode.firstChild.value = 0 ;//선택된 제품 quantity 값 0으로 수정(선택자 input태그)
-	change();	//적용
-	d.parentNode.parentNode.parentNode.parentNode.style.display = 'none'; //선택된 제품 숨기기(선택자 tbody태그)
-}
-	
-	
-	
-</script>
 </head>
 <body>
 
@@ -170,17 +119,48 @@ function del(d){
     	<!-- 제품 상세부분 조작 버튼 -->
     	<div class="row" id="detailbutton">
     		<div class="col-md-3">
-    		 	<button class="buyButton">바로구매</button>
+    		 	<button class="buyButton">바로구매</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 -->
     		</div>
+    		
+    		<!-- 장바구니 버튼 -->
+    		<c:if test="${user != null}"> <!-- 로그인 상태 -->
     		<div class="col-md-3">
-    			<button class="cartButton">장바구니</button>
+    			<button class="cartButton" id="addCartBtn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">장바구니</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 (모달창) -->
+    			<input type="hidden" id="pIdx" value="${product.idx }">
+    			<input type="hidden" id="uIdx" value="${user.idx }">
     		</div>
+    		</c:if>
+    		<c:if test="${user == null}"> <!-- 로그인 안된상태 -->
     		<div class="col-md-3">
-    			<button class="favoriteButton">관심상품</button>
+    			<button class="cartButton" type="button" onclick="loginAlert()">장바구니</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 (모달창) -->
+    		</div>
+    		</c:if>
+    		
+    		<div class="col-md-3">
+    			<button class="favoriteButton">관심상품</button> <!-- 넘겨줄정보 제품 idx (모달창)-->
     		</div>
     	</div>	
     </div>
   </div>
+  
+		  <!-- 장바구니 Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">장바구니</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		          <div class="modal-body">
+			        <p class="text-start" id="cartText">상품을 장바구니에 담았습니다.</p>
+			      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">쇼핑계속하기</button>
+		        <button type="button" class="btn btn-primary" id="moveCartBtn">장바구니로 이동</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
   
   <!-- 상단 가이드바 (상품정보) -->
   <div class="row" id="topGuideVar">
@@ -242,11 +222,82 @@ function del(d){
 		</ul>  		
   	</div>
   </div>
-  
-  
 </div><!-- container end -->
 
 <%@ include file="../footer.jsp"%>
+<script type="text/javascript" >
 
+		//옵션선택
+function selectOnChange(o){
+	 	const x = document.getElementById("selectBox").selectedIndex;
+		const y = document.getElementById("selectBox").options;
+		let idx = y[x].index;
+		let option = document.getElementById("optionText");
+		const text = o.options[o.selectedIndex].text;
+		const value = o.value;
+		let quantity = document.getElementById('optionTbody'+idx).childNodes[1].querySelector(".quantity");//선택된 값의 자식 input값
+		
+		if(value != ""){
+			document.getElementById('optionText'+idx).innerText = text;
+			quantity.value = 1;
+			change();
+			document.getElementById('optionTbody'+idx).style.display='table-row-group';
+		//selectBox.options[selectBox.selectedIndex].text
+		}
+	}; 
+	//제품 수량별 가격변경
+function change(){
+	let quantity = document.getElementsByClassName('quantity');
+	let sum = document.getElementsByClassName('sumPrice'); //getElementsByClassName 반환값 배열
+	let price = document.getElementById('sellPrice');
+	let totalPrice = document.getElementById('totalPrice');
+	let totalQuantity = 0;
+		
+		for (let i = 0; i < quantity.length; i++) {
+		if (quantity[i].value == '' || quantity[i].value < 0) { 
+			quantity[i].value = 0;
+		}
+			totalQuantity += parseInt(quantity[i].value); //타입이 객체기떄문에 Int타입으로 파싱
+		}
+		
+		for (let i = 0; i < sum.length; i++) { //상품별 총합
+			sum[i].innerText = (parseInt(quantity[i].value) * parseInt(price.value.replace(',',''))).toLocaleString('ko-KR')+'원';
+		}
+		//토탈가격
+		totalPrice.innerText = (parseInt(totalQuantity) * parseInt(price.value.replace(',',''))).toLocaleString('ko-KR')+'원';
+}  
+	//옵션 삭제버튼 클릭했을때 quantity value 0되고 디스플레이 none
+function del(d){
+	d.parentNode.firstChild.value = 0 ;//선택된 제품 quantity 값 0으로 수정(선택자 input태그)
+	change();	//적용
+	d.parentNode.parentNode.parentNode.parentNode.style.display = 'none'; //선택된 제품 숨기기(선택자 tbody태그)
+}
+	
+	//비로그인시 alert
+	function loginAlert(){
+		alert('로그인 후 이용가능합니다.');
+		location.href='login';
+	}
+	
+	//장바구니에 추가 위아래 함수 참고
+	$(document).ready(function(){
+		let idx = { "pIdx" : $('#pIdx').val() ,"uIdx" : $('#uIdx').val()};
+		let cartText = $('#cartText');
+		//console.log(idx);
+		$('#addCartBtn').on('click', function(){ 
+			$.ajax({
+				type: 'POST',
+				url: 'addCart',
+			//contentType: 'application/json; charset=utf-8',안써주면 파라미터 형식으로 넘어감 ex) String 타입으로받을시 pIdx=6&uIdx=1 
+				data:idx, //위에 json 타입으로 안해줬기때문에 형변환 안함
+					success: function(result){
+						if(result == '1'){ //없을때 '0'
+							cartText.text('장바구니에 이미 같은 상품이 있습니다.');
+						}
+					}
+				}); //end ajax 
+			}); //end on 
+		}); 
+</script>
 </body>
 </html>
