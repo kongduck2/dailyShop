@@ -78,7 +78,7 @@
 	    	<c:if test="${product.option1 eq ''}">	
 	    		<tbody class="quantityTbody" >
 	    			<tr>
-	    				<td class="optionName" id="optionText1">${product.name }</td>
+	    				<td class="optionName" id="optionText">${product.name }</td>
 	    				<td>
 	    				<input type="hidden" id="sellPrice" value="${product.price }">
 	    				<span class="quantitySpan"><input class="quantity" id="quantity" name="quantity" value="1" type="number" onchange="change()">
@@ -125,7 +125,7 @@
     		<!-- 장바구니 버튼 -->
     		<c:if test="${user != null}"> <!-- 로그인 상태 -->
     		<div class="col-md-3">
-    			<button class="cartButton" id="addCartBtn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">장바구니</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 (모달창) -->
+    			<button class="cartButton" id="addCartBtn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">장바구니</button> 
     			<input type="hidden" id="pIdx" value="${product.idx }">
     			<input type="hidden" id="uIdx" value="${user.idx }">
     		</div>
@@ -284,12 +284,17 @@
 	$(document).ready(function(){
 		let cartText = $('#cartText');
 		let param = new Object();
-		$('#addCartBtn').on('click', function(){ 
-			for (let i = 0; i < $('.optionName').length; i++) {
-				var option = 'option'+(i+1);
-				param[option] = $('.optionName')[i].textContent; //키값 동적으로 할당
-				param[option +'Quantity'] = $('.quantity')[i].value; 
+		console.log($('.optionName').length)
+		$('#addCartBtn').on('click', function(){
+			
+			if($('.optionName').length > 1){ //옵션이 여러개일때
+				for (let i = 0; i < $('.optionName').length; i++) {
+					var option = 'option'+(i+1);
+					param[option] = $('.optionName')[i].textContent; //키값 동적으로 할당
+					param[option +'Quantity'] = $('.quantity')[i].value; 
+				}
 			}
+			
 			param.pIdx = $('#pIdx').val();
 			param.uIdx = $('#uIdx').val();
 			$.ajax({
@@ -302,7 +307,10 @@
 						if(result == '1'){ //없을때 '0'
 							cartText.text('장바구니에 이미 같은 상품이 있습니다.');
 						}
-					}
+					},
+					error:function(request,status,error){
+				        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				       }
 				}); //end ajax 
 			}); //end on 
 		}); 

@@ -19,9 +19,9 @@ public class Cart {
 	private String option2;
 	private String option3; 
 	private String option4; 
-	private int option1Quantity;
-	private int option2Quantity;
-	private int option3Quantity;
-	private int option4Quantity;
+	private String option1Quantity;
+	private String option2Quantity;
+	private String option3Quantity;
+	private String option4Quantity;
 	private LocalDateTime createDate; 
 }
