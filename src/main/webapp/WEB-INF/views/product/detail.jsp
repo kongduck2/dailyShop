@@ -78,7 +78,7 @@
 	    	<c:if test="${product.option1 eq ''}">	
 	    		<tbody class="quantityTbody" >
 	    			<tr>
-	    				<td>${product.name }</td>
+	    				<td class="optionName" id="optionText1">${product.name }</td>
 	    				<td>
 	    				<input type="hidden" id="sellPrice" value="${product.price }">
 	    				<span class="quantitySpan"><input class="quantity" id="quantity" name="quantity" value="1" type="number" onchange="change()">
@@ -93,7 +93,7 @@
 	   			<c:forEach var="i" begin="1" step="1" end="4">
 		    		<tbody class="quantityTbody" id="optionTbody${i }" >
 			    		<tr>
-		    				<td id="optionText${i }"></td>
+		    				<td class="optionName" id="optionText${i }"></td>
 		    				<td>
 		    				<input type="hidden" id="sellPrice" value="${product.price }">
 		    				<span class="quantitySpan"><input class="quantity" id="quantity" name="quantity" value="0" type="number" onchange="change()">
@@ -228,7 +228,7 @@
 <script type="text/javascript" >
 
 		//옵션선택
-function selectOnChange(o){
+	function selectOnChange(o){
 	 	const x = document.getElementById("selectBox").selectedIndex;
 		const y = document.getElementById("selectBox").options;
 		let idx = y[x].index;
@@ -246,32 +246,33 @@ function selectOnChange(o){
 		}
 	}; 
 	//제품 수량별 가격변경
-function change(){
-	let quantity = document.getElementsByClassName('quantity');
-	let sum = document.getElementsByClassName('sumPrice'); //getElementsByClassName 반환값 배열
-	let price = document.getElementById('sellPrice');
-	let totalPrice = document.getElementById('totalPrice');
-	let totalQuantity = 0;
-		
-		for (let i = 0; i < quantity.length; i++) {
-		if (quantity[i].value == '' || quantity[i].value < 0) { 
-			quantity[i].value = 0;
-		}
-			totalQuantity += parseInt(quantity[i].value); //타입이 객체기떄문에 Int타입으로 파싱
-		}
-		
-		for (let i = 0; i < sum.length; i++) { //상품별 총합
-			sum[i].innerText = (parseInt(quantity[i].value) * parseInt(price.value.replace(',',''))).toLocaleString('ko-KR')+'원';
-		}
-		//토탈가격
-		totalPrice.innerText = (parseInt(totalQuantity) * parseInt(price.value.replace(',',''))).toLocaleString('ko-KR')+'원';
-}  
+	function change(){
+		let quantity = document.getElementsByClassName('quantity');
+		let sum = document.getElementsByClassName('sumPrice'); //getElementsByClassName 반환값 배열
+		let price = document.getElementById('sellPrice');
+		let totalPrice = document.getElementById('totalPrice');
+		let totalQuantity = 0;
+			
+			for (let i = 0; i < quantity.length; i++) {
+			if (quantity[i].value == '' || quantity[i].value < 0) { 
+				quantity[i].value = 1;
+			}
+				totalQuantity += parseInt(quantity[i].value); //타입이 객체기떄문에 Int타입으로 파싱
+			}
+			
+			for (let i = 0; i < sum.length; i++) { //상품별 총합
+				sum[i].innerText = (parseInt(quantity[i].value) * parseInt(price.value.replace(',',''))).toLocaleString('ko-KR')+'원';
+			}
+			//토탈가격
+			totalPrice.innerText = (parseInt(totalQuantity) * parseInt(price.value.replace(',',''))).toLocaleString('ko-KR')+'원';
+	}  
 	//옵션 삭제버튼 클릭했을때 quantity value 0되고 디스플레이 none
-function del(d){
-	d.parentNode.firstChild.value = 0 ;//선택된 제품 quantity 값 0으로 수정(선택자 input태그)
-	change();	//적용
-	d.parentNode.parentNode.parentNode.parentNode.style.display = 'none'; //선택된 제품 숨기기(선택자 tbody태그)
-}
+	function del(d){
+		d.parentNode.firstChild.value = 0 ;//선택된 제품 quantity 값 0으로 수정(선택자 input태그)
+		change();	//적용
+		d.parentNode.parentNode.parentNode.parentNode.style.display = 'none'; //선택된 제품 숨기기(선택자 tbody태그)
+		d.parentNode.parentNode.parentNode.childNodes[1].textContent = '';
+	}
 	
 	//비로그인시 alert
 	function loginAlert(){
@@ -279,17 +280,24 @@ function del(d){
 		location.href='login';
 	}
 	
-	//장바구니에 추가 위아래 함수 참고
+	//장바구니에 추가 및 추가상품 중복검사
 	$(document).ready(function(){
-		let idx = { "pIdx" : $('#pIdx').val() ,"uIdx" : $('#uIdx').val()};
 		let cartText = $('#cartText');
-		//console.log(idx);
+		let param = new Object();
 		$('#addCartBtn').on('click', function(){ 
+			for (let i = 0; i < $('.optionName').length; i++) {
+				var option = 'option'+(i+1);
+				param[option] = $('.optionName')[i].textContent; //키값 동적으로 할당
+				param[option +'Quantity'] = $('.quantity')[i].value; 
+			}
+			param.pIdx = $('#pIdx').val();
+			param.uIdx = $('#uIdx').val();
 			$.ajax({
 				type: 'POST',
 				url: 'addCart',
-			//contentType: 'application/json; charset=utf-8',안써주면 파라미터 형식으로 넘어감 ex) String 타입으로받을시 pIdx=6&uIdx=1 
-				data:idx, //위에 json 타입으로 안해줬기때문에 형변환 안함
+			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			//Json안써주면 파라미터 형식으로 넘길수있음 서버에서 String 타입으로받을시 한글 깨짐 
+				data:param, //위에 json 타입으로 안해줬기때문에 형변환 안함
 					success: function(result){
 						if(result == '1'){ //없을때 '0'
 							cartText.text('장바구니에 이미 같은 상품이 있습니다.');

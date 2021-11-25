@@ -1,8 +1,8 @@
 package com.nyang.shop.service;
 
-import com.nyang.shop.model.Cart;
+import java.util.Map;
 
 public interface CartService {
-	void insert(Cart cart);
+	void insert(Map<String, String> param);
 	boolean findProduct(int PIdx);
 }

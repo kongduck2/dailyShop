@@ -1,5 +1,7 @@
 package com.nyang.shop.service;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.nyang.shop.dao.CartMapper;
@@ -15,7 +17,14 @@ public class CartServiceImpl implements CartService {
 	}
 	
 	@Override
-	public void insert(Cart cart) {
+	public void insert(Map<String, String> param) {
+		Cart cart = Cart.builder().userIdx(Integer.parseInt(param.get("uIdx")))
+				.productIdx(Integer.parseInt(param.get("pIdx"))).option1(param.get("option1"))
+				.option2(param.get("option2")).option3(param.get("option3")).option4(param.get("option4"))
+				.option1Quantity(Integer.parseInt(param.get("option1Quantity")))
+				.option2Quantity(Integer.parseInt(param.get("option2Quantity")))
+				.option3Quantity(Integer.parseInt(param.get("option3Quantity")))
+				.option4Quantity(Integer.parseInt(param.get("option4Quantity"))).build();
 		dao.insert(cart);
 	}
 

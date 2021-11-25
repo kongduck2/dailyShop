@@ -5,7 +5,10 @@
   <mapper namespace="com.nyang.shop.dao.CartMapper">
   
   	<insert id="insert" parameterType="Cart"> <!-- 카트에 상품추가 -->
-  		insert into cart(userIdx,productIdx) values(#{userIdx},#{productIdx})
+  		insert into cart(userIdx,productIdx,option1,option2,option3,option4,option1Quantity
+  		,option2Quantity,option3Quantity,option4Quantity)
+  		values(#{userIdx},#{productIdx},#{option1},#{option2},#{option3},#{option4},#{option1Quantity}
+  		,#{option2Quantity},#{option3Quantity},#{option4Quantity})
   	</insert>
   	
   	<select id="findProduct" resultType="int" parameterType="int"> <!-- 카트에 상품이 있는지 체크 -->

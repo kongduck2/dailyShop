@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,16 +91,13 @@ public class UserController {
     
     @ResponseBody //@ResponseBody로 결과 ajax에응답
     @RequestMapping(value = "/addCart" , method = RequestMethod.POST)
-    public String addCart(@RequestParam Map<String,String> idx, Model model) { //@RequestParam로 파라미터 형식으로 받기
-    	if(cService.findProduct(Integer.parseInt(idx.get("pIdx")))) { //장바구니에 같은 상품이 있는경우
+    public String addCart(@RequestParam Map<String,String> param, Model model) { //@RequestParam로 파라미터 형식으로 받기
+    	if(cService.findProduct(Integer.parseInt(param.get("pIdx")))) { //장바구니에 같은 상품이 있는경우
     		return "1";
     	}else {
-    		Cart cart = Cart.builder().userIdx(Integer.parseInt(idx.get("uIdx")))
-    				.productIdx(Integer.parseInt(idx.get("pIdx"))).build();
-    		cService.insert(cart);
+    		cService.insert(param);
     		return "0";
     	}
-    	
     }
 	   
 	 
