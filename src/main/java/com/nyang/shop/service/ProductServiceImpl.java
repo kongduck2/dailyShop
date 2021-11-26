@@ -3,15 +3,14 @@ package com.nyang.shop.service;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.text.DecimalFormat;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nyang.shop.dao.ProductMapper;
+import com.nyang.shop.model.Cart;
 import com.nyang.shop.model.Product;
 
 @Service
@@ -107,5 +106,20 @@ public class ProductServiceImpl implements ProductService {
 		vo.setThumbnailImg(vo.getThumbnailImg().substring(0, vo.getThumbnailImg().length()-1));
 		return vo;
 	}
+
+	@Override
+	public List<Product> cartInfo(List<Cart> list) {
+		List<Product> result = new ArrayList<Product>();
+		for (int i = 0; i < list.size(); i++) {
+			Product vo = dao.cartInfo(list.get(i).getProductIdx());
+			vo.setThumbnailImg(					vo.getThumbnailImg()
+					.substring(0, vo.getThumbnailImg().length()-1));
+			result.add(vo); 
+		}
+		return result;
+	}
+
+
+
 
 }

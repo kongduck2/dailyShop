@@ -15,5 +15,17 @@
   		select count(*) from cart where productIdx = #{productIdx}
   	</select>
   	
+  	<select id="count" resultType="int" parameterType="int"> <!-- 상품 갯수 -->
+		 select ((select count(*) from cart where option1Quantity > 0)
+		  +(select count(*) from cart where option2Quantity > 0)
+		  +(select count(*) from cart where option3Quantity > 0)
+		  +(select count(*) from cart where option4Quantity > 0)) 
+		  from cart where userIdx = #{userIdx} group by userIdx 	
+  	</select>
+  	
+  	<select id="getAll" resultType="Cart" parameterType="int">
+  		select * from cart where userIdx = #{userIdx} order by productIdx desc
+  	</select>
+  	
   
   </mapper>

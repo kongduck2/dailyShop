@@ -22,13 +22,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> selectAll() {
-		return dao.selectAll();
+	public List<User> getAll() {
+		return dao.getAll();
 	}
 
 	@Override
-	public User selectOne(int idx) {
-		return dao.selectOne(idx);
+	public User getOne(int idx) {
+		return dao.getOne(idx);
 	}
 
 	@Override

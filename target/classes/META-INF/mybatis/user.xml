@@ -8,11 +8,11 @@
 		from user where email=#{email} and password=sha2(#{password},256)
 	</select>
 	
-	<select id="selectAll" resultType="User" > 
+	<select id="getAll" resultType="User" > <!-- 모든 유저정보 -->
 		select * from user
 	</select>
 	
-	<select id="selectOne" resultType="User" parameterType="int">
+	<select id="getOne" resultType="User" parameterType="int">
 		select idx,email,name,regist_type,registDate,address from user where idx = #{idx}
 	</select>
 	<!--파라미터가 여러개의 값일때 : Map(key와 value) 또는  DTO 클래스-->

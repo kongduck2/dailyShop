@@ -1,5 +1,7 @@
 package com.nyang.shop.controller;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.nyang.shop.model.Cart;
 import com.nyang.shop.model.User;
 import com.nyang.shop.service.CartService;
+import com.nyang.shop.service.ProductService;
 import com.nyang.shop.service.UserService;
 
 @Controller
@@ -23,9 +26,13 @@ public class UserController {
 	
 	private final CartService cService;
 	
-	public UserController(UserService uService,CartService cService) {
+	private final ProductService pService;
+
+	
+	public UserController(UserService uService,CartService cService,ProductService pService) {
 		this.uService = uService;
 		this.cService=cService;
+		this.pService=pService;
 	}
 	
 	//회원가입 뷰페이지 이동
@@ -85,7 +92,12 @@ public class UserController {
     
     //카트 이동
     @RequestMapping(value = "/cart" , method = RequestMethod.GET)
-    public String moveCart() {
+    public String moveCart(@SessionAttribute("user")User user,Model model) {
+    	List<Cart> list = cService.getAll(user.getIdx());
+    	System.out.println(pService.cartInfo(list));
+    	model.addAttribute("count", cService.count(user.getIdx()));
+    	model.addAttribute("list",list);
+    	model.addAttribute("cartInfo",pService.cartInfo(list));
     	return "/user/cart";
     }
     
@@ -99,6 +111,8 @@ public class UserController {
     		return "0";
     	}
     }
+    
+    
 	   
 	 
 

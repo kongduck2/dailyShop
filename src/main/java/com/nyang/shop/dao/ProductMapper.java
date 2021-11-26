@@ -10,4 +10,5 @@ public interface ProductMapper {
 	List<Product> bestGetAll();
 	int insert(Product vo);
 	Product getOne(int idx);
+	Product cartInfo(int idx); 
 }

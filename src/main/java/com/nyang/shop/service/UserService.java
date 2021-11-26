@@ -6,8 +6,8 @@ import com.nyang.shop.model.User;
 
 public interface UserService {
 	User login(User user);
-	List<User> selectAll();
-	User selectOne(int idx);
+	List<User> getAll();
+	User getOne(int idx);
 	int insert(User user);
 	int update(User user);
 	int delete(int idx);

@@ -1,5 +1,10 @@
-.col>.table thead,tbody{
+.col>.table thead,tbody,tfoot{
 	border-bottom: 1px solid #c2c2c2 ;
+	font-family: "Roboto","Arial","Nanum Gothic","Malgun Gothic","맑은 고딕","Dotum","돋움","Apple SD Gothic Neo","AppleGothic",sans-serif;
+	font-size: 14px; 
+}
+.container > .row > h2{
+	margin-bottom: 100px;
 }
 .qlText{
 	background-color: #f5f5f5;
@@ -17,4 +22,37 @@
 .sumTextTr{
 	border: 1px solid #eeeeee ;
 	background-color: #f5f5f5;
+}
+.thumbnail{
+	width: 80px;
+	height: 80px;
+}
+.cartListTr {
+	height: 100px;
+	border-bottom: soild 1px black;
+	vertical-align: middle;
+}
+.pInfo{
+	text-align: left;
+}
+.quantityTd > input{
+	width: 40px !important;
+	text-align: center;
+}
+
+.quantityTd > input[type="number"]::-webkit-outer-spin-button:hover,
+.quantityTd > input[type="number"]::-webkit-inner-spin-button:hover{
+	cursor: pointer;
+   -webkit-appearance: "Always Show Up/Down Arrows";
+   opacity: 1;
+}
+
+.quantityTd > input[type="number"]::-webkit-outer-spin-button,
+.quantityTd > input[type="number"]::-webkit-inner-spin-button{
+   -webkit-appearance: "Always Show Up/Down Arrows";
+   opacity: 1;
+}
+.cartOpText{
+	font-size: 12px;
+	color: #aeaeae;
 }

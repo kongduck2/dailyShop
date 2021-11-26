@@ -20,5 +20,9 @@
   	<select id="getOne" resultType="Product" parameterType="int">
   		select * from product where idx = #{idx}
   	</select>
+  	
+  	<select id="cartInfo" resultType="Product" parameterType="int"> 
+  		select name,price,thumbnailImg from product where idx = #{idx} order by idx desc
+  	</select>
   
   </mapper>

@@ -44,7 +44,7 @@
 		</select>
 	 </div>
 	 <div>	
-		<input type="number" name="price" placeholder="가격 " required>
+		<input type="number" name="price" placeholder="가격 ex)00000" required>
 	 </div>
 	 <div>	
 		<input type="text" name="option1" placeholder="옵션명1">

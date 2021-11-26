@@ -287,9 +287,9 @@
 		console.log($('.optionName').length)
 		$('#addCartBtn').on('click', function(){
 			
-			if($('.optionName').length > 1){ //옵션이 여러개일때
+			if($('.optionName').length > 1){ //옵션이 있을때 단일품목일때는 옵션값 안넘어감
 				for (let i = 0; i < $('.optionName').length; i++) {
-					var option = 'option'+(i+1);
+					let option = 'option'+(i+1);
 					param[option] = $('.optionName')[i].textContent; //키값 동적으로 할당
 					param[option +'Quantity'] = $('.quantity')[i].value; 
 				}
