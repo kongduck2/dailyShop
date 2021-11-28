@@ -29,14 +29,13 @@
 }
 .cartListTr {
 	height: 100px;
-	border-bottom: soild 1px black;
 	vertical-align: middle;
 }
 .pInfo{
-	text-align: left;
+	text-align: left ;
 }
 .quantityTd > input{
-	width: 40px !important;
+	width: 48px !important;
 	text-align: center;
 }
 
@@ -55,4 +54,11 @@
 .cartOpText{
 	font-size: 12px;
 	color: #aeaeae;
+}
+input[type="checkbox"]{
+	zoom: 1.5;
+	cursor: pointer;
+}
+.cartTitleTr{
+	vertical-align: top;
 }

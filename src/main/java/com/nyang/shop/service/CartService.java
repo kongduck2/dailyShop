@@ -10,4 +10,5 @@ public interface CartService {
 	boolean findProduct(int PIdx);
 	List<Cart> getAll(int idx);
 	int count(int idx);
+	int remove(int pIdx);
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -94,7 +95,6 @@ public class UserController {
     @RequestMapping(value = "/cart" , method = RequestMethod.GET)
     public String moveCart(@SessionAttribute("user")User user,Model model) {
     	List<Cart> list = cService.getAll(user.getIdx());
-    	System.out.println(pService.cartInfo(list));
     	model.addAttribute("count", cService.count(user.getIdx()));
     	model.addAttribute("list",list);
     	model.addAttribute("cartInfo",pService.cartInfo(list));
@@ -110,6 +110,13 @@ public class UserController {
     		cService.insert(param);
     		return "0";
     	}
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/delCart" , method = RequestMethod.POST)
+    public String delCart(@RequestParam Map<String,String> param, Model model) {
+    	cService.remove(Integer.parseInt(param.get("pIdx")));
+    	return "/user/cart";
     }
     
     

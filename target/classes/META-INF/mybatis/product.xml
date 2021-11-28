@@ -22,7 +22,7 @@
   	</select>
   	
   	<select id="cartInfo" resultType="Product" parameterType="int"> 
-  		select name,price,thumbnailImg from product where idx = #{idx} order by idx desc
+  		select idx,name,price,thumbnailImg from product where idx = #{idx} order by idx desc
   	</select>
   
   </mapper>

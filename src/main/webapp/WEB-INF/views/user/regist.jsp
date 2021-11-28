@@ -138,6 +138,6 @@ o 로그 기록
 
 <!-- footer -->
 <%@ include file="../footer.jsp"%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/regist.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/regist.js"></script>
 </body>
 </html>

@@ -27,5 +27,8 @@
   		select * from cart where userIdx = #{userIdx} order by productIdx desc
   	</select>
   	
+  	<delete id="remove" parameterType="int">
+		delete from cart where productIdx = #{productIdx}  	
+  	</delete>
   
   </mapper>

@@ -156,7 +156,7 @@
 			      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">쇼핑계속하기</button>
-		        <button type="button" class="btn btn-primary" id="moveCartBtn">장바구니로 이동</button>
+		        <button type="button" class="btn btn-primary" id="moveCartBtn" onclick="location.href='cart'">장바구니로 이동</button>
 		      </div>
 		    </div>
 		  </div>

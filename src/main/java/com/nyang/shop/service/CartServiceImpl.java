@@ -61,4 +61,9 @@ public class CartServiceImpl implements CartService {
 		return dao.count(idx);
 	}
 
+	@Override
+	public int remove(int pIdx) {
+		return dao.remove(pIdx);
+	}
+
 }

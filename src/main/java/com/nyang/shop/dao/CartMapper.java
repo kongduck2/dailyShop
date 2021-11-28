@@ -9,5 +9,6 @@ public interface CartMapper {
 	int findProduct(int PIdx);
 	List<Cart> getAll(int idx);
 	int count(int idx);
+	int remove(int pIdx);
 	
 }

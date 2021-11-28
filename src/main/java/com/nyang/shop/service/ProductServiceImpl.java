@@ -112,8 +112,7 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> result = new ArrayList<Product>();
 		for (int i = 0; i < list.size(); i++) {
 			Product vo = dao.cartInfo(list.get(i).getProductIdx());
-			vo.setThumbnailImg(					vo.getThumbnailImg()
-					.substring(0, vo.getThumbnailImg().length()-1));
+			vo.setThumbnailImg(vo.getThumbnailImg().substring(0, vo.getThumbnailImg().length()-1));
 			result.add(vo); 
 		}
 		return result;

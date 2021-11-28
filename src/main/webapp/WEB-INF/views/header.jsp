@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shutcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/image/logo.ico" sizes="16x16">
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=chrome">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>댕냥이의 일상</title>
 
