@@ -66,4 +66,10 @@ public class CartServiceImpl implements CartService {
 		return dao.remove(pIdx);
 	}
 
+	@Override
+	public int opRemove(Map<String, String> param) {
+		System.out.println(param);
+		return dao.opRemove(param);
+	}
+
 }

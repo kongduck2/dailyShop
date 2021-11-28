@@ -50,9 +50,10 @@
 					        <td id="delChargeText">3,000원</td>
 					        <td class="sumPrice"></td>
 					        <td><div><button type="button" onclick="">주문하기</button>
-					        </div><div><button type="button" onclick="remove(this)">삭제</button>
+					        </div>
+					        <div><button type="button" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="0"/>
-					        	<input class="pIdx" type="hidden" value="${cartInfo[status.index].idx}">
+					        	<input type="hidden" value="${cartInfo[status.index].idx}">
 					        </div></td>
 			 		   </tr>
 				  	  </c:if>
@@ -71,7 +72,12 @@
 					        <td>기본배송</td>
 					        <td id="delChargeText">3,000원</td>
 					        <td class="sumPrice1"></td>
-					        <td></td>
+					        <td><div><button type="button" onclick="">주문하기</button>
+					        </div>
+					        <div><button type="button" onclick="remove(this)">삭제</button>
+					        	<input type="hidden" value="1"/>
+					        	<input type="hidden" value="${item.idx}">
+					        </div></td>
 			 		   </tr>
 				  	  </c:if>
 				  	  
@@ -89,7 +95,12 @@
 					        <td>기본배송</td>
 					        <td id="delChargeText">3,000원</td>
 					        <td class="sumPrice2"></td>
-					        <td></td>
+					        <td><div><button type="button" onclick="">주문하기</button>
+					        </div>
+					        <div><button type="button" onclick="remove(this)">삭제</button>
+					        	<input type="hidden" value="2"/>
+					        	<input type="hidden" value="${item.idx}">
+					        </div></td>
 			 		   </tr>
 				  	  </c:if>
 				  	  
@@ -107,7 +118,12 @@
 					        <td>기본배송</td>
 					        <td id="delChargeText">3,000원</td>
 					        <td class="sumPrice3"></td>
-					        <td></td>
+					        <td><div><button type="button" onclick="">주문하기</button>
+					        </div>
+					        <div><button type="button" onclick="remove(this)">삭제</button>
+					        	<input type="hidden" value="3"/>
+					        	<input type="hidden" value="${item.idx}">
+					        </div></td>
 			 		   </tr>
 				  	  </c:if>
 				  	  
@@ -125,7 +141,12 @@
 					        <td>기본배송</td>
 					        <td id="delChargeText">3,000원</td>
 					        <td class="sumPrice4"></td>
-					        <td></td>
+					        <td><div><button type="button" onclick="">주문하기</button>
+					        </div>
+					        <div><button type="button" onclick="remove(this)">삭제</button>
+					        	<input type="hidden" value="4"/>
+					        	<input type="hidden" value="${item.idx}">
+					        </div></td>
 			 		   </tr>
 				  	  </c:if>
 		  		    </c:forEach>
@@ -252,10 +273,15 @@
 			totalPrice += parseInt($('.sumVal')[i].value);
 		}
 		$('#pTotalText').text(comma(String(totalPrice)));//배송비 추가 계산전 토탈금액
-		$('#totalPrice').text(comma(String(parseInt(totalPrice)+3000))+'원');//페이지 진입시 토탈금액 입력
+		
+		if(totalPrice != 0){
+			$('#totalPrice').text(comma(String(parseInt(totalPrice)+3000))+'원');//페이지 진입시 토탈금액 입력
+		}else{
+			$('#totalPrice').text('0원');//페이지 진입시 토탈금액 입력
+		}
 		
 		//배송비 처리
-		if(totalPrice >= 30000){
+		if(totalPrice >= 30000 || totalPrice == 0){
 			$('#deliText').text('0');
 		}else{
 			$('#deliText').text('3,000');
@@ -320,12 +346,12 @@
     	   })
        }) 
 	
+       
        //삭제
   	function remove(select){
    	  let param = new Object();
-	  console.log(select.nextSibling.nextSibling.nextSibling.nextSibling.value);
 	  if(select.nextSibling.nextSibling.value == 0){ //단독상품 삭제
-		  param.pIdx = select.nextSibling.nextSibling.nextSibling.nextSibling.value;
+		  param.pIdx = select.nextSibling.nextSibling.nextSibling.nextSibling.value;//<input class="pIdx" 
 			$.ajax({
 				type: 'POST',
 				url: 'delCart',
@@ -340,7 +366,21 @@
 		  })//ajax end
 		  
 	  }else{ //옵션 상품 삭제
+		  param.opNum = select.parentNode.childNodes[2].value; //옵션 번호
+		  param.idx = select.parentNode.childNodes[4].value; // 상품번호
 		  
+			$.ajax({
+				type: 'POST',
+				url: 'opDelCart',
+				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+				data:param, 
+					success: function(){
+						location.reload();
+					},
+					error:function(request,status,error){
+				        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				    }
+		  })//ajax end
 	  }
 }	
 </script>

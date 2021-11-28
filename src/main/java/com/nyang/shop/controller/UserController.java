@@ -1,12 +1,10 @@
 package com.nyang.shop.controller;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -116,6 +114,14 @@ public class UserController {
     @RequestMapping(value = "/delCart" , method = RequestMethod.POST)
     public String delCart(@RequestParam Map<String,String> param, Model model) {
     	cService.remove(Integer.parseInt(param.get("pIdx")));
+    	return "/user/cart";
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/opDelCart" , method = RequestMethod.POST)
+    public String opDelCart(@RequestParam Map<String,String> param, Model model) {
+    	System.out.println(cService.opRemove(param));
+    	
     	return "/user/cart";
     }
     

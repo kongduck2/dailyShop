@@ -11,4 +11,5 @@ public interface CartService {
 	List<Cart> getAll(int idx);
 	int count(int idx);
 	int remove(int pIdx);
+	int opRemove(Map<String,String> param);
 }
