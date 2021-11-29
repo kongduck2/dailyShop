@@ -126,26 +126,25 @@
     		<!-- 장바구니 버튼 -->
     		<c:if test="${user != null}"> <!-- 로그인 상태 -->
     		<div class="col-md-3">
-    			<button class="cartButton" id="addCartBtn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">장바구니</button> 
+    			<button class="cartButton" id="addCartBtn" type="button">장바구니</button> 
     			<input type="hidden" id="pIdx" value="${product.idx }">
     			<input type="hidden" id="uIdx" value="${user.idx }">
     		</div>
     		</c:if>
     		<c:if test="${user == null}"> <!-- 로그인 안된상태 -->
     		<div class="col-md-3">
-    			<button class="cartButton" type="button" onclick="loginAlert()">장바구니</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 (모달창) -->
+    			<button class="cartButton" type="button" onclick="loginAlert()">장바구니</button> 
     		</div>
     		</c:if>
     		
     		<div class="col-md-3">
-    			<button class="favoriteButton">관심상품</button> <!-- 넘겨줄정보 제품 idx (모달창)-->
+    			<button class="favoriteButton">관심상품</button>
     		</div>
     	</div>	
     </div>
   </div>
-  
 		  <!-- 장바구니 Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -156,7 +155,7 @@
 			        <p class="text-start" id="cartText">상품을 장바구니에 담았습니다.</p>
 			      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">쇼핑계속하기</button>
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.reload();">쇼핑계속하기</button>
 		        <button type="button" class="btn btn-primary" id="moveCartBtn" onclick="location.href='cart'">장바구니로 이동</button>
 		      </div>
 		    </div>
@@ -283,11 +282,9 @@
 	
 	//장바구니에 추가 및 추가상품 중복검사
 	$(document).ready(function(){
-		let cartText = $('#cartText');
 		let param = new Object();
 		console.log($('.optionName').length)
 		$('#addCartBtn').on('click', function(){
-			
 			if($('.optionName').length > 1){ //옵션이 있을때 단일품목일때는 옵션값 안넘어감
 				for (let i = 0; i < $('.optionName').length; i++) {
 					let option = 'option'+(i+1);
@@ -297,23 +294,30 @@
 			}else{
 				param['option1' +'Quantity'] = $('.quantity')[0].value; //단독상품 수량값
 			}
-			
-			param.pIdx = $('#pIdx').val();
-			param.uIdx = $('#uIdx').val();
-			$.ajax({
-				type: 'POST',
-				url: 'addCart',
-			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-			//Json안써주면 파라미터 형식으로 넘길수있음 서버에서 String 타입으로받을시 한글 깨짐 
-				data:param, //위에 json 타입으로 안해줬기때문에 형변환 안함
-					success: function(){
-					},
-					error:function(request,status,error){
-				        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-				       }
-				}); //end ajax 
-			}); //end on 
-		}); 
+			//옵션 비선택시
+			if(param.option1Quantity == 0 && param.option2Quantity == 0 &&
+					param.option3Quantity == 0 && param.option4Quantity == 0){
+				alert('옵션값을 선택해주세요.');
+			}else{
+				param.pIdx = $('#pIdx').val();
+				param.uIdx = $('#uIdx').val();
+				$.ajax({
+					type: 'POST',
+					url: 'addCart',
+				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+				//Json안써주면 파라미터 형식으로 넘길수있음 서버에서 String 타입으로받을시 한글 깨짐 
+					data:param, //위에 json 타입으로 안해줬기때문에 형변환 안함
+						success: function(){
+						},
+						error:function(request,status,error){
+					        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+					       }
+					}); //end ajax 
+				$('#cartModal').modal('show');
+			}//else end
+		}); //end on 
+	});
+	
 </script>
 </body>
 </html>

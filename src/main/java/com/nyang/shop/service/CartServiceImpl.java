@@ -45,23 +45,27 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public int count(int idx) {
-		return dao.count(idx);
+	public String count(int idx) {
+		if(dao.count(idx) == null) {
+			return "0";
+		}else {
+			return dao.count(idx);
+		}
+		
 	}
 
 	@Override
-	public int delete(int pIdx) {
-		return dao.delete(pIdx);
+	public int delete(int uIdx,int pIdx) {
+		return dao.delete(uIdx,pIdx);
 	}
 
 	@Override
 	public void opDelete(Map<String, String> param) {
 		dao.opDelete(param);
 		Cart vo = dao.getOne(Integer.parseInt(param.get("idx")));
-		System.out.println(vo);
 		if(vo.getOption1().equals("") && vo.getOption2().equals("")
 				&& vo.getOption3().equals("") && vo.getOption4().equals("")) {
-			dao.delete(vo.getProductIdx());
+			dao.delete(vo.getUserIdx(),vo.getProductIdx());
 		}
 	}
 

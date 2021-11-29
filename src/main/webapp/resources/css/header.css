@@ -74,11 +74,20 @@ input[type=search]{
 	text-decoration: none;
 }
 .mypage-sub > li > a:hover{
-	transition: ease 0.5s;
+	transition: ease 0.2s;
 	background-color: #bbc2bc;
 	border-radius: 5px;
 }
-
+.cartCount{
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-left:4px;
+	margin-right:4px;
+	border-radius: 3px;
+	background-color: #eeeeee;
+	font-size: 15px;
+	font-weight: bold;
+}
 
 
 

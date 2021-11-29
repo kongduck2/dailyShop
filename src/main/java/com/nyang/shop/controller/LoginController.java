@@ -8,16 +8,20 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.nyang.shop.model.User;
+import com.nyang.shop.service.CartService;
 import com.nyang.shop.service.UserService;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes({"user","count"})
 public class LoginController {
 	
-	private final UserService service;
+	private final UserService uService;
 	
-	public LoginController(UserService service) {
-		this.service = service;
+	private final CartService cService;
+	
+	public LoginController(UserService uService, CartService cService) {
+		this.uService = uService;
+		this.cService= cService;
 	}
 	
 	@RequestMapping(value = "/login",method = RequestMethod.GET)
@@ -27,9 +31,10 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login",method = RequestMethod.POST)
 	public String loginOk(String email,String password,Model model) {
-		User result = service.login(User.builder().email(email).password(password).build());
+		User result = uService.login(User.builder().email(email).password(password).build());
 		if(result != null) { //로그인 성공
 			model.addAttribute("user",result);
+			model.addAttribute("count",cService.count(result.getIdx()));
 			return "home";
 		}else { //로그인 실패
 			model.addAttribute("message","로그인 정보가 올바르지 않습니다.");

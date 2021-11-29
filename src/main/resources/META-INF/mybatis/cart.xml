@@ -15,7 +15,7 @@
   		select count(*) from cart where productIdx = #{productIdx}
   	</select>
   	
-  	<select id="count" resultType="int" parameterType="int"> <!-- 상품 갯수 -->
+  	<select id="count" resultType="String" parameterType="int"> <!-- 상품 갯수 -->
 		 select ((select count(*) from cart where option1Quantity > 0)
 		  +(select count(*) from cart where option2Quantity > 0)
 		  +(select count(*) from cart where option3Quantity > 0)
@@ -32,7 +32,7 @@
   	</select>
   	
   	<delete id="delete" parameterType="int"> <!-- 단독상품 장바구니에서 삭제 -->
-		delete from cart where productIdx = #{productIdx}  	
+		delete from cart where userIdx = #{userIdx} and productIdx = #{productIdx}  	
   	</delete>
   	
   	<update id="opDelete" parameterType="java.util.Map"> <!-- 옵션상품 장바구니에서 삭제 -->

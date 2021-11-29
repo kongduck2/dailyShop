@@ -44,7 +44,8 @@
 					  <c:if test="${item.option1 == null}"> <!-- 옵션값 없는 단독상품 -->
 			    		<tr class="cartListTr" id="cartListTr">
 				  		    <td><input type="checkbox" name="check" class="check"></td>
-			  				<td><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}"></td>
+			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}">
+			  				</a></td>
 					        <td class="pInfo"><span>${cartInfo[status.index].name}</span>
 					        	<div class="cartOpText"></div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
@@ -67,7 +68,7 @@
 				  	  <c:if test="${!(item.option1 eq '') && item.option1 != null }"> <!-- 옵션값 있는 상품 -->
 			    		<tr class="cartListTr">
 				  		    <td><input type="checkbox" name="check1" class="check"></td>
-			  				<td><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}"></td>
+			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}"></td>
 					        <td class="pInfo"><span>${cartInfo[status.index].name}</span>
 					        	<div class="cartOpText">[옵션 : ${item.option1 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
@@ -90,7 +91,8 @@
 				  	  <c:if test="${!(item.option2 eq '') && item.option2 != null }"> <!-- 옵션값 있는 상품 -->
 			    		<tr class="cartListTr">
 				  		    <td><input type="checkbox" name="check2" class="check"></td>
-			  				<td><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}"></td>
+			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}">
+			  				</a></td>
 					        <td class="pInfo"><span>${cartInfo[status.index].name}</span>
 					        	<div class="cartOpText">[옵션 : ${item.option2 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
@@ -113,7 +115,8 @@
 				  	  <c:if test="${!(item.option3 eq '') && item.option3 != null }"> <!-- 옵션값 있는 상품 -->
 			    		<tr class="cartListTr">
 				  		    <td><input type="checkbox" name="check3" class="check"></td>
-			  				<td><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}"></td>
+			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}">
+			  				</a></td>
 					        <td class="pInfo"><span>${cartInfo[status.index].name}</span>
 					        	<div class="cartOpText">[옵션 : ${item.option3 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
@@ -136,7 +139,8 @@
 				  	  <c:if test="${!(item.option4 eq '') && item.option4 != null }"> <!-- 옵션값 있는 상품 -->
 			    		<tr class="cartListTr">
 				  		    <td><input type="checkbox" name="check4" class="check"></td>
-			  				<td><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}"></td>
+			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}">
+			  				</a></td>
 					        <td class="pInfo"><span>${cartInfo[status.index].name}</span>
 					        	<div class="cartOpText">[옵션 : ${item.option4 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
@@ -165,6 +169,28 @@
 			  </tfoot>
 			</table>
 	 		</div>
+	 	</div>
+	 </div>
+	 
+	 <!-- 장바구니 이용안내 -->
+	 <div class="row" id="cartGuideRow">
+	 	<div class="col-xl-12" id="cartGuideCol">
+	 		<h5>이용안내</h5>
+	 		<ol>
+	 			<li>1. 해외배송 상품과 국내배송 상품은 함께 결제하실 수 없으니 장바구니 별로 따로 결제해 주시기 바랍니다.</li>
+	 			<li>2. 해외배송 가능 상품의 경우 국내배송 장바구니에 담았다가 해외배송 장바구니로 이동하여 결제하실 수 있습니다.</li>
+	 			<li>3. 선택하신 상품의 수량을 변경하시려면 수량변경 하시면 됩니다.</li>
+	 			<li>4. 파일첨부 옵션은 동일상품을 장바구니에 추가할 경우 마지막에 업로드 한 파일로 교체됩니다.</li>
+	 		</ol>
+	 		
+	 		<h5>무이자할부 이용안내</h5>
+	 		<ol>
+	 			<li>1. 상품별 무이자할부 혜택을 받으시려면 무이자할부 상품만 선택하여 [주문하기] 버튼을 눌러 주문/결제 하시면 됩니다.</li>
+	 			<li>2. [전체 상품 주문] 버튼을 누르시면 장바구니의 구분없이 선택된 모든 상품에 대한 주문/결제가 이루어집니다.</li>
+	 			<li>3. 단, 전체 상품을 주문/결제하실 경우, 상품별 무이자할부 혜택을 받으실 수 없습니다.</li>
+	 			<li>4. 무이자할부 상품은 장바구니에서 별도 무이자할부 상품 영역에 표시되어, 무이자할부 상품 기준으로 배송비가 표시됩니다.
+					실제 배송비는 함께 주문하는 상품에 따라 적용되오니 주문서 하단의 배송비 정보를 참고해주시기 바랍니다.</li>
+	 		</ol>
 	 	</div>
 	 </div>
 	 	
@@ -417,9 +443,11 @@
 					error:function(request,status,error){
 				        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 				    }
-		  })//ajax end
-	  }
-}	
+			  })//ajax end
+		  }
+	}//remover end	
+	
+	
 </script>
 </body>
 </html>
