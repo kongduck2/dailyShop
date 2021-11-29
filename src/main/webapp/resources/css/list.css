@@ -1,0 +1,44 @@
+#card{
+	border: 1px solid white;
+
+}
+#cardList{
+	margin-bottom: 70px;
+}
+.row > .col{
+	width: 300px;
+	height: 500px;
+	text-align: center;
+}
+
+.container{
+	margin-top: 100px;
+	justify-content: center;
+}
+
+.container >.row{
+	text-align: center;
+}
+.container > h2{
+	margin-bottom: 100px;
+}
+
+.productName{
+ 	text-align: center;
+}
+.productName > a{
+ 	font-family: "Roboto","Arial","Nanum Gothic","Malgun Gothic","맑은 고딕","Dotum","돋움","Apple SD Gothic Neo","AppleGothic",sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+}
+.productName > a:hover{
+	color: black;
+}
+.productPrice{
+	padding-top: 5px;
+	margin-top: 5px;
+ 	border-top: solid 1px #aeaeae;
+	list-style:none;
+	text-align: center;
+}

@@ -45,6 +45,7 @@
 	 </div>
 	 <div>	
 		<input type="number" name="price" placeholder="가격 ex)00000" required>
+		<span style="color: gray; font-size: 12px"> 단독 상품일경우 옵션명 기재 X</span>
 	 </div>
 	 <div>	
 		<input type="text" name="option1" placeholder="옵션명1">

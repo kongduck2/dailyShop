@@ -18,11 +18,11 @@
 <div class="container" id="detailContainer">
   <div class="row">
   	<!-- 이미지 영역 -->
-    <div class="col-md-6">
+    <div class="col-md-6"  id="thumbnail">
       <img alt="썸네일 이미지" src="/upload/${product.thumbnailImg }">
     </div>
     <!-- 제품 상세 정보 -->
-    <div class="col-md-6">
+    <div class="col-md-5">
    	<!-- 제품 설명 텍스트 -->
     	<table class="detailTextTable">
     		<tr>

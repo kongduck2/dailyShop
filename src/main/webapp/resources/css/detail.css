@@ -151,3 +151,18 @@
 	cursor: pointer;	
 }
 
+#thumbnail{
+	width: 500px;
+	height: 500px;
+	margin-right: 100px;	
+}
+
+#thumbnail > img{
+	width: inherit;
+	height: inherit;	
+}
+
+#detailContainer >.row{
+	text-align: center;
+	justify-content: center;
+}
