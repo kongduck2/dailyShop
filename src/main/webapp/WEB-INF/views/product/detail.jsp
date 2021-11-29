@@ -97,6 +97,7 @@
 		    				<td>
 		    				<input type="hidden" id="sellPrice" value="${product.price }">
 		    				<span class="quantitySpan"><input class="quantity" id="quantity" name="quantity" value="0" type="number" onchange="change()">
+		    				<input type="hidden" value="${i}"><!-- 옵션번호 -->
 		    					<img onclick="del(this)" id="delButton" alt="delButton" src="${pageContext.request.contextPath}/resources/image/btn_delete.gif">
 		    				</span></td>
 		    				<td class="sumPrice">${product.price }원</td>
@@ -293,6 +294,8 @@
 					param[option] = $('.optionName')[i].textContent; //키값 동적으로 할당
 					param[option +'Quantity'] = $('.quantity')[i].value; 
 				}
+			}else{
+				param['option1' +'Quantity'] = $('.quantity')[0].value; //단독상품 수량값
 			}
 			
 			param.pIdx = $('#pIdx').val();
@@ -303,10 +306,7 @@
 			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 			//Json안써주면 파라미터 형식으로 넘길수있음 서버에서 String 타입으로받을시 한글 깨짐 
 				data:param, //위에 json 타입으로 안해줬기때문에 형변환 안함
-					success: function(result){
-						if(result == '1'){ //없을때 '0'
-							cartText.text('장바구니에 이미 같은 상품이 있습니다.');
-						}
+					success: function(){
 					},
 					error:function(request,status,error){
 				        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리

@@ -7,9 +7,10 @@ import com.nyang.shop.model.Cart;
 
 public interface CartService {
 	void insert(Map<String, String> param);
-	boolean findProduct(int PIdx);
+	boolean findProduct(int pIdx);
 	List<Cart> getAll(int idx);
+	Cart getOne(int idx);
 	int count(int idx);
-	int remove(int pIdx);
-	int opRemove(Map<String,String> param);
+	int delete(int pIdx);
+	void opDelete(Map<String,String> param);
 }

@@ -27,11 +27,15 @@
   		select * from cart where userIdx = #{userIdx} order by productIdx desc
   	</select>
   	
-  	<delete id="remove" parameterType="int"> <!-- 단독상품 장바구니에서 삭제 -->
+  	<select id="getOne" resultType="Cart" parameterType="int">
+  		select * from cart where idx = #{idx} 
+  	</select>
+  	
+  	<delete id="delete" parameterType="int"> <!-- 단독상품 장바구니에서 삭제 -->
 		delete from cart where productIdx = #{productIdx}  	
   	</delete>
   	
-  	<update id="opRemove" parameterType="java.util.Map"> <!-- 옵션상품 장바구니에서 삭제 -->
+  	<update id="opDelete" parameterType="java.util.Map"> <!-- 옵션상품 장바구니에서 삭제 -->
   		update cart set option${opNum} = <![CDATA[""]]> , option${opNum}Quantity = <![CDATA[0]]> where idx = #{idx}
   	</update>
   

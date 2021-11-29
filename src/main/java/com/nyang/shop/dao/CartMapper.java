@@ -9,7 +9,8 @@ public interface CartMapper {
 	void insert(Cart cart);
 	int findProduct(int PIdx);
 	List<Cart> getAll(int idx);
+	Cart getOne(int idx);
 	int count(int idx);
-	int remove(int pIdx);
-	int opRemove(Map<String,String> param);
+	int delete(int pIdx);
+	void opDelete(Map<String,String> param);
 }

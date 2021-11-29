@@ -62,3 +62,38 @@ input[type="checkbox"]{
 .cartTitleTr{
 	vertical-align: top;
 }
+.sumPrice,.sumPrice1,.sumPrice2,.sumPrice3,.sumPrice4{
+	width: 116px;
+}
+.delChargeText{
+	width: 90px;
+}
+#totalPrice{
+	font-size: 20px;
+	font-weight: bold;
+}
+.emptyCart{
+	text-align: center;
+	vertical-align: middle;
+}
+.emptyCart > td{
+	font-size: 18px;
+	line-height: 300px;
+}
+.fas {
+	color: #aeaeae;
+}
+.selectBtnTd{
+	width: 116px;
+}
+.selectBtn{
+	width: 80px;
+	margin: 7px;
+	border: 1px solid #aeaeae;
+	border-radius: 3px;
+	background-color: white;
+}
+
+.selectBtn:hover{
+	background-color: #f5f5f5;
+}

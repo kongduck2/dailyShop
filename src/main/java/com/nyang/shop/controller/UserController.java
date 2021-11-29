@@ -101,27 +101,26 @@ public class UserController {
     
     @ResponseBody //@ResponseBody로 결과 ajax에응답
     @RequestMapping(value = "/addCart" , method = RequestMethod.POST)
-    public String addCart(@RequestParam Map<String,String> param, Model model) { //@RequestParam로 파라미터 형식으로 받기
+    public void addCart(@RequestParam Map<String,String> param, Model model) { //@RequestParam로 파라미터 형식으로 받기
     	if(cService.findProduct(Integer.parseInt(param.get("pIdx")))) { //장바구니에 같은 상품이 있는경우
-    		return "1";
+    		cService.delete(Integer.parseInt(param.get("pIdx")));
+    		cService.insert(param);
     	}else {
     		cService.insert(param);
-    		return "0";
     	}
     }
     
     @ResponseBody
     @RequestMapping(value = "/delCart" , method = RequestMethod.POST)
     public String delCart(@RequestParam Map<String,String> param, Model model) {
-    	cService.remove(Integer.parseInt(param.get("pIdx")));
+    	cService.delete(Integer.parseInt(param.get("pIdx")));
     	return "/user/cart";
     }
     
     @ResponseBody
     @RequestMapping(value = "/opDelCart" , method = RequestMethod.POST)
     public String opDelCart(@RequestParam Map<String,String> param, Model model) {
-    	System.out.println(cService.opRemove(param));
-    	
+    	cService.opDelete(param);
     	return "/user/cart";
     }
     

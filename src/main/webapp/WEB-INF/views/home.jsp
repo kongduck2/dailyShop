@@ -47,33 +47,17 @@
 		<div class="col-md-4">
 			<a href="#"><img src="${pageContext.request.contextPath}/resources/image/mid-b3.jpeg" class="img-fluid" alt="중간배너"></a>
 		</div>
-	</div>		
-	
-		<!-- best 상품 나열 -->
-			<div class="row">
-				<h2 class="text-center">BEST</h2>
-				<c:forEach var="item" items="${list }">
-					<c:set var="fileArr" value="${fn:split(item.thumbnailImg,',')}"/>
-					<div class="col">
-						<c:forEach var="img" items="${fileArr }">
-							<div class="card" style="width: 18rem;" id="card">
-							  <a href="#"><img src="/upload/${img }" class="card-img-top" alt="thumbnailImg"></a>
-							  <div class="card-body">
-							    <div class="card-text">
-							    <c:if test="${fn:length(item.name) <= 20 }"> <!-- 한줄일때 경계선 높낮이 다름 -->
-							    	<div class="productName" style="line-height : 47px;">${item.name }</div>
-							    </c:if>
-							    <c:if test="${fn:length(item.name) > 20 }">
-							    	<div class="productName">${item.name }</div>
-							    </c:if>	
-							    		<div class="productPrice">${item.price}원</div>
-							    </div>	
-							  </div>
-							</div>
-						</c:forEach>	  
-					</div>
-				</c:forEach>	
+	</div>	
+		
+		<div class="row">
+		
+			<div class="col-md-6">
+				
 			</div>
+			<div class="col-md-6">
+				
+			</div>
+		</div>
 	</div>
 
 <!-- footer -->
