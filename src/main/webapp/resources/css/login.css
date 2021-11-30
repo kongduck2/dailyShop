@@ -60,7 +60,7 @@
   margin-bottom: 40px;
   width:80%;
   height:40px;
-  background: linear-gradient(125deg,#ccebcc,#9bb99b,#ccebcc);
+  background: linear-gradient(125deg,#67b08f,#378062,#67b08f);
   background-position: left;
   background-size: 200%;
   color:white;
@@ -97,7 +97,7 @@
   left: 0;
   right: 100%;
   bottom: 0;
-  background: #ccebcc;
+  background: #67b08f;
   height: 2px;
   -webkit-transition-property: right;
   transition-property: right;

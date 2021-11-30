@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nyang.shop.dao.ProductMapper;
 import com.nyang.shop.model.Cart;
+import com.nyang.shop.model.PageDto;
 import com.nyang.shop.model.Product;
 
 @Service
@@ -28,6 +30,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getAll(String category) { //카테고리별 목록 전체 가져오기
 		return dao.getAll(category);
+	}
+	
+	@Override
+	public List<Product> bestGetAll() {
+		return dao.bestGetAll();
+	}
+	
+	@Override
+	public List<Product> newGetAll() {
+		return dao.newGetAll();
 	}
 
 	@Override
@@ -82,19 +94,17 @@ public class ProductServiceImpl implements ProductService {
 		return dao.insert(vo);
 	}
 
-	@Override
-	public List<Product> bestGetAll() {
-		return dao.bestGetAll();
-	}
 	
 	@Override
 	public String categoryName(String category) {
-		if(category.equals("d-feed") || category.equals("c-feed")) category ="사료";
-		else if(category.equals("d-snack")||category.equals("c-snack")) category="간식";
-		else if(category.equals("d-fashion")||category.equals("c-fashion")) category="패션";
-		else if(category.equals("d-toy")||category.equals("c-toy")) category="장난감";
-		else if(category.equals("d-walk")) category="산책·외출";
-		return category;
+		String categoryName ="";
+		if(category.equals("d-feed") || category.equals("c-feed")) categoryName ="사료";
+		else if(category.equals("d-snack")||category.equals("c-snack")) categoryName="간식";
+		else if(category.equals("d-fashion")||category.equals("c-fashion")) categoryName="패션";
+		else if(category.equals("d-toy")||category.equals("c-toy")) categoryName="장난감";
+		else if(category.equals("d-walk")) categoryName="산책·외출";
+		else if(category.equals("search")) categoryName="검색 결과";
+		return categoryName;
 	}
 
 	@Override
@@ -117,6 +127,40 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return result;
 	}
+
+	@Override
+	public Map<String, Object> searchProcess(Map<String, Object> param) { //검색결과 리스트 가져오기
+		List<Product> list;
+		int totalCount;
+		PageDto pageDto;
+		int currentPage;//현재 페이지
+		int pageSize = 4;
+		String page=(String) param.get("page");
+		if(page==null || page.trim().length()==0) currentPage = 1;
+		else currentPage = Integer.parseInt(page);
+		
+		String findText = (String) param.get("findText");
+		String categoryName = categoryName((String) param.get("category"));
+		totalCount = searchCount(findText);
+		pageDto = new PageDto(currentPage, pageSize, totalCount,findText);
+		list = dao.searchList(pageDto);
+		param.put("categoryName", categoryName);
+		param.put("page", pageDto);
+		param.put("list", list);
+		return param;
+	}
+
+	@Override
+	public int searchCount(String findText) { //검색된 결과 개수
+		return dao.searchCount(findText);
+	}
+
+
+	@Override
+	public List<Product> searchList(PageDto dto) {
+		return dao.searchList(dto);
+	}
+
 
 
 

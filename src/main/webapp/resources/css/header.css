@@ -89,5 +89,16 @@ input[type=search]{
 	font-weight: bold;
 }
 
+#searchBtn{ 
+	color: #378062; /* 로고 색 */ 
+	border: 1px solid #378062;
+	width: 80px;
+}
+
+#searchBtn:hover{
+	background-color: #378062;
+	color: white;
+	border: 1px solid #378062;
+}
 
 

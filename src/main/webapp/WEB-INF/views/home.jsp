@@ -35,9 +35,9 @@
 	</div>
 	
 	<!-- container 시작 -->
-	 <div class="container">	
+	 <div class="container" id="homeContainer">	
 	 		<!-- 중간 배너 -->
-	<div class="row" id="midBanner">
+	<div class="row" >
 		<div class="col-md-4">
 			<a href="#"><img src="${pageContext.request.contextPath}/resources/image/mid-b1.jpeg" class="img-fluid" alt="중간배너"></a>
 		</div>
@@ -48,14 +48,44 @@
 			<a href="#"><img src="${pageContext.request.contextPath}/resources/image/mid-b3.jpeg" class="img-fluid" alt="중간배너"></a>
 		</div>
 	</div>	
+	<!-- 신상품 -->
+		<div class="row">
+			<div class="listTitle">
+			<h2 class="text-center">New Product</h2>
+			<div><p class="subText">다양한 신상 아이템들을 확인해 보세요!</p></div>
+			</div>
+			<c:forEach var="item" items="${list }">
+				<c:set var="fileArr" value="${fn:split(item.thumbnailImg,',')}"/>
+				<div class="col-md-3" id="cardList">
+					<c:forEach var="img" items="${fileArr }">
+						<div class="card" style="width: 18rem;" id="card">
+						  <a href="detail?idx=${item.idx}"><img src="/upload/${img }" class="card-img-top" alt="thumbnailImg"></a>
+						  <div class="card-body">
+						    <div class="card-text">
+						    <c:if test="${fn:length(item.name) <= 20 }"> <!-- 한줄일때 경계선 높낮이 다름 -->
+						    	<div class="productName" style="line-height : 47px;"><a href="detail?idx=${item.idx}">${item.name }</a></div>
+						    </c:if>
+						    <c:if test="${fn:length(item.name) > 20 }">
+						    	<div class="productName"><a href="detail?idx=${item.idx}">${item.name }</a></div>
+						    </c:if>	
+						    		<div class="productPrice">${item.price}원</div>
+						    </div>	
+						  </div>
+						</div>
+					</c:forEach>	  
+				</div>
+			</c:forEach>	
+		</div>
 		
 		<div class="row">
-		
-			<div class="col-md-6">
-				
+			<div class="col-md-4">
+				<a href="#"><img src="${pageContext.request.contextPath}/resources/image/btm-b1.jpeg" class="img-fluid" alt="하단배너"></a>
 			</div>
-			<div class="col-md-6">
-				
+			<div class="col-md-4">
+				<a href="#"><img src="${pageContext.request.contextPath}/resources/image/btm-b2.jpeg" class="img-fluid" alt="하단배너"></a>
+			</div>
+			<div class="col-md-4">
+				<a href="#"><img src="${pageContext.request.contextPath}/resources/image/btm-b3.jpeg" class="img-fluid" alt="하단배너"></a>
 			</div>
 		</div>
 	</div>

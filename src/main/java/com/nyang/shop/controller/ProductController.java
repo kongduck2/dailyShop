@@ -1,6 +1,7 @@
 package com.nyang.shop.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nyang.shop.model.Product;
 import com.nyang.shop.model.User;
@@ -53,12 +54,20 @@ public class ProductController {
 	
 	//카테고리별 상품 리스트 뿌리기  
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(String category , Model model) {
-		List<Product> list = service.getAll(category);
-		model.addAttribute("category", service.categoryName(category)); // 카테고리별 이름출력
-		model.addAttribute("list", list);
+	public String list(@RequestParam Map<String, Object> param , Model model) {
+		String category = (String)param.get("category");
+		if((String)param.get("findText") == null) {
+			List<Product> list = service.getAll(category);
+			model.addAttribute("categoryName", service.categoryName(category)); // 카테고리별 이름출력
+			model.addAttribute("list", list);
+		}else { //검색값 있는경우
+			param = service.searchProcess(param);
+			model.addAllAttributes(param);
+			System.out.println(param); // 토탈카운트 8이고 페이지 
+		}
 		return "/product/list";
 	}
+	
 	
 	@RequestMapping(value = "/detail",method = RequestMethod.GET)
 	public String detail(HttpSession session,int idx, Model model) {

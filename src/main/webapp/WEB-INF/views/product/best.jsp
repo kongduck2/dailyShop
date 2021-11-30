@@ -14,7 +14,6 @@
 
 <!-- container 시작 -->
 	 <div class="container">	
-	<!-- 카테고리별 상품 나열 -->
 		<div class="row">
 			<h2 class="text-center">BEST</h2>
 			<c:forEach var="item" items="${list }">

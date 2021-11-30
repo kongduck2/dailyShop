@@ -8,6 +8,7 @@
  		<typeAlias type="com.nyang.shop.model.User" alias="User"/>
  		<typeAlias type="com.nyang.shop.model.Product" alias="Product"/>
  		<typeAlias type="com.nyang.shop.model.Cart" alias="Cart"/>
+ 		<typeAlias type="com.nyang.shop.model.PageDto" alias="PageDto"/>
  	</typeAliases>
 </configuration>
 

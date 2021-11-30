@@ -104,6 +104,9 @@
 	margin-top: 100px;
 	border-top: solid 1px #bbc2bc ;
 }
+#detailBtn > div{
+	margin-right: 27px;
+}
 .guideVar {
 	display:flex;
 	justify-content:center;

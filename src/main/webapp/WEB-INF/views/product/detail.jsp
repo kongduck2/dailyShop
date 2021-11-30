@@ -16,6 +16,7 @@
 
 <!-- 제품 상단 디테일 영역 시작 -->
 <div class="container" id="detailContainer">
+ <input type="hidden" name="page" value="${page}">
   <div class="row">
   	<!-- 이미지 영역 -->
     <div class="col-md-6"  id="thumbnail">
@@ -118,7 +119,7 @@
     	</c:if>	
     	</div>	
     	<!-- 제품 상세부분 조작 버튼 -->
-    	<div class="row" id="detailbutton">
+    	<div class="row" id="detailBtn">
     		<div class="col-md-3">
     		 	<button class="buyButton">바로구매</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 -->
     		</div>

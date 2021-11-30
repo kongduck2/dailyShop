@@ -11,6 +11,10 @@
   	<select id="bestGetAll" resultType="Product" > <!-- BEST 목록 가져오기 -->
   		select * from product order by soldCount desc
   	</select>
+  
+  	<select id="newGetAll" resultType="Product" > <!-- 신상품 목록 가져오기 -->
+  		select * from product order by idx desc limit 12
+  	</select>
   	
   	<insert id="insert" parameterType="Product"> <!-- admin 상품 추가 -->
   		insert into product(category,name,thumbnailImg,detailImg1,detailImg2,detailImg3,option1,option2,option3,option4,price)
@@ -21,8 +25,16 @@
   		select * from product where idx = #{idx}
   	</select>
   	
-  	<select id="cartInfo" resultType="Product" parameterType="int"> 
+  	<select id="cartInfo" resultType="Product" parameterType="int">  <!-- 장바구니 페이지에 넘겨줄 상품 정보 -->
   		select idx,name,price,thumbnailImg from product where idx = #{idx} order by idx desc
   	</select>
   
+  	<select id="searchList" parameterType="PageDto" resultType="Product">
+		select * from product where name like concat('%', #{findText},'%') <!-- 상품 검색 -->
+		order by idx desc limit #{startNo},#{pageSize}
+	</select>
+	
+	<select id="searchCount" parameterType="String" resultType="int">
+		select count(*) from product where name like concat('%', #{findText},'%') <!-- 검색된 상품 개수-->
+	</select>
   </mapper>

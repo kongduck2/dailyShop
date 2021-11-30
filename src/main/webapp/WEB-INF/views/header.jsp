@@ -100,9 +100,10 @@
           <a class="nav-link active" aria-current="page" href="#">고객센터</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="상품명을 입력하세요." aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
+      <form class="d-flex" action="list?category=search&page=">
+        <input type="hidden" name="category" value="search">
+        <input class="form-control me-2" name="findText" type="search" placeholder="어떤 상품을 찾으시나요?" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit" id="searchBtn">찾기</button>
       </form>
     </div>
   </div>

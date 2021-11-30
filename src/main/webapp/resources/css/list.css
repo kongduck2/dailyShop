@@ -42,3 +42,22 @@
 	list-style:none;
 	text-align: center;
 }
+
+.pagenum {
+    border: 1px solid gray;
+    border-radius: 3px;
+    color: #378062;
+    padding: 3px 5px;
+    text-decoration: none;  /*  밑줄제거  */
+    cursor: pointer;
+    display: inline-block;
+	text-align:center;
+	font-size: 9pt;
+}
+.pagenum:hover{
+	  background-color: #e0e0e0;
+	  color:white;
+} 
+.none {
+	display: none;
+}
