@@ -15,6 +15,7 @@ public interface ProductMapper {
 	int insert(Product vo);
 	Product getOne(int idx);
 	Product cartInfo(int idx); 
-	List<Product> searchList(PageDto dto); //검색 게시글
+	List<Product> listPage(PageDto dto); //리스트 페이징해서 받아오기
+	int listCount(String category); 
 	int searchCount(String findText); //검색된 게시글 수
 }

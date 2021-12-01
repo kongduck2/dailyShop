@@ -55,16 +55,9 @@ public class ProductController {
 	//카테고리별 상품 리스트 뿌리기  
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(@RequestParam Map<String, Object> param , Model model) {
-		String category = (String)param.get("category");
-		if((String)param.get("findText") == null) {
-			List<Product> list = service.getAll(category);
-			model.addAttribute("categoryName", service.categoryName(category)); // 카테고리별 이름출력
-			model.addAttribute("list", list);
-		}else { //검색값 있는경우
-			param = service.searchProcess(param);
+			param = service.listProcess(param);
 			model.addAllAttributes(param);
-			System.out.println(param); // 토탈카운트 8이고 페이지 
-		}
+			System.out.println(param); // 토탈카운트 8이고 페이지 2일때 페이지 오류
 		return "/product/list";
 	}
 	

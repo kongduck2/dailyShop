@@ -16,7 +16,8 @@ public interface ProductService {
 	String categoryName(String category);
 	Product getOne(int idx);
 	List<Product> cartInfo(List<Cart> list); //썸네일 가져오기용
-	List<Product> searchList(PageDto dto);
+	List<Product> listPage(PageDto dto);
+	int listCount(String category);
 	int searchCount(String findText);
-	Map<String, Object> searchProcess(Map<String, Object> param);
+	Map<String, Object> listProcess(Map<String, Object> param);
 }

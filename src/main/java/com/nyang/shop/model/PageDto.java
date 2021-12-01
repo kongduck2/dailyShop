@@ -19,11 +19,14 @@ public class PageDto {
 	private int startPage;		//페이지 안에 띄울 게시글 시작 idx
 	private int endPage;		//페이지 안에 띄울 게실글 끝 idx
 	
+	//리스트 카테고리 값
+	private String category;
+	
 	//검색에 필요한 값
 	private String findText;
 	
 	//생성자
-	public PageDto(int currentPage, int pageSize, int totalCount, String findText) {
+	public PageDto(int currentPage, int pageSize, int totalCount, String findText,String category) {
 		super();
 		this.currentPage = currentPage;
 		this.pageSize = pageSize;
@@ -40,6 +43,7 @@ public class PageDto {
 		endPage = endPage > totalPage ? totalPage : endPage;   //마지막 페이지목록에서 필요함.
 		
 		this.findText = findText;
+		this.category = category;
 	}
 
 	

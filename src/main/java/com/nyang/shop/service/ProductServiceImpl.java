@@ -129,21 +129,25 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Map<String, Object> searchProcess(Map<String, Object> param) { //검색결과 리스트 가져오기
+	public Map<String, Object> listProcess(Map<String, Object> param) { //검색결과 리스트 가져오기
 		List<Product> list;
-		int totalCount;
-		PageDto pageDto;
-		int currentPage;//현재 페이지
-		int pageSize = 4;
+		int totalCount = 0; // 쿼리받아온 개수
+		PageDto pageDto = null;
+		int currentPage = 0;//현재 페이지
+		int pageSize = 16; //한번에 띄울 상품 개수
 		String page=(String) param.get("page");
 		if(page==null || page.trim().length()==0) currentPage = 1;
 		else currentPage = Integer.parseInt(page);
 		
 		String findText = (String) param.get("findText");
-		String categoryName = categoryName((String) param.get("category"));
-		totalCount = searchCount(findText);
-		pageDto = new PageDto(currentPage, pageSize, totalCount,findText);
-		list = dao.searchList(pageDto);
+		String category = (String) param.get("category");
+		String categoryName = categoryName(category);
+		
+		if(findText != null) totalCount = searchCount(findText);
+		else totalCount = listCount(category);
+		
+		pageDto = new PageDto(currentPage, pageSize, totalCount,findText,category);
+		list = dao.listPage(pageDto);
 		param.put("categoryName", categoryName);
 		param.put("page", pageDto);
 		param.put("list", list);
@@ -151,18 +155,22 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int searchCount(String findText) { //검색된 결과 개수
+	public List<Product> listPage(PageDto dto) {
+		return dao.listPage(dto);
+	}
+
+	@Override
+	public int listCount(String category) {
+		return dao.listCount(category);
+	}
+
+	@Override
+	public int searchCount(String findText) {
 		return dao.searchCount(findText);
 	}
 
-
-	@Override
-	public List<Product> searchList(PageDto dto) {
-		return dao.searchList(dto);
-	}
-
-
-
+	
+	
 
 
 }
