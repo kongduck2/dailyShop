@@ -31,11 +31,11 @@
 	
 	<context:component-scan base-package="com.nyang.shop" />
 	
-	<beans:bean class="com.nyang.shop.interceptor.LoginInterceptor" id="loginInterceptor"/><!-- 인터셉터 클래스를 빈으로 등록 -->
+	<beans:bean class="com.nyang.shop.interceptor.PageInterceptor" id="PageInterceptor"/><!-- 인터셉터 클래스를 빈으로 등록 -->
 	<interceptors>
 		<interceptor>
-				<mapping path="/**/**"/> <!-- 경로 타입으로 url 2단계 지정 -->
-				<beans:ref bean="loginInterceptor"/> <!-- 모든 url 요청에 적용할 인터셉터 -->	
+				<mapping path="/list/**"/> <!-- 경로 타입으로 url 2단계 지정 -->
+				<beans:ref bean="PageInterceptor"/> <!-- 모든 url 요청에 적용할 인터셉터 -->	
 		</interceptor>	
 	</interceptors>
 	
