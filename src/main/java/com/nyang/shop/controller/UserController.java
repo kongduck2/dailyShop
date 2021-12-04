@@ -20,15 +20,9 @@ public class UserController {
 	
 	private final UserService uService;
 	
-	private final CartService cService;
 	
-	private final ProductService pService;
-
-	
-	public UserController(UserService uService,CartService cService,ProductService pService) {
+	public UserController(UserService uService) {
 		this.uService = uService;
-		this.cService=cService;
-		this.pService=pService;
 	}
 	
 	//회원가입 뷰페이지 이동
@@ -85,4 +79,4 @@ public class UserController {
     	model.addAttribute("url", "/dailyshop");
     	return "/util/alertPage";
     }
-}
+}//UserController end

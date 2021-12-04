@@ -26,7 +26,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login",method = RequestMethod.GET)
 	public String login(String alert,Model model) {
-		return "/user/login"; //로그인 버튼 -> login.jsp(뷰) - > 로그인정보 입력후 버튼 ->
+		return "/user/login"; 
 	}
 	
 	@RequestMapping(value = "/login",method = RequestMethod.POST)
@@ -44,15 +44,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/logout")
-	public String logout(SessionStatus status) {// @SessionAttributes로 설정된것은 SessionStatus로 지운다.
-		status.setComplete(); //@SessionAttributes 로 설정된 애트리뷰트를 clear 한다.
+	public String logout(SessionStatus status) {
+		status.setComplete(); 
 		return "home";
 	}
-	//status.setComplete(); - JSESSIONID 는 변하지 않고 @SessionAttributes로 설정된 애트리뷰트 값을 clear한다.
-	//						- HttpSession의 removeAttribute() 메소드 동작과 유사
-	//session.invalidate(); - 서버가 JSESSIONID는 새로 부여해주지만 @SessionAttributes로 설정된 값은 남아있다
 	
 	
 	
-	
-}
+}//LoginController end

@@ -22,7 +22,7 @@
 				<div class="col-md-3" id="cardList">
 					<c:forEach var="img" items="${fileArr }">
 						<div class="card" style="width: 18rem;" id="card">
-						  <a href="detail?idx=${item.idx}"><img src="/upload/${img }" class="card-img-top" alt="thumbnailImg"></a>
+						  <a href="detail?idx=${item.idx}"><img src="/upload/${img }" class="card-img-top" alt="썸네일"></a>
 						  <div class="card-body">
 						    <div class="card-text">
 						    <c:if test="${fn:length(item.name) <= 20 }"> <!-- 한줄일때 경계선 높낮이 다름 -->

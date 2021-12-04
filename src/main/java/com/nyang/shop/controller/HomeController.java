@@ -25,4 +25,5 @@ public class HomeController {
 			model.addAttribute("list",list);
 		return "home";
 	}
-}
+	
+}//HomeController end

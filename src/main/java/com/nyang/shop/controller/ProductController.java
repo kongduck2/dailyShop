@@ -70,6 +70,7 @@ public class ProductController {
 		model.addAttribute("product",service.getOne(idx)); 
 		return "/product/detail";
 	}
-}
+	
+}//ProductController end
 
 

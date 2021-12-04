@@ -9,6 +9,7 @@
  		<typeAlias type="com.nyang.shop.model.Product" alias="Product"/>
  		<typeAlias type="com.nyang.shop.model.Cart" alias="Cart"/>
  		<typeAlias type="com.nyang.shop.model.PageDto" alias="PageDto"/>
+ 		<typeAlias type="com.nyang.shop.model.Review" alias="Review"/>
  	</typeAliases>
 </configuration>
 

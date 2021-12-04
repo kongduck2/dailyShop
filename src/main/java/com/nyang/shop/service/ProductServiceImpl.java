@@ -23,7 +23,6 @@ public class ProductServiceImpl implements ProductService {
 	
 	public ProductServiceImpl(ProductMapper dao) {
 		this.dao = dao;
-		
 	}
 	
 
