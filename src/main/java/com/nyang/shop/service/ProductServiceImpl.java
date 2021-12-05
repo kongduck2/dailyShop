@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.nyang.shop.dao.ProductMapper;
 import com.nyang.shop.model.Cart;
+import com.nyang.shop.model.Favorite;
 import com.nyang.shop.model.PageDto;
 import com.nyang.shop.model.Product;
 
@@ -166,6 +167,18 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int searchCount(String findText) {
 		return dao.searchCount(findText);
+	}
+
+
+	@Override
+	public List<Product> favoriteInfo(List<Favorite> list) {
+		List<Product> result = new ArrayList<Product>();
+		for (int i = 0; i < list.size(); i++) {
+			Product vo = dao.cartInfo(list.get(i).getProductIdx());
+			vo.setThumbnailImg(vo.getThumbnailImg().substring(0, vo.getThumbnailImg().length()-1));
+			result.add(vo); 
+		}
+		return result;
 	}
 
 	

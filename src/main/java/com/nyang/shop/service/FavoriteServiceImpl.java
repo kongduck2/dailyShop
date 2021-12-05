@@ -1,5 +1,6 @@
 package com.nyang.shop.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -38,6 +39,16 @@ public class FavoriteServiceImpl implements FavoriteService {
 	@Override
 	public int getCount(int userIdx) { //관심상품 개수
 		return dao.getCount(userIdx);
+	}
+	
+	@Override
+	public List<Favorite> getAll(int userIdx) {
+		return dao.getAll(userIdx);
+	}
+	
+	@Override
+	public void deleteAll(int userIdx) {
+		dao.deleteAll(userIdx);
 	}
 
 }

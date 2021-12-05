@@ -1,0 +1,15 @@
+.emptyFavorite{
+	text-align: center;
+	vertical-align: middle;
+}
+.emptyFavorite > td{
+	font-size: 18px;
+	line-height: 300px;
+}
+.favoriteListTr {
+	height: 100px;
+	vertical-align: middle;
+}
+.favoriteTb{
+	border-bottom: 1px solid #c2c2c2;
+}

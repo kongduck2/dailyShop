@@ -16,7 +16,15 @@
 		delete from favorite where userIdx = #{userIdx} and productIdx = #{productIdx}  	
   	</delete>
   	
+  	<delete id="deleteAll" parameterType="int"> 
+		delete from favorite where userIdx = #{userIdx}  	
+  	</delete>
+  	
   	<select id="getCount" resultType="int" parameterType="int">
   		select count(*) from favorite where userIdx = #{userIdx}
+  	</select>
+  	
+  	<select id="getAll" resultType="Favorite" parameterType="int">
+  		select * from favorite where userIdx = #{userIdx} order by productIdx desc
   	</select>
   </mapper>

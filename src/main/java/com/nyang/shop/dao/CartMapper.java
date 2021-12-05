@@ -15,4 +15,5 @@ public interface CartMapper {
 	String count(int uIdx);
 	int delete(@Param("userIdx") int uIdx,@Param("productIdx")int pIdx);
 	void opDelete(Map<String,String> param);
+	void deleteAll(int userIdx);
 }

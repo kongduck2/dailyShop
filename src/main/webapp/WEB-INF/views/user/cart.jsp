@@ -168,6 +168,10 @@
 				</tr>				  
 			  </tfoot>
 			</table>
+			<c:if test="${count > 0 }">
+				<div style="text-align: left;"><button style="width: 150px; height: 27px; font-size: 14px" 
+				type="button" class="selectBtn" onclick="removeAll()">장바구니 비우기</button></div>
+			</c:if>	
 	 		</div>
 	 	</div>
 	 </div>
@@ -446,6 +450,24 @@
 			  })//ajax end
 		  }
 	}//remover end	
+	
+	  // 장바구니 전체삭제
+ 	function removeAll(){
+			let param = new Object();
+		$.ajax({
+			type: 'POST',
+			url: 'delAllCart',
+			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			data:param, 
+				success: function(){
+					location.reload();
+				alert('장바구니를 비웠습니다.');
+				},
+				error:function(request,status,error){
+			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			    }
+	  })//ajax end
+  }  
 	
 	
 </script>

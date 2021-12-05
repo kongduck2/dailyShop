@@ -26,28 +26,35 @@
 				    <td scope="col">배송구분</td>
 				    <td scope="col">배송비</td>
 				    <td scope="col">합계</td>
+				    <td scope="col">선택</td>
 			    </tr>
 			  </thead>
-			  <tbody>
-			  <!--<c:if test="0">
+			  <tbody class="favoriteTb">
+			  <c:if test="${fCount == 0 }">
 			  	<tr class="emptyFavorite">
-			  		<td colspan="9"> <i class="fas fa-shopping-basket fa-2x"></i> 관심상품 목록이 비어 있습니다.</td>
+			  		<td colspan="9"> <i class="fas fa-search fa-2x"></i>  관심상품 목록이 비어 있습니다.</td>
 			  	</tr>
-			  </c:if>-->
-		  		    <!--<c:forEach var="item" items="${list}" varStatus="status">-->
-			    		<tr class="" id="">
+			  </c:if>
+		  		    <c:forEach var="item" items="${list}" varStatus="status">
+			    		<tr class="favoriteListTr" id="">
 				  		    <td><input type="checkbox" name="check" class="check"></td>
-			  				<td><a href="detail?idx=1"><img class="" alt="썸네일 이미지" src="#">d
+			  				<td><a href="detail?idx=${item.idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${item.thumbnailImg}">
 			  				</a></td>
-					        <td class=""><span>상품명</span></td>
-					        <td id="">가격	</td>
+					        <td class="pInfo"><span>${item.name }</span></td>
+					        <td id="">${item.price }</td>
 					        <td>기본배송</td>
 					        <td class="">3,000원</td>
-					        <td class="">합계가격</td>
+					        <td class="">${item.price }</td>
+					        <td class="selectBtnTd"> <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
+					        	<input type="hidden" value="${item.idx}"></div></td>
 			 		   </tr>
-		  		    <!--</c:forEach>-->
+		  		    </c:forEach>
 			  </tbody>
 			</table>
+			<c:if test="${fCount > 0 }">
+			<div style="text-align: left;"><button style="width: 150px; height: 27px; font-size: 14px" 
+				type="button" class="selectBtn" onclick="removeAll()">관심목록 비우기</button></div>
+	 		</c:if>
 	 		</div>
 	 	</div>
 	 </div>
@@ -77,6 +84,43 @@
 				}
     	   })
        }) 
+       
+   //삭제
+ 	function remove(select){
+  	  let param = new Object();
+	  param.pIdx = select.nextSibling.nextSibling.value; //<input class="pIdx" 
+		$.ajax({
+			type: 'POST',
+			url: 'delFavorite',
+			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			data:param, 
+				success: function(){
+				alert('관심 상품이 삭제 되었습니다.');
+					location.reload();
+				},
+				error:function(request,status,error){
+			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			    }
+	  })//ajax end
+  }  
+  // 관심목록 전체삭제
+ 	function removeAll(){
+			let param = new Object();
+		$.ajax({
+			type: 'POST',
+			url: 'delAllFavorite',
+			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			data:param, 
+				success: function(){
+					location.reload();
+				alert('관심 목록을 비웠습니다.');
+				},
+				error:function(request,status,error){
+			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			    }
+	  })//ajax end
+  }  
+		  
 </script>
 </body>
 </html>

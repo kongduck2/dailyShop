@@ -74,4 +74,9 @@ public class CartServiceImpl implements CartService {
 		return dao.getOne(idx);
 	}
 
+	@Override
+	public void deleteAll(int userIdx) {
+		dao.deleteAll(userIdx);
+	}
+
 }

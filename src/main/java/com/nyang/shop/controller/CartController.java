@@ -72,4 +72,12 @@ public class CartController {
     	return "/user/cart";
     }
     
+    @ResponseBody //장바구니 전체 삭제
+    @RequestMapping(value = "/delAllCart" , method = RequestMethod.POST)
+    public void delAllFavorite(@SessionAttribute("user")User user, Model model) {
+    	cService.deleteAll(user.getIdx());
+    	model.addAttribute("count",cService.count(user.getIdx()));
+    }
+    
+    
 }//CartController end
