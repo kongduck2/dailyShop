@@ -38,6 +38,7 @@ public class CartController {
     	model.addAttribute("cartInfo",pService.cartInfo(list));
     	return "/user/cart";
     }
+    
     //장바구니 추가
     @ResponseBody //@ResponseBody로 결과 ajax에응답
     @RequestMapping(value = "/addCart" , method = RequestMethod.POST)

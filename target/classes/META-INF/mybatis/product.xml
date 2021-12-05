@@ -25,7 +25,7 @@
   		select * from product where idx = #{idx}
   	</select>
   	
-  	<select id="cartInfo" resultType="Product" parameterType="int">  <!-- 장바구니 페이지에 넘겨줄 상품 정보 -->
+  	<select id="cartInfo" resultType="Product" parameterType="int">  <!-- 장바구니,관심목록 페이지에 넘겨줄 상품 정보 -->
   		select idx,name,price,thumbnailImg from product where idx = #{idx} order by idx desc
   	</select>
   	

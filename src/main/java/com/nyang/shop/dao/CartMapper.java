@@ -9,7 +9,7 @@ import com.nyang.shop.model.Cart;
 
 public interface CartMapper {
 	void insert(Cart cart);
-	int findProduct(int PIdx);
+	int findProduct(int productIdx);
 	List<Cart> getAll(int idx);
 	Cart getOne(int idx);
 	String count(int uIdx);

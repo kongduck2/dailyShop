@@ -108,7 +108,7 @@
 	    	</c:if>
 	    		
     	</table>
-    	<div class="col-lg-9">
+    	<div class="col-lg-11">
     	<!-- 옵션값 없는경우 -->
     	<c:if test="${product.option1 eq ''}">	
     		<div class="total" >Total : <span id="totalPrice" >${product.price}원</span></div>
@@ -138,9 +138,19 @@
     		</div>
     		</c:if>
     		
+    		<c:if test="${user != null}"> <!-- 로그인 상태 -->
     		<div class="col-md-3">
-    			<button class="favoriteButton">관심상품</button>
+    			<button class="favoriteButton" id="addFavoriteBtn" type="button">관심상품</button>
+    			<input type="hidden" id="pIdx" value="${product.idx }">
+    			<input type="hidden" id="uIdx" value="${user.idx }">
     		</div>
+    		</c:if>
+    		
+    		<c:if test="${user == null}"> <!-- 로그인 상태 -->
+    		<div class="col-md-3">
+    			<button class="favoriteButton"  onclick="loginAlert()"> 관심상품</button>
+    		</div>
+    		</c:if>
     	</div>	
     </div>
   </div>
@@ -158,6 +168,25 @@
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.reload();">쇼핑계속하기</button>
 		        <button type="button" class="btn btn-primary" id="moveCartBtn" onclick="location.href='cart'">장바구니로 이동</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		  <!-- 관심상품 Modal -->
+		<div class="modal fade" id="favoriteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">관심상품</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		          <div class="modal-body">
+			        <p class="text-start" id="cartText">관심상품목록에 담았습니다.</p>
+			      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.reload();">쇼핑계속하기</button>
+		        <button type="button" class="btn btn-primary" onclick="location.href='favorite'">관심상품목록 이동</button>
 		      </div>
 		    </div>
 		  </div>
@@ -316,6 +345,27 @@
 					}); //end ajax 
 				$('#cartModal').modal('show');
 			}//else end
+		}); //end on 
+	});
+	
+	//관심상품에 추가
+	$(document).ready(function(){
+		let param = new Object();
+		$('#addFavoriteBtn').on('click', function(){
+				param.pIdx = $('#pIdx').val();
+				param.uIdx = $('#uIdx').val();
+				$.ajax({
+					type: 'POST',
+					url: 'addFavorite',
+				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+					data:param,
+						success: function(){
+							$('#favoriteModal').modal('show');
+						},
+						error:function(request,status,error){
+					        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+					       }
+					}); //end ajax 
 		}); //end on 
 	});
 	

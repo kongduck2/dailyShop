@@ -2,12 +2,8 @@
 
 .addForm {
   position:absolute;
-  width:650px;
+  width:1250px;
   height:450px;
-  padding: 30px, 20px;
-  top:55%;
-  left:50%;
-  transform: translate(-50%,-50%);
 }
 .addForm > div{
 	margin: 0 auto;

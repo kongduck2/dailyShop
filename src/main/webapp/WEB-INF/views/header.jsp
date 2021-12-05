@@ -43,7 +43,7 @@
 					<!-- 드롭다운 마이페이지,주문내역조회,회원정보수정 -->
 					<ul class="mypage-sub">
 						<li><a href="#">주문내역조회</a></li>
-						<li><a href="#">관심목록</a></li>
+						<li><a href="favorite">관심상품</a></li>
 						<li><a href="infoUpdatePwCheck">회원정보수정</a></li>
 					</ul>
 				</li>

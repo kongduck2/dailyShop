@@ -25,10 +25,21 @@
 						
 						<div class="reviewText">
 							<div>
-								<span>${item.productName }</span>
+								<span class="productName">${item.productName }</span>
 							</div>
 							<div>
-								<span>${item.content }</span>
+								<div id="foldedText">
+									<div class="shortText"><span>${item.content }</span>
+									</div>
+									<a href="javascript:open();" class="more">-더보기</a>
+								</div>
+								<div id="openText">
+									<div class="longText"><span>${item.content }</span>
+									<div><a href="#"><img alt="유저이미지" src="/upload/${item.contentImg }"></a>
+									</div>
+									<a href="javascript:fold();" class="fold">-접기</a>
+								</div>
+								 </div>
 							</div>
 						</div>
 						
@@ -53,5 +64,20 @@
 </div>
 
 <%@ include file="../footer.jsp"%>
+<script type="text/javascript">
+	let foldText = document.getElementById('foldedText');
+	let openText = document.getElementById('openText');
+	
+	function open() {
+		foldText.style.display = 'none';
+		openText.style.display = 'block';
+	}
+	
+	function fold() {
+		foldText.style.display = 'block';
+		openText.style.display = 'none';
+	}
+
+</script>
 </body>
 </html>

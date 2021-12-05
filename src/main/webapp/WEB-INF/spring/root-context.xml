@@ -29,6 +29,7 @@
 				 <value>classpath:META-INF/mybatis/product.xml</value>			
 				 <value>classpath:META-INF/mybatis/cart.xml</value>			
 				 <value>classpath:META-INF/mybatis/review.xml</value>			
+				 <value>classpath:META-INF/mybatis/favorite.xml</value>			
 			</list>
 		</property>
 	

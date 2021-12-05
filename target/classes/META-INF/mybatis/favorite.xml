@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.nyang.shop.dao.FavoriteMapper">
+  	<insert id="insert" parameterType="Favorite">
+		insert into favorite(userIdx,productIdx)
+		values (#{userIdx},#{productIdx})
+  	</insert>
+  
+   	<select id="findProduct" resultType="int" parameterType="int"> <!-- 관심목록에 즁복상품이 있는지 체크 -->
+  		select count(*) from favorite where productIdx = #{productIdx}
+  	</select>
+  	
+  	<delete id="delete" parameterType="Favorite"> <!-- 상품 관심목록에서 삭제 -->
+		delete from favorite where userIdx = #{userIdx} and productIdx = #{productIdx}  	
+  	</delete>
+  	
+  	<select id="getCount" resultType="int" parameterType="int">
+  		select count(*) from favorite where userIdx = #{userIdx}
+  	</select>
+  </mapper>

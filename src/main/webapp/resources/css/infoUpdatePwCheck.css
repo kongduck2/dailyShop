@@ -15,9 +15,9 @@
 .pwForm >button[type=submit]{
 	margin-top: 10px;
 	width: 150px;
-	background-color: #ccebcc;
+	background-color: #67b08f;
 	border: white;
-	color: #9bb99b;
+	color: white;
 }
 
 .pwForm > p{

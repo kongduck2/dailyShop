@@ -5,28 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>댕냥이의 일상</title>
-
-<script> function setImg(event) {
-	for (var image of event.target.files) {
-		var reader = new FileReader();
-		
-		reader.onload = function(event) {
-			var img = document.createElement("img");
-			img.setAttribute("src", event.target.result);
-			document.querySelector("div#imageContainer").appendChild(img);
-			};
-			console.log(image);
-			reader.readAsDataURL(image); 
-			}
-	}
-</script>
-
 </head>
 <body>
 
 <%@ include file="../header.jsp"%>
 
-
+<div class="container">
+ <div class="row" >
+ 	<div class="col-xl-12" >
 	<form action="addProduct" method="post" enctype="multipart/form-data" class="addForm">
 	 <div>
 		<input type="text" name="name" placeholder="상품명" required>
@@ -76,9 +62,25 @@
 		<input type="submit" value="등록" >
 	 </div>	
 	</form>
-
+  </div>	
+ </div>	
+</div>
 <%@ include file="../footer.jsp"%>
-
+<script> 
+	function setImg(event) {
+		for (var image of event.target.files) {
+			var reader = new FileReader();
+			
+			reader.onload = function(event) {
+				var img = document.createElement("img");
+				img.setAttribute("src", event.target.result);
+				document.querySelector("div#imageContainer").appendChild(img);
+				};
+				console.log(image);
+				reader.readAsDataURL(image); 
+				}
+	}
+</script>
 
 </body>
 </html>
