@@ -196,8 +196,8 @@
 	 </div>
 	 
 	 <!-- 장바구니 이용안내 -->
-	 <div class="row" id="cartGuideRow">
-	 	<div class="col-xl-12" id="cartGuideCol">
+	 <div class="row" id="guideRow">
+	 	<div class="col-xl-12" id="guideCol">
 	 		<h5>이용안내</h5>
 	 		<ol>
 	 			<li>1. 해외배송 상품과 국내배송 상품은 함께 결제하실 수 없으니 장바구니 별로 따로 결제해 주시기 바랍니다.</li>
@@ -499,7 +499,7 @@
 			data:param, 
 				success: function(){
 					location.reload();
-				alert('장바구니를 비웠습니다.');
+				Swal.fire({icon: 'success',text: '장바구니를 비웠습니다.'});
 				},
 				error:function(request,status,error){
 			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리

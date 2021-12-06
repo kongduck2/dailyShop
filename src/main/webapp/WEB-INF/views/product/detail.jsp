@@ -303,7 +303,7 @@
 	
 	//비로그인시 alert
 	function loginAlert(){
-		alert('로그인 후 이용가능합니다.');
+		Swal.fire({icon: 'info',text: '로그인 후 이용가능합니다.'})
 		location.href='login';
 	}
 	
@@ -324,7 +324,7 @@
 			//옵션 비선택시
 			if(param.option1Quantity == 0 && param.option2Quantity == 0 &&
 					param.option3Quantity == 0 && param.option4Quantity == 0){
-				alert('옵션값을 선택해주세요.');
+		    	Swal.fire({icon: 'warning',text: '옵션값을 선택해주세요.'}); 
 			}else{
 				param.pIdx = $('#pIdx').val();
 				param.uIdx = $('#uIdx').val();
@@ -382,7 +382,7 @@
 			
 			if(param.option1Quantity == 0 && param.option2Quantity == 0 &&
 					param.option3Quantity == 0 && param.option4Quantity == 0){
-				alert('옵션값을 선택해주세요.');
+				Swal.fire({icon: 'warning',text: '옵션값을 선택해주세요.'});
 			}else{
 				var form = $('<form></form>');
 				form.attr('action', 'order');

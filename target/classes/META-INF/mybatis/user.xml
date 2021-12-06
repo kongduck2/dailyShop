@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.nyang.shop.dao.UserMapper">
 	<select id="login" parameterType="User" resultType="User">
-		select idx,email,phone,name,address,addressDetail,regist_type,registDate 
+		select idx,email,phone,name,zipCode,address,addressDetail,regist_type,registDate 
 		from user where email=#{email} and password=sha2(#{password},256)
 	</select>
 	
@@ -20,8 +20,8 @@
 				keyColumn="idx" keyProperty="idx">
 	<!-- insert 후에 자동증가컬럼값 가져오기 : useGeneratedKeys="true" 
 		  데이터베이스에서 자동증가 컬럼 keyColumn,  매핑되는 dto 클래스의 변수명 keyProperty-->
-		insert into user(email,password,phone,address,addressDetail,regist_type,name)
-		values (#{email},sha2(#{password},256),#{phone},#{address},#{addressDetail},#{regist_type},#{name})
+		insert into user(email,password,phone,zipCode,address,addressDetail,regist_type,name)
+		values (#{email},sha2(#{password},256),#{phone},#{zipCode},#{address},#{addressDetail},#{regist_type},#{name})
 	</insert>
 	<update id="update" parameterType="User">
 		update user set phone=#{phone},address=#{address},addressDetail=#{addressDetail},password = sha2(#{password},256)

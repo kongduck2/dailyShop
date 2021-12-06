@@ -68,16 +68,16 @@ function registCheck(){
 	var phoneRule = /^[0-9]{11}$/;
 	
 	if(!emailRule.test(email)){
-		alert('이메일 형식이 올바르지 않습니다.');
+		Swal.fire({icon: 'warning',text: '이메일 형식이 올바르지 않습니다.'})
 		return false;
 	}else if(!passRule.test(password)){
-		alert('비밀번호 형식이 올바르지 않습니다.');
+		Swal.fire({icon: 'warning',text: '비밀번호 형식이 올바르지 않습니다.'})
 		return false;
   	}else if(password != password2){
-		alert('비밀번호가 일치하지 않습니다.');
+		Swal.fire({icon: 'warning',text: '비밀번호가 일치하지 않습니다.'})
 		return false;
   	}else if(!phoneRule.test(phone)){
-  		alert('휴대전화 형식이 올바르지 않습니다.');
+  		Swal.fire({icon: 'warning',text: '휴대전화 형식이 올바르지 않습니다.'})
   		return false;
   	}else{
   		return true;
@@ -90,6 +90,7 @@ function registCheck(){
 	        new daum.Postcode({
 	            oncomplete: function(data) { //선택시 입력값 세팅
 	                document.getElementById('address').value = data.address; // 주소 넣기
+	                document.getElementById('zipCode').value = data.zonecode; // 우편번호 넣기
 	            }
 	        }).open();
 	    });

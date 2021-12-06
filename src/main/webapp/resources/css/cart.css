@@ -103,17 +103,23 @@ input[type="checkbox"]{
 	background-color: #f5f5f5;
 }
 
-#cartGuideRow{
+#guideRow{
+	margin-top: 50px;
+	margin-bottom: 50px;
 	padding-top:30px;
 	padding-bottom:30px;
 	border: 1px solid #aeaeae;
 }
-#cartGuideCol{
+#guideRow a{
+	color:gray;
+	text-decoration: none;
+}
+#guideCol{
 	text-align: left;
 	margin-left: 120px;
 }
 
-#cartGuideCol > ol{
+#guideCol > ol{
 	list-style: none;
 	color: gray;
 }

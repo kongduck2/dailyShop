@@ -1,0 +1,71 @@
+.table > tbody > tr{
+	border-bottom: 1px solid #e0e0e0;
+}
+.buyerInfo{
+	text-align: left;
+}
+#buyerInfoTable input,textarea{
+	border-radius: 3px;
+	border: 1px solid #aeaeae;
+	margin: 15px;
+	padding: 5px;
+}
+#buyerInfoTable input[type="text"],#buyerEmail{
+	width: 200px;
+	height: 28px;
+}
+
+#buyerInfoTable textarea{
+	margin-left:12px;
+	resize: none;
+}
+
+#buyerInfoTable th,td{
+	vertical-align: middle;
+}
+
+#buyerInfoTable th{
+	border: 1px solid #aeaeae;
+}
+#addrTd input[type="text"]{
+	width: 400px;
+}
+.PaymentBtnDiv{
+	margin-top: 130px;
+	text-align: center;
+}
+
+.PaymentBtnDiv > ul{
+	text-align: center;
+	width: 500px;
+	height: 300px;
+	margin :0 auto;
+	border: 1px solid #e0e0e0;
+	padding: 0;
+}
+
+.PaymentBtnDiv span{
+	padding-top: 15px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.PaymentBtnDiv div{
+	padding-top: 40px;
+	font-size: 17px;
+}
+
+.PaymentBtnDiv button{
+	width: 220px;
+	height: 70px;
+	margin-top: 80px;
+	font-size: 24px;
+	border: 1px solid #aeaeae;
+	border-radius: 3px;
+	background-color: black;
+	color: white;
+}
+.PaymentBtnDiv button:hover {
+	transition: ease 0.2s;
+	background-color: gray;
+}
