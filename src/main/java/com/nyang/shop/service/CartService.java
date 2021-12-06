@@ -14,4 +14,5 @@ public interface CartService {
 	int delete(int uIdx,int pIdx);
 	void opDelete(Map<String,String> param);
 	void deleteAll(int userIdx);
+	void quanUpdate(Map<String,String> param);
 }

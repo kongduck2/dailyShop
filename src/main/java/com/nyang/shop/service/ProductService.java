@@ -22,4 +22,5 @@ public interface ProductService {
 	int listCount(String category);
 	int searchCount(String findText);
 	Map<String, Object> listProcess(Map<String, Object> param);
+	List<Cart> orderList(Map<String, Object> param);
 }

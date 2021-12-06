@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <meta charset="UTF-8">
 <title>댕냥이의 일상</title>
 </head>
@@ -14,11 +15,8 @@
 	 
 	 <div class="container">
 	 	<div class="row">	
-	 		<h2 class="text-center">장바구니</h2>
+	 		<h2 class="text-center">주문</h2>
 	 		<div class="col">
-	 		<div class="qlText">
-	 			<h5>상품목록(${count })</h5>
-	 		</div>
 	 		<table class="table table-borderless">
 			  <thead>
 			    <tr class="cartTitleTr">
@@ -50,18 +48,13 @@
 					        	<div class="cartOpText"></div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
 					        <td class="quantityTd">
-					        <input class="quantity" name="quantity" value="${item.option1Quantity }" type="number" onchange="calc(this)">
+					        <input class="quantity" name="quantity" value="${item.option1Quantity }" type="text" onchange="calc(this)" readonly style="border: none">
 					        <input class="sellPrice" type="hidden" value="${cartInfo[status.index].price }" >
-					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option1Quantity)}" name="sumVal">
-					        <button class="qChangeBtn" type="button" onclick="qChange(this)">변경</button>
-					        <input type="hidden" value="1"/> <!-- 수량변경 위한 값 -->
-					        <input type="hidden" value="${item.idx}">
-					        </td>
+					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option1Quantity)}" name="sumVal"></td>
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice"></td>
-					        <td class="selectBtnTd"><div><button type="button" class="selectBtn" onclick="">주문하기</button>
-					        </div>
+					        <td class="selectBtnTd">
 					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="0"/>
 					        	<input type="hidden" value="${cartInfo[status.index].idx}">
@@ -77,17 +70,13 @@
 					        	<div class="cartOpText">[옵션 : ${item.option1 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
 					        <td class="quantityTd">
-					        <input class="quantity1" name="quantity1" value="${item.option1Quantity }" type="number" onchange="calc1(this)">
+					        <input class="quantity1" name="quantity" value="${item.option1Quantity }" type="text" onchange="calc1(this)" readonly style="border: none">
 					        <input class="sellPrice1" type="hidden" value="${cartInfo[status.index].price }" >
-					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option1Quantity)}" name="sumVal">
-					        <button class="qChangeBtn" type="button" onclick="qChange(this)">변경</button>
-					        <input type="hidden" value="1"/> <!-- 수량변경 위한 값 -->
-					        <input type="hidden" value="${item.idx}"></td>
+					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option1Quantity)}" name="sumVal"></td>
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice1"></td>
-					        <td class="selectBtnTd"><div><button type="button" class="selectBtn" onclick="">주문하기</button>
-					        </div>
+					        <td class="selectBtnTd">
 					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="1"/>
 					        	<input type="hidden" value="${item.idx}">
@@ -104,17 +93,13 @@
 					        	<div class="cartOpText">[옵션 : ${item.option2 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
 					        <td class="quantityTd">
-					        <input class="quantity2" name="quantity2" value="${item.option2Quantity }" type="number" onchange="calc2(this)">
+					        <input class="quantity2" name="quantity" value="${item.option2Quantity }" type="text" onchange="calc2(this)" readonly style="border: none">
 					        <input class="sellPrice2" type="hidden" value="${cartInfo[status.index].price }" >
-					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option2Quantity)}" name="sumVal">
-					        <button class="qChangeBtn" type="button" onclick="qChange(this)">변경</button>
-					        <input type="hidden" value="1"/> <!-- 수량변경 위한 값 -->
-					        <input type="hidden" value="${item.idx}"></td>
+					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option2Quantity)}" name="sumVal"></td>
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice2"></td>
-					        <td class="selectBtnTd"><div><button type="button" class="selectBtn" onclick="">주문하기</button>
-					        </div>
+					        <td class="selectBtnTd">
 					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="2"/>
 					        	<input type="hidden" value="${item.idx}">
@@ -131,17 +116,13 @@
 					        	<div class="cartOpText">[옵션 : ${item.option3 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
 					        <td class="quantityTd">
-					        <input class="quantity3" name="quantity3" value="${item.option3Quantity }" type="number" onchange="calc3(this)">
+					        <input class="quantity3" name="quantity" value="${item.option3Quantity }" type="text" onchange="calc3(this)" readonly style="border: none">
 					        <input class="sellPrice3" type="hidden" value="${cartInfo[status.index].price }" >
-					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option3Quantity)}" name="sumVal">
-					        <button class="qChangeBtn" type="button" onclick="qChange(this)">변경</button>
-					        <input type="hidden" value="1"/> <!-- 수량변경 위한 값 -->
-					        <input type="hidden" value="${item.idx}"></td>
+					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option3Quantity)}" name="sumVal"></td>
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice3"></td>
-					        <td class="selectBtnTd"><div><button type="button" class="selectBtn" onclick="">주문하기</button>
-					        </div>
+					        <td class="selectBtnTd">
 					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="3"/>
 					        	<input type="hidden" value="${item.idx}">
@@ -158,17 +139,13 @@
 					        	<div class="cartOpText">[옵션 : ${item.option4 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
 					        <td class="quantityTd">
-					        <input class="quantity4" name="quantity4" value="${item.option4Quantity }" type="number" onchange="calc4(this)">
+					        <input class="quantity4" name="quantity" value="${item.option4Quantity }" type="text" onchange="calc4(this)" readonly style="border: none">
 					        <input class="sellPrice4" type="hidden" value="${cartInfo[status.index].price }" >
-					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option4Quantity)}" name="sumVal">
-					        <button class="qChangeBtn" type="button" onclick="qChange(this)">변경</button>
-					        <input type="hidden" value="1"/> <!-- 수량변경 위한 값 -->
-					        <input type="hidden" value="${item.idx}"></td>
+					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option4Quantity)}" name="sumVal"></td>
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice4"></td>
-					        <td class="selectBtnTd"><div><button type="button" class="selectBtn" onclick="">주문하기</button>
-					        </div>
+					        <td class="selectBtnTd">
 					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="4"/>
 					        	<input type="hidden" value="${item.idx}">
@@ -184,39 +161,23 @@
 				</tr>				  
 			  </tfoot>
 			</table>
-			<c:if test="${count > 0 }">
-				<div style="text-align: left;"><button style="width: 150px; height: 27px; font-size: 14px" 
-				type="button" class="selectBtn" onclick="removeAll()">장바구니 비우기</button></div>
-				<div style="text-align: left;">
-				<button style="width: 150px; height: 27px; font-size: 14px" 
-				type="button" class="selectBtn" onclick="location.href='order'" >전체상품주문</button></div>
-			</c:if>	
+				<div style="display: flex; justify-content: space-between;">
+					<span style="color: gray; font-size: 13px;"><span>상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</span></span>
+					<span><button class="selectBtn" onclick="history.back()">이전</button></span>
+		 		</div>
 	 		</div>
 	 	</div>
 	 </div>
 	 
-	 <!-- 장바구니 이용안내 -->
-	 <div class="row" id="cartGuideRow">
-	 	<div class="col-xl-12" id="cartGuideCol">
-	 		<h5>이용안내</h5>
-	 		<ol>
-	 			<li>1. 해외배송 상품과 국내배송 상품은 함께 결제하실 수 없으니 장바구니 별로 따로 결제해 주시기 바랍니다.</li>
-	 			<li>2. 해외배송 가능 상품의 경우 국내배송 장바구니에 담았다가 해외배송 장바구니로 이동하여 결제하실 수 있습니다.</li>
-	 			<li>3. 선택하신 상품의 수량을 변경하시려면 수량변경 하시면 됩니다.</li>
-	 			<li>4. 파일첨부 옵션은 동일상품을 장바구니에 추가할 경우 마지막에 업로드 한 파일로 교체됩니다.</li>
-	 		</ol>
-	 		
-	 		<h5>무이자할부 이용안내</h5>
-	 		<ol>
-	 			<li>1. 상품별 무이자할부 혜택을 받으시려면 무이자할부 상품만 선택하여 [주문하기] 버튼을 눌러 주문/결제 하시면 됩니다.</li>
-	 			<li>2. [전체 상품 주문] 버튼을 누르시면 장바구니의 구분없이 선택된 모든 상품에 대한 주문/결제가 이루어집니다.</li>
-	 			<li>3. 단, 전체 상품을 주문/결제하실 경우, 상품별 무이자할부 혜택을 받으실 수 없습니다.</li>
-	 			<li>4. 무이자할부 상품은 장바구니에서 별도 무이자할부 상품 영역에 표시되어, 무이자할부 상품 기준으로 배송비가 표시됩니다.
-					실제 배송비는 함께 주문하는 상품에 따라 적용되오니 주문서 하단의 배송비 정보를 참고해주시기 바랍니다.</li>
-	 		</ol>
+	 <div class="container">
+	 	<div class="row">
+	 		<div class="col">
+	 		</div>
 	 	</div>
 	 </div>
+	 
 	 	
+	<!-- <button type="button" onclick="iamport()">결제하기</button> -->
 <%@ include file="../footer.jsp"%>
 <script type="text/javascript" >
 
@@ -238,27 +199,6 @@
 			totalPrice += parseInt(totalSum[i].value);
 		}
 		document.getElementById('totalPrice').innerText = comma(String(totalPrice))+'원'; 
-	}
-	
-	function qChange(btn){
-		console.log(btn.parentNode.childNodes);
-		console.log(btn.parentNode.childNodes[11].value);
-		let param = new Object();
-		param.quantity = btn.parentNode.childNodes[1].value;
-		param.opNum = btn.parentNode.childNodes[9].value;
-		param.idx = btn.parentNode.childNodes[13].value;
-			
-		$.ajax({
-			type: 'POST',
-			url: 'quanUpdate',
-			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-			data:param, 
-				success: function(){
-				},
-				error:function(request,status,error){
-			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-			    }
-		  })//ajax end
 	}
 	
 	//옵션1
@@ -489,23 +429,37 @@
 		  }
 	}//remover end	
 	
-	  // 장바구니 전체삭제
- 	function removeAll(){
-			let param = new Object();
-		$.ajax({
-			type: 'POST',
-			url: 'delAllCart',
-			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-			data:param, 
-				success: function(){
-					location.reload();
-				alert('장바구니를 비웠습니다.');
-				},
-				error:function(request,status,error){
-			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+	//아임포트 결제
+	function iamport(){
+			//가맹점 식별코드
+			IMP.init('imp84467091');
+			IMP.request_pay({
+			    pg : 'html5_inicis',
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : '상품1' , //결제창에서 보여질 이름
+			    amount : 100, //실제 결제되는 가격
+			    buyer_email : 'iamport@siot.do',
+			    buyer_name : '구매자이름',
+			    buyer_tel : '010-1234-5678',
+			    buyer_addr : '서울 강남구 도곡동',
+			    buyer_postcode : '123-456'
+			}, function(rsp) {
+				console.log(rsp);
+			    if ( rsp.success ) {
+			    	var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + rsp.paid_amount;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			    } else {
+			    	 var msg = '결제에 실패하였습니다.';
+			         msg += '에러내용 : ' + rsp.error_msg;
 			    }
-	  })//ajax end
-  }  
+			    alert(msg);
+			});
+		}
+
 	
 	
 </script>

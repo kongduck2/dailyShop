@@ -60,7 +60,6 @@ public class CartController {
     	System.out.println(user.getIdx());
     	cService.delete(user.getIdx(),Integer.parseInt(param.get("pIdx")));
     	model.addAttribute("count",cService.count(user.getIdx()));
-    	
     	return "/user/cart";
     }
     
@@ -77,6 +76,12 @@ public class CartController {
     public void delAllFavorite(@SessionAttribute("user")User user, Model model) {
     	cService.deleteAll(user.getIdx());
     	model.addAttribute("count",cService.count(user.getIdx()));
+    }
+    
+    @ResponseBody //장바구니 수량변경
+    @RequestMapping(value = "/quanUpdate" , method = RequestMethod.POST)
+    public void quanUpdate(@RequestParam Map<String,String> param, Model model) {
+    	cService.quanUpdate(param);
     }
     
     

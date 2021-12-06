@@ -63,7 +63,7 @@ public class CartServiceImpl implements CartService {
 	public void opDelete(Map<String, String> param) {
 		dao.opDelete(param);
 		Cart vo = dao.getOne(Integer.parseInt(param.get("idx")));
-		if(vo.getOption1().equals("") && vo.getOption2().equals("")
+		if(vo.getOption1().equals("") && vo.getOption2().equals("") //product 테이블 옵션명 단독옵션일경우 삭제 
 				&& vo.getOption3().equals("") && vo.getOption4().equals("")) {
 			dao.delete(vo.getUserIdx(),vo.getProductIdx());
 		}
@@ -77,6 +77,11 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void deleteAll(int userIdx) {
 		dao.deleteAll(userIdx);
+	}
+
+	@Override
+	public void quanUpdate(Map<String, String> param) {
+		dao.quanUpdate(param);
 	}
 
 }

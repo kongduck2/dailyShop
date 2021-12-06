@@ -120,37 +120,34 @@
     	</div>	
     	<!-- 제품 상세부분 조작 버튼 -->
     	<div class="row" id="detailBtn">
-    		<div class="col-md-3">
-    		 	<button class="buyButton">바로구매</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 -->
-    		</div>
     		
     		<!-- 장바구니 버튼 -->
     		<c:if test="${user != null}"> <!-- 로그인 상태 -->
     		<div class="col-md-3">
+	    			<input type="hidden" name="pIdx" id="pIdx" value="${product.idx }">
+	    			<input type="hidden" name="uIdx" id="uIdx" value="${user.idx }">
+	    		 	<button class="buyButton" id="buyBtn" type="button">바로구매</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 -->
+    		</div>
+    		<div class="col-md-3">
     			<button class="cartButton" id="addCartBtn" type="button">장바구니</button> 
-    			<input type="hidden" id="pIdx" value="${product.idx }">
-    			<input type="hidden" id="uIdx" value="${user.idx }">
+    		</div>
+    		<div class="col-md-3">
+    			<button class="favoriteButton" id="addFavoriteBtn" type="button">관심상품</button>
     		</div>
     		</c:if>
+    		
     		<c:if test="${user == null}"> <!-- 로그인 안된상태 -->
+    		<div class="col-md-3">
+    		 	<button class="buyButton" id="buyBtn" onclick="loginAlert()">바로구매</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 -->
+    		</div>
     		<div class="col-md-3">
     			<button class="cartButton" type="button" onclick="loginAlert()">장바구니</button> 
     		</div>
-    		</c:if>
-    		
-    		<c:if test="${user != null}"> <!-- 로그인 상태 -->
-    		<div class="col-md-3">
-    			<button class="favoriteButton" id="addFavoriteBtn" type="button">관심상품</button>
-    			<input type="hidden" id="pIdx" value="${product.idx }">
-    			<input type="hidden" id="uIdx" value="${user.idx }">
-    		</div>
-    		</c:if>
-    		
-    		<c:if test="${user == null}"> <!-- 로그인 상태 -->
     		<div class="col-md-3">
     			<button class="favoriteButton"  onclick="loginAlert()"> 관심상품</button>
     		</div>
     		</c:if>
+    		
     	</div>	
     </div>
   </div>
@@ -338,12 +335,12 @@
 				//Json안써주면 파라미터 형식으로 넘길수있음 서버에서 String 타입으로받을시 한글 깨짐 
 					data:param, //위에 json 타입으로 안해줬기때문에 형변환 안함
 						success: function(){
+							$('#cartModal').modal('show');
 						},
 						error:function(request,status,error){
 					        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 					       }
 					}); //end ajax 
-				$('#cartModal').modal('show');
 			}//else end
 		}); //end on 
 	});
@@ -369,6 +366,39 @@
 		}); //end on 
 	});
 	
+	//바로구매
+		$(document).ready(function () {
+			$('#buyBtn').on('click', function() {
+			let param = new Object();
+			if($('.optionName').length > 1){ //옵션이 있을때 단일품목일때는 옵션값 안넘어감
+				for (let i = 0; i < $('.optionName').length; i++) {
+					let option = 'option'+(i+1);
+					param[option] = $('.optionName')[i].textContent; //키값 동적으로 할당
+					param[option +'Quantity'] = $('.quantity')[i].value; 
+				}
+			}else{
+				param['option1' +'Quantity'] = $('.quantity')[0].value; //단독상품 수량값
+			}
+			
+			if(param.option1Quantity == 0 && param.option2Quantity == 0 &&
+					param.option3Quantity == 0 && param.option4Quantity == 0){
+				alert('옵션값을 선택해주세요.');
+			}else{
+				var form = $('<form></form>');
+				form.attr('action', 'order');
+				form.attr('method', 'post');
+				form.appendTo('body');
+				form.append($('<input type="hidden" value="' + $('#uIdx').val() + '" name="uIdx">'));
+				form.append($('<input type="hidden" value="' + $('#pIdx').val() + '" name="pIdx">'));
+				form.append($('<input type="hidden" value="' + param.option1Quantity + '" name="option1Quantity">'));
+				form.append($('<input type="hidden" value="' + param.option2Quantity + '" name="option2Quantity">'));
+				form.append($('<input type="hidden" value="' + param.option3Quantity + '" name="option3Quantity">'));
+				form.append($('<input type="hidden" value="' + param.option4Quantity + '" name="option4Quantity">'));
+				form.submit();
+					}
+				});
+			});
+
 </script>
 </body>
 </html>

@@ -34,6 +34,11 @@
 .pInfo{
 	text-align: left ;
 }
+
+.pInfo > a{
+	text-decoration: none;
+	color: black;
+}
 .quantityTd > input{
 	width: 48px !important;
 	text-align: center;
@@ -111,5 +116,16 @@ input[type="checkbox"]{
 #cartGuideCol > ol{
 	list-style: none;
 	color: gray;
+}
+.qChangeBtn{
+	padding: 3px;
+	border: 1px solid #aeaeae;
+	border-radius: 3px;
+	background-color: white;
+	font-size: 13px;
+}
+
+.qChangeBtn:hover{
+	background-color: #f5f5f5;
 }
 

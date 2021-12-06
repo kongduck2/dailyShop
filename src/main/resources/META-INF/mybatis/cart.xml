@@ -36,11 +36,16 @@
   	</delete>
   	
   	<update id="opDelete" parameterType="java.util.Map"> <!-- 옵션상품 장바구니에서 삭제 -->
-  		update cart set option${opNum} = <![CDATA[""]]> , option${opNum}Quantity = <![CDATA[0]]> where idx = #{idx}
+  		update cart set option${opNum} = <![CDATA[""]]> , option${opNum}Quantity = <![CDATA[0]]> 
+  		where idx = #{idx} <!-- cart idx -->
   	</update>
   	
   	<delete id="deleteAll" parameterType="int"> 
 		delete from cart where userIdx = #{userIdx}  	
   	</delete>
+  	
+  	<update id="quanUpdate" parameterType="java.util.Map"> 
+  		update cart set option${opNum}Quantity = #{quantity} where idx = #{idx} 
+  	</update>
   
   </mapper>

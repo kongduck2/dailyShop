@@ -25,7 +25,6 @@
 				    <td scope="col">판매가</td>
 				    <td scope="col">배송구분</td>
 				    <td scope="col">배송비</td>
-				    <td scope="col">합계</td>
 				    <td scope="col">선택</td>
 			    </tr>
 			  </thead>
@@ -40,11 +39,10 @@
 				  		    <td><input type="checkbox" name="check" class="check"></td>
 			  				<td><a href="detail?idx=${item.idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${item.thumbnailImg}">
 			  				</a></td>
-					        <td class="pInfo"><span>${item.name }</span></td>
-					        <td id="">${item.price }</td>
+					        <td class="pInfo"><a href="detail?idx=${item.idx }"><span>${item.name }</span></a></td>
+					        <td id="">${item.price }원</td>
 					        <td>기본배송</td>
-					        <td class="">3,000원</td>
-					        <td class="">${item.price }</td>
+					        <td>3,000원</td>
 					        <td class="selectBtnTd"> <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="${item.idx}"></div></td>
 			 		   </tr>

@@ -16,4 +16,5 @@ public interface CartMapper {
 	int delete(@Param("userIdx") int uIdx,@Param("productIdx")int pIdx);
 	void opDelete(Map<String,String> param);
 	void deleteAll(int userIdx);
+	void quanUpdate(Map<String,String> param);
 }
