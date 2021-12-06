@@ -17,7 +17,7 @@
 	 
 	 <div class="container">
 	 	<div class="row">	
-	 		<h2 class="text-center">주문</h2>
+	 		<h2 class="text-center">주문서 작성</h2>
 	 		<div class="col">
 	 		<table class="table table-borderless">
 			  <thead>
@@ -41,7 +41,7 @@
 			  </c:if>
 			  
 		  		    <c:forEach var="item" items="${list}" varStatus="status">
-					  <c:if test="${item.option1 == null}"> <!-- 옵션값 없는 단독상품 -->
+					  <c:if test="${item.option1 == null || (item.option1 eq '')}"> <!-- 옵션값 없는 단독상품 -->
 			    		<tr class="cartListTr" id="cartListTr">
 				  		    <td><input type="checkbox" name="check" class="check"></td>
 			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}">

@@ -183,9 +183,16 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public List<Cart> orderList(Map<String, Object> param) {
-		
-		return null;
+	public List<Cart> orderList(Map<String, String> param) {
+		List<Cart> list = new ArrayList<Cart>();
+		Cart vo = Cart.builder().productIdx(Integer.parseInt(param.get("pIdx"))).
+				option1(param.get("option1")).option2(param.get("option2")).option3(param.get("option3")).
+				option4(param.get("option4")).option1Quantity(param.get("option1Quantity")).
+				option2Quantity(param.get("option2Quantity")).option3Quantity(param.get("option3Quantity")).
+				option4Quantity(param.get("option4Quantity")).build();
+		list.add(vo);
+		System.out.println(list);
+		return list;
 	}
 
 	

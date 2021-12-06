@@ -93,8 +93,8 @@
 			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 			data:param, 
 				success: function(){
-				alert('관심 상품이 삭제 되었습니다.');
 					location.reload();
+					alert('관심상품이 삭제되었습니다.');
 				},
 				error:function(request,status,error){
 			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -111,7 +111,7 @@
 			data:param, 
 				success: function(){
 					location.reload();
-				alert('관심 목록을 비웠습니다.');
+				alert('관심상품 목록을 비웠습니다.');
 				},
 				error:function(request,status,error){
 			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리

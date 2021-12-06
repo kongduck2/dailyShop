@@ -138,13 +138,13 @@
     		
     		<c:if test="${user == null}"> <!-- 로그인 안된상태 -->
     		<div class="col-md-3">
-    		 	<button class="buyButton" id="buyBtn" onclick="loginAlert()">바로구매</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 -->
+    		 	<button class="buyButton" type="button" onclick="loginAlert()">바로구매</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 -->
     		</div>
     		<div class="col-md-3">
     			<button class="cartButton" type="button" onclick="loginAlert()">장바구니</button> 
     		</div>
     		<div class="col-md-3">
-    			<button class="favoriteButton"  onclick="loginAlert()"> 관심상품</button>
+    			<button class="favoriteButton" type="button"  onclick="loginAlert()"> 관심상품</button>
     		</div>
     		</c:if>
     		
@@ -303,14 +303,13 @@
 	
 	//비로그인시 alert
 	function loginAlert(){
-		Swal.fire({icon: 'info',text: '로그인 후 이용가능합니다.'})
+		alert('로그인 후 이용가능합니다.');
 		location.href='login';
 	}
 	
 	//장바구니에 추가 및 추가상품 중복검사
 	$(document).ready(function(){
 		let param = new Object();
-		console.log($('.optionName').length)
 		$('#addCartBtn').on('click', function(){
 			if($('.optionName').length > 1){ //옵션이 있을때 단일품목일때는 옵션값 안넘어감
 				for (let i = 0; i < $('.optionName').length; i++) {
@@ -374,27 +373,35 @@
 				for (let i = 0; i < $('.optionName').length; i++) {
 					let option = 'option'+(i+1);
 					param[option] = $('.optionName')[i].textContent; //키값 동적으로 할당
-					param[option +'Quantity'] = $('.quantity')[i].value; 
+					param[option +'Quantity'] = $('.quantity')[i].value;
 				}
 			}else{
+				for (let i = 0; i < 4; i++) { //단독상품일때 값 초기화 
+					let option = 'option'+(i+1); 
+					param[option] = ''; 
+					param[option +'Quantity'] = 0;
+				}
 				param['option1' +'Quantity'] = $('.quantity')[0].value; //단독상품 수량값
 			}
-			
 			if(param.option1Quantity == 0 && param.option2Quantity == 0 &&
 					param.option3Quantity == 0 && param.option4Quantity == 0){
 				Swal.fire({icon: 'warning',text: '옵션값을 선택해주세요.'});
 			}else{
-				var form = $('<form></form>');
-				form.attr('action', 'order');
-				form.attr('method', 'post');
-				form.appendTo('body');
-				form.append($('<input type="hidden" value="' + $('#uIdx').val() + '" name="uIdx">'));
-				form.append($('<input type="hidden" value="' + $('#pIdx').val() + '" name="pIdx">'));
-				form.append($('<input type="hidden" value="' + param.option1Quantity + '" name="option1Quantity">'));
-				form.append($('<input type="hidden" value="' + param.option2Quantity + '" name="option2Quantity">'));
-				form.append($('<input type="hidden" value="' + param.option3Quantity + '" name="option3Quantity">'));
-				form.append($('<input type="hidden" value="' + param.option4Quantity + '" name="option4Quantity">'));
-				form.submit();
+				let form = $('<form></form>');
+					form.attr('action', 'order');
+					form.attr('method', 'post');
+					form.appendTo('body');
+					form.append($('<input type="hidden" value="' + $('#uIdx').val() + '" name="uIdx">'));
+					form.append($('<input type="hidden" value="' + $('#pIdx').val() + '" name="pIdx">'));
+					form.append($('<input type="hidden" value="' + param.option1Quantity + '" name="option1Quantity">'));
+					form.append($('<input type="hidden" value="' + param.option2Quantity + '" name="option2Quantity">'));
+					form.append($('<input type="hidden" value="' + param.option3Quantity + '" name="option3Quantity">'));
+					form.append($('<input type="hidden" value="' + param.option4Quantity + '" name="option4Quantity">'));
+					form.append($('<input type="hidden" value="' + param.option1 + '" name="option1">'));
+					form.append($('<input type="hidden" value="' + param.option2 + '" name="option2">'));
+					form.append($('<input type="hidden" value="' + param.option3 + '" name="option3">'));
+					form.append($('<input type="hidden" value="' + param.option4 + '" name="option4">'));
+					form.submit();
 					}
 				});
 			});

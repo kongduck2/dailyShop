@@ -82,11 +82,21 @@ public class ProductController {
 	
 	@RequestMapping(value = "/order" , method = RequestMethod.GET)
 	public String moveOrder(@SessionAttribute("user")User user, @RequestParam Map<String,String> param, Model model) {
-		System.out.println(user);
     	List<Cart> list = cService.getAll(user.getIdx());
     	model.addAttribute("list",list);
     	model.addAttribute("user",user);
     	model.addAttribute("cartInfo",pService.cartInfo(list));
+		return "/product/order";
+	}
+	
+	@RequestMapping(value = "/order" , method = RequestMethod.POST)
+	public String ordeRone(@SessionAttribute("user")User user, @RequestParam Map<String,String> param, Model model) {
+		List<Cart> list = pService.orderList(param);
+		model.addAttribute("list",list);
+		model.addAttribute("user",user);
+		model.addAttribute("cartInfo",pService.cartInfo(list));
+		System.out.println(list);
+		System.out.println(pService.cartInfo(list));
 		return "/product/order";
 	}
 	

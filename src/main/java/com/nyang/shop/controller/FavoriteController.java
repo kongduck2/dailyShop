@@ -46,7 +46,7 @@ public class FavoriteController {
 	
     @ResponseBody //관심상품 삭제
     @RequestMapping(value = "/delFavorite" , method = RequestMethod.POST)
-    public void delFavorite(@RequestParam Map<String,String> param, Model model,@SessionAttribute("user")User user) {
+    public void delFavorite(@RequestParam Map<String,String> param,@SessionAttribute("user")User user) {
     	fService.delete(user.getIdx(),Integer.parseInt(param.get("pIdx")));
     }
     
