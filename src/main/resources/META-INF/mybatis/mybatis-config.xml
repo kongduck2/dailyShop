@@ -11,6 +11,7 @@
  		<typeAlias type="com.nyang.shop.model.PageDto" alias="PageDto"/>
  		<typeAlias type="com.nyang.shop.model.Review" alias="Review"/>
  		<typeAlias type="com.nyang.shop.model.Favorite" alias="Favorite"/>
+ 		<typeAlias type="com.nyang.shop.model.OrderList" alias="OrderList"/>
  	</typeAliases>
 </configuration>
 

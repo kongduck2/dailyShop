@@ -25,7 +25,7 @@
   		select * from product where idx = #{idx}
   	</select>
   	
-  	<select id="cartInfo" resultType="Product" parameterType="int">  <!-- 장바구니,관심목록 페이지에 넘겨줄 상품 정보 -->
+  	<select id="productInfo" resultType="Product" parameterType="int">  <!-- 장바구니,관심목록 페이지에 넘겨줄 상품 정보 -->
   		select idx,name,price,thumbnailImg from product where idx = #{idx} order by idx desc
   	</select>
   	
@@ -47,4 +47,9 @@
 	<select id="searchCount" parameterType="String" resultType="int">
 		select count(*) from product where name like concat('%', #{findText},'%') <!-- 검색된 상품 개수-->
 	</select>
+	
+	<update id="upCount" parameterType="int"> <!-- 팔린양 증가 -->
+		update product set soldCount = soldCount+1 where idx = #{idx};
+	</update>
+	
   </mapper>

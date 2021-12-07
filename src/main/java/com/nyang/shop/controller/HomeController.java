@@ -19,7 +19,7 @@ public class HomeController {
 		this.pService = pService;
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
 	public String home(Model model) {
 			List<Product> list = pService.newGetAll();
 			model.addAttribute("list",list);

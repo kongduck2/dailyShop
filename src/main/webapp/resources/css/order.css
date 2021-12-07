@@ -34,8 +34,11 @@
 	margin-top: 130px;
 	text-align: center;
 }
+#orderTable{
+	overflow : auto;
+}
 
-.PaymentBtnDiv > ul{
+.PaymentBtnDiv  ul{
 	text-align: center;
 	width: 500px;
 	height: 300px;

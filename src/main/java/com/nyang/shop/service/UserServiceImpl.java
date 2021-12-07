@@ -1,10 +1,14 @@
 package com.nyang.shop.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.nyang.shop.dao.ProductMapper;
 import com.nyang.shop.dao.UserMapper;
+import com.nyang.shop.model.OrderList;
+import com.nyang.shop.model.Product;
 import com.nyang.shop.model.User;
 
 @Service
@@ -12,8 +16,11 @@ public class UserServiceImpl implements UserService {
 
 	private final UserMapper dao;
 	
-	public UserServiceImpl(UserMapper dao) { 
+	private final ProductMapper pDao;
+	
+	public UserServiceImpl(UserMapper dao,ProductMapper pDao) { 
 		this.dao = dao;
+		this.pDao = pDao;
 	}
 	
 	@Override
@@ -59,6 +66,35 @@ public class UserServiceImpl implements UserService {
 		}else {//결과값 0
 			return false;
 		}
+	}
+
+	@Override
+	public void addOrderList(Map<String, String> param) {
+		System.out.println(param);
+		System.out.println(param.size());
+		for (int i = 0; i < param.size()-1; i++) {
+			String[] temp = param.get("order"+(i+1)).split("/");
+			String productIdx = temp[0]; //제품 인덱스
+			String quantity = temp[1]; // 수량
+			String totalPrice = temp[2]; //제품별 합계
+			String productOpName = temp[3]; //옵션명 없을때 " " 공백
+			
+			pDao.upCount(Integer.parseInt(productIdx));//제품 판매 회수 증가
+			Product pVo = pDao.productInfo(Integer.parseInt(productIdx));
+			
+			OrderList vo = OrderList.builder().userIdx(Integer.parseInt(param.get("userIdx")))
+					.productIdx(Integer.parseInt(productIdx)).thumbnailImg(pVo.getThumbnailImg())
+					.productName(pVo.getName()).productOpName(productOpName).quantity(Integer.parseInt(quantity))
+					.totalPrice(totalPrice).build();
+			dao.addOrderList(vo);
+		}
+		//OrderList vo = OrderList.builder().
+		//dao.addOrderList(null);
+	}
+
+	@Override
+	public List<OrderList> getOrderList(int userIdx) {
+		return dao.getOrderList(userIdx);
 	}
 
 }

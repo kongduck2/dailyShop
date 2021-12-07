@@ -6,6 +6,9 @@
 .container > .row > h2{
 	margin-bottom: 100px;
 }
+#cartTable{
+	overflow : auto;
+}
 .qlText{
 	background-color: #f5f5f5;
 	text-align: left;

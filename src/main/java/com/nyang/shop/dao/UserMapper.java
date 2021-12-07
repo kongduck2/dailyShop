@@ -2,6 +2,7 @@ package com.nyang.shop.dao;
 
 import java.util.List;
 
+import com.nyang.shop.model.OrderList;
 import com.nyang.shop.model.User;
 
 public interface UserMapper {
@@ -13,4 +14,6 @@ public interface UserMapper {
 	int delete(int idx);
 	int emailCheck(String email);
 	int pwCheck(User user);
+	void addOrderList(OrderList vo);
+	List<OrderList> getOrderList(int userIdx);
 }

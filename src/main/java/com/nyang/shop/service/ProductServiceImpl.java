@@ -121,7 +121,7 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> cartInfo(List<Cart> list) {
 		List<Product> result = new ArrayList<Product>();
 		for (int i = 0; i < list.size(); i++) {
-			Product vo = dao.cartInfo(list.get(i).getProductIdx());
+			Product vo = dao.productInfo(list.get(i).getProductIdx());
 			vo.setThumbnailImg(vo.getThumbnailImg().substring(0, vo.getThumbnailImg().length()-1));
 			result.add(vo); 
 		}
@@ -174,7 +174,7 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> favoriteInfo(List<Favorite> list) {
 		List<Product> result = new ArrayList<Product>();
 		for (int i = 0; i < list.size(); i++) {
-			Product vo = dao.cartInfo(list.get(i).getProductIdx());
+			Product vo = dao.productInfo(list.get(i).getProductIdx());
 			vo.setThumbnailImg(vo.getThumbnailImg().substring(0, vo.getThumbnailImg().length()-1));
 			result.add(vo); 
 		}
@@ -183,16 +183,24 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public List<Cart> orderList(Map<String, String> param) {
+	public List<Cart> orderProcess(Map<String, String> param) {
 		List<Cart> list = new ArrayList<Cart>();
 		Cart vo = Cart.builder().productIdx(Integer.parseInt(param.get("pIdx"))).
 				option1(param.get("option1")).option2(param.get("option2")).option3(param.get("option3")).
 				option4(param.get("option4")).option1Quantity(param.get("option1Quantity")).
 				option2Quantity(param.get("option2Quantity")).option3Quantity(param.get("option3Quantity")).
 				option4Quantity(param.get("option4Quantity")).build();
+		
+		if(vo.getOption1().equals("undefined")) vo.setOption1(null);//단독상품 구별값 option1값이 null이면 단독상품 표시
 		list.add(vo);
 		System.out.println(list);
 		return list;
+	}
+
+
+	@Override
+	public void upCount(int idx) {
+		dao.upCount(idx);
 	}
 
 	

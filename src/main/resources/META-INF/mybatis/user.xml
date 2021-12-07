@@ -38,5 +38,14 @@
 	<select id="pwCheck" parameterType="User" resultType="int"> <!-- 회원정보 수정시 패스워드 체크 -->
 		select count(*) from user where email = #{email} and password = sha2(#{password},256)
 	</select>
+	
+	<insert id="addOrderList" parameterType="OrderList"> <!-- 주문내역  -->
+		insert into orderList(userIdx,productIdx,thumbnailImg,productName,productOpName,quantity,totalPrice)
+  		values (#{userIdx},#{productIdx},#{thumbnailImg},#{productName},#{productOpName},#{quantity},#{totalPrice})			
+	</insert>
+	
+	<select id="getOrderList" parameterType="int" resultType="OrderList" > <!-- 주문목록 가져오기 -->
+		select * from orderList where userIdx = #{userIdx}
+	</select>	
   
   </mapper>

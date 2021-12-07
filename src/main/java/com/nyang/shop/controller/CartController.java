@@ -44,6 +44,7 @@ public class CartController {
     @RequestMapping(value = "/addCart" , method = RequestMethod.POST)
     public void addCart(@RequestParam Map<String,String> param, Model model,
     		@SessionAttribute("user")User user) { //@RequestParam로 파라미터 형식으로 받기
+    	System.out.println(param);
     	if(cService.findProduct(Integer.parseInt(param.get("pIdx")))) { //장바구니에 같은 상품이 있는경우
     		cService.delete(user.getIdx(),Integer.parseInt(param.get("pIdx")));
     		cService.insert(param);

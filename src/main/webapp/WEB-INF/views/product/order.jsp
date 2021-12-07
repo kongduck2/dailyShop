@@ -18,7 +18,7 @@
 	 <div class="container">
 	 	<div class="row">	
 	 		<h2 class="text-center">주문서 작성</h2>
-	 		<div class="col">
+	 		<div class="col" id="orderTable">
 	 		<table class="table table-borderless">
 			  <thead>
 			    <tr class="cartTitleTr">
@@ -30,7 +30,6 @@
 				    <td scope="col">배송구분</td>
 				    <td scope="col">배송비</td>
 				    <td scope="col">합계</td>
-				    <td scope="col">선택</td>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -41,7 +40,7 @@
 			  </c:if>
 			  
 		  		    <c:forEach var="item" items="${list}" varStatus="status">
-					  <c:if test="${item.option1 == null || (item.option1 eq '')}"> <!-- 옵션값 없는 단독상품 -->
+					  <c:if test="${item.option1 == null}"> <!-- 옵션값 없는 단독상품 -->
 			    		<tr class="cartListTr" id="cartListTr">
 				  		    <td><input type="checkbox" name="check" class="check"></td>
 			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}">
@@ -50,17 +49,14 @@
 					        	<div class="cartOpText"></div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
 					        <td class="quantityTd">
-					        <input class="quantity" name="quantity" value="${item.option1Quantity }" type="text" onchange="calc(this)" readonly style="border: none">
-					        <input class="sellPrice" type="hidden" value="${cartInfo[status.index].price }" >
-					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option1Quantity)}" name="sumVal"></td>
+						        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option1Quantity)}" name="sumVal">
+						        <input class="quantity" name="quantity" value="${item.option1Quantity }" type="text" readonly style="border: none">
+						        <input type="hidden" value="${cartInfo[status.index].idx }">
+						        <input class="sellPrice" type="hidden" value="${cartInfo[status.index].price }" >
+						        </td>
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice"></td>
-					        <td class="selectBtnTd">
-					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
-					        	<input type="hidden" value="0"/>
-					        	<input type="hidden" value="${cartInfo[status.index].idx}">
-					        </div></td>
 			 		   </tr>
 				  	  </c:if>
 				  	  
@@ -72,17 +68,14 @@
 					        	<div class="cartOpText">[옵션 : ${item.option1 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
 					        <td class="quantityTd">
-					        <input class="quantity1" name="quantity" value="${item.option1Quantity }" type="text" onchange="calc1(this)" readonly style="border: none">
-					        <input class="sellPrice1" type="hidden" value="${cartInfo[status.index].price }" >
-					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option1Quantity)}" name="sumVal"></td>
+						        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option1Quantity)}" name="sumVal">
+						        <input class="quantity1" name="quantity" value="${item.option1Quantity }" type="text" readonly style="border: none">
+						        <input type="hidden" value="${cartInfo[status.index].idx }">
+						        <input class="sellPrice1" type="hidden" value="${cartInfo[status.index].price }" >
+						        </td>
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice1"></td>
-					        <td class="selectBtnTd">
-					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
-					        	<input type="hidden" value="1"/>
-					        	<input type="hidden" value="${item.idx}">
-					        </div></td>
 			 		   </tr>
 				  	  </c:if>
 				  	  
@@ -95,17 +88,14 @@
 					        	<div class="cartOpText">[옵션 : ${item.option2 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
 					        <td class="quantityTd">
-					        <input class="quantity2" name="quantity" value="${item.option2Quantity }" type="text" onchange="calc2(this)" readonly style="border: none">
-					        <input class="sellPrice2" type="hidden" value="${cartInfo[status.index].price }" >
-					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option2Quantity)}" name="sumVal"></td>
+						        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option2Quantity)}" name="sumVal">
+						        <input class="quantity2" name="quantity" value="${item.option2Quantity }" type="text" readonly style="border: none">
+						        <input type="hidden" value="${cartInfo[status.index].idx }">
+						        <input class="sellPrice2" type="hidden" value="${cartInfo[status.index].price }" >
+						        </td>
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice2"></td>
-					        <td class="selectBtnTd">
-					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
-					        	<input type="hidden" value="2"/>
-					        	<input type="hidden" value="${item.idx}">
-					        </div></td>
 			 		   </tr>
 				  	  </c:if>
 				  	  
@@ -118,17 +108,14 @@
 					        	<div class="cartOpText">[옵션 : ${item.option3 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
 					        <td class="quantityTd">
-					        <input class="quantity3" name="quantity" value="${item.option3Quantity }" type="text" onchange="calc3(this)" readonly style="border: none">
-					        <input class="sellPrice3" type="hidden" value="${cartInfo[status.index].price }" >
-					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option3Quantity)}" name="sumVal"></td>
+						        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option3Quantity)}" name="sumVal">
+						        <input class="quantity3" name="quantity" value="${item.option3Quantity }" type="text" readonly style="border: none">
+						        <input type="hidden" value="${cartInfo[status.index].idx }">
+						        <input class="sellPrice3" type="hidden" value="${cartInfo[status.index].price }" >
+						        </td>
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice3"></td>
-					        <td class="selectBtnTd">
-					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
-					        	<input type="hidden" value="3"/>
-					        	<input type="hidden" value="${item.idx}">
-					        </div></td>
 			 		   </tr>
 				  	  </c:if>
 				  	  
@@ -141,9 +128,11 @@
 					        	<div class="cartOpText">[옵션 : ${item.option4 }]</div></td>
 					        <td id="sellPriceText">${cartInfo[status.index].price}원	</td>
 					        <td class="quantityTd">
-					        <input class="quantity4" name="quantity" value="${item.option4Quantity }" type="text" onchange="calc4(this)" readonly style="border: none">
-					        <input class="sellPrice4" type="hidden" value="${cartInfo[status.index].price }" >
-					        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option4Quantity)}" name="sumVal"></td>
+						        <input class="quantity4" name="quantity" value="${item.option4Quantity }" type="text" readonly style="border: none">
+						        <input type="hidden" value="${cartInfo[status.index].idx }">
+						        <input class="sellPrice4" type="hidden" value="${cartInfo[status.index].price }" >
+						        <input class="sumVal" type="hidden" value="${(fn:replace(cartInfo[status.index].price,',','')) *(item.option4Quantity)}" name="sumVal">
+						        </td>
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice4"></td>
@@ -220,6 +209,13 @@
 			<li><button type="button" onclick="iamport()">주문하기</button></li>
 		</ul>	
 	</div>
+	<c:forEach var="i" begin="1" end="${fn:length(list)}">
+ 	<form action="orderList" method="post">
+		<input type="hidden" name="list" value="${list }">
+		
+	</form>	 
+	<div>${fn:length(list)}</div>
+	</c:forEach>
 	
 		 <!-- 주문 이용안내 -->
 	 <div class="row" id="guideRow">
@@ -279,134 +275,6 @@
 <%@ include file="../footer.jsp"%>
 <script type="text/javascript" >
 
-	//단독 상품
-	function calc(quantity){
-		let price = quantity.nextSibling.nextSibling.value.replace(',',''); //<input class="sellPrice"
-		let sum = quantity.parentNode.parentNode.childNodes[15]; //<td class="sumPrice"></td>
-		let sumVal = quantity.nextSibling.nextSibling.nextSibling.nextSibling;//<input class="sumVal"
-		let totalSum = document.getElementsByClassName('sumVal');
-		let totalPrice = 0;
-		
-		if (quantity.value == '' || quantity.value <= 0) { 
-			quantity.value = 1;
-		}
-		sumVal.value = parseInt(quantity.value) * parseInt(parseInt(price)); //total값 계산하기 위해 저장(자동형변환)
-		sum.innerText = comma(String(parseInt(quantity.value) * parseInt(parseInt(price)))) + '원';
-		
-		for (let i = 0; i < totalSum.length; i++) {
-			totalPrice += parseInt(totalSum[i].value);
-		}
-		document.getElementById('totalPrice').innerText = comma(String(totalPrice))+'원'; 
-	}
-	
-	//옵션1
-	function calc1(quantity){
-		let price = quantity.nextSibling.nextSibling.value.replace(',',''); //<input class="sellPrice"
-		let sum = quantity.parentNode.parentNode.childNodes[15]; //<td class="sumPrice"></td>
-		let sumVal = quantity.nextSibling.nextSibling.nextSibling.nextSibling;//<input class="sumVal"
-		let totalSum = document.getElementsByClassName('sumVal');
-		let totalPrice = 0;
-		
-		if (quantity.value == '' || quantity.value <= 0) { 
-			quantity.value = 1;
-		}
-		sumVal.value = parseInt(quantity.value) * parseInt(parseInt(price)); //total값 계산하기 위해 저장(자동형변환)
-		sum.innerText = comma(String(parseInt(quantity.value) * parseInt(parseInt(price)))) + '원';
-		
-		for (let i = 0; i < totalSum.length; i++) {
-			totalPrice += parseInt(totalSum[i].value);
-		}
-		document.getElementById('totalPrice').innerText = comma(String(totalPrice))+'원'; 
-	}
-	
-	//옵션2
-	function calc2(quantity){
-		let price = quantity.nextSibling.nextSibling.value.replace(',',''); //<input class="sellPrice"
-		let sum = quantity.parentNode.parentNode.childNodes[15]; //<td class="sumPrice"></td>
-		let sumVal = quantity.nextSibling.nextSibling.nextSibling.nextSibling;//<input class="sumVal"
-		let totalSum = document.getElementsByClassName('sumVal');
-		let totalPrice = 0;
-		
-		if (quantity.value == '' || quantity.value <= 0) { 
-			quantity.value = 1;
-		}
-		sumVal.value = parseInt(quantity.value) * parseInt(parseInt(price)); //total값 계산하기 위해 저장(자동형변환)
-		sum.innerText = comma(String(parseInt(quantity.value) * parseInt(parseInt(price)))) + '원';
-		
-		for (let i = 0; i < totalSum.length; i++) {
-			totalPrice += parseInt(totalSum[i].value);
-		}
-		document.getElementById('totalPrice').innerText = comma(String(totalPrice))+'원'; 
-	}
-	
-	//옵션3
-	function calc3(quantity){
-		let price = quantity.nextSibling.nextSibling.value.replace(',',''); //<input class="sellPrice"
-		let sum = quantity.parentNode.parentNode.childNodes[15]; //<td class="sumPrice"></td>
-		let sumVal = quantity.nextSibling.nextSibling.nextSibling.nextSibling;//<input class="sumVal"
-		let totalSum = document.getElementsByClassName('sumVal');
-		let totalPrice = 0;
-		
-		if (quantity.value == '' || quantity.value <= 0) { 
-			quantity.value = 1;
-		}
-		sumVal.value = parseInt(quantity.value) * parseInt(parseInt(price)); //total값 계산하기 위해 저장(자동형변환)
-		sum.innerText = comma(String(parseInt(quantity.value) * parseInt(parseInt(price)))) + '원';
-		
-		for (let i = 0; i < totalSum.length; i++) {
-			totalPrice += parseInt(totalSum[i].value);
-		}
-		document.getElementById('totalPrice').innerText = comma(String(totalPrice))+'원'; 
-	}
-	
-	//옵션4
-	function calc4(quantity){
-		let price = quantity.nextSibling.nextSibling.value.replace(',',''); //<input class="sellPrice"
-		let sum = quantity.parentNode.parentNode.childNodes[15]; //<td class="sumPrice"></td>
-		let sumVal = quantity.nextSibling.nextSibling.nextSibling.nextSibling;//<input class="sumVal"
-		let totalSum = document.getElementsByClassName('sumVal');
-		let totalPrice = 0;
-		
-		if (quantity.value == '' || quantity.value <= 0) { 
-			quantity.value = 1;
-		}
-		sumVal.value = parseInt(quantity.value) * parseInt(parseInt(price)); //total값 계산하기 위해 저장(자동형변환)
-		sum.innerText = comma(String(parseInt(quantity.value) * parseInt(parseInt(price)))) + '원';
-		
-		for (let i = 0; i < totalSum.length; i++) {
-			totalPrice += parseInt(totalSum[i].value);
-		}
-		document.getElementById('totalPrice').innerText = comma(String(totalPrice))+'원'; 
-	}
-	
-	
-	//수량변경시 변하는 값
-	$(document).ready(function(){
-		$(':input').on('change',function(){
-			let totalPrice = 0;
-			for (let i = 0; i < $('.sumVal').length; i++) {
-				totalPrice += parseInt($('.sumVal')[i].value);
-			}
-			
-			if(totalPrice >= 30000 ){
-				$('#deliText').text('0');
-				$('#totalPrice').text(comma(String(parseInt(totalPrice)))+'원');
-				for (let i = 0; i < $('.delChargeText').length; i++) {
-					$('.delChargeText').text('0원');
-				}
-				$('#pTotalText').text(comma(String(totalPrice)));
-			}else{
-				$('#deliText').text('3,000');
-				$('#totalPrice').text(comma(String(parseInt(totalPrice)+3000))+'원');
-				for (let i = 0; i < $('.delChargeText').length; i++) {
-					$('.delChargeText').text('3,000원');
-				}
-				$('#pTotalText').text(comma(String(totalPrice)));
-			}
-			
-		})
-	})
-	
 	//제품값
 	$(document).ready(function(){
 		
@@ -538,6 +406,7 @@
        $(document).ready(function(){
     	   $('input:radio[id=sameaddr1]').click(function(){
     		  $('#buyerInfoTable').find('input').val(''); 
+    		  addOrderList();
     	   })
        }) 
        
@@ -593,7 +462,7 @@
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
 			    name : pName , //결제창에서 보여질 이름
-			    amount : 100, //실제 결제되는 가격
+			    amount : 100, //parseInt($('#pTotalText').text().replace(',','')), //실제 결제되는 가격
 			    buyer_email : email,
 			    buyer_name : bName,
 			    buyer_tel : phone,
@@ -607,15 +476,56 @@
 			        msg += '상점 거래ID : ' + rsp.merchant_uid;
 			        msg += '결제 금액 : ' + rsp.paid_amount;
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
-			    	Swal.fire({icon: 'success',title: '결제완료',text: msg	}) // sweetAlert2 api
+			    	Swal.fire({icon: 'success',
+			    		title: '결제완료',
+			    		text: msg}).then(function(){
+			    			
+			    		}) // sweetAlert2 api
+			    	
 			    } else {
 			    	 var msg = '결제에 실패하였습니다.';
 			         msg += '에러내용 : ' + rsp.error_msg;
-			    	Swal.fire({icon: 'error',title: '결제실패', text: msg})
+			         
+			    	Swal.fire({icon: 'error',
+			    		title: '결제실패',
+			    		text: msg,	}).then(function(){
+			    			location.reload();
+			    		})
+			    	//location.href='orderList';
 			    }
 			});
-		}
-	
+		}//iamport end
+	function addOrderList(){
+			let param = new Object;
+			let quantity = $('input[name=quantity]');
+			console.log(quantity[1].parentNode.parentNode.childNodes[5].childNodes[2].innerText);
+			for (let i = 0; i < quantity.length; i++) { //주문한 제품번호,옵션명,수량,제품별합계 가져오기
+				let totalPrice = quantity[i].previousSibling.previousSibling.value;
+				let pIdx = quantity[i].nextSibling.nextSibling.value;
+				let opName = quantity[i].parentNode.parentNode.childNodes[5].childNodes[2].innerText;
+				let order = 'order'+(i+1);
+				
+				if(opName == ''){
+					param[order] = pIdx + '/' + quantity[i].value + '/' + comma(totalPrice) + '/ ';//옵션값 없을때
+				}else{
+					param[order] = pIdx + '/' + quantity[i].value + '/' + comma(totalPrice) + '/' + opName;
+				}
+			}
+			console.log(param);
+			$.ajax({
+				type: 'POST',
+				url: 'addOrderList',
+				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+				data:param, 
+					success: function(){
+						location.href='orderList';
+					},
+					error:function(request,status,error){
+				        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				    }
+			  })//ajax end
+			
+		}	
 	
 </script>
 </body>

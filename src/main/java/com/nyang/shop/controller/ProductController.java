@@ -10,10 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.mysql.cj.protocol.a.NativeConstants.IntegerDataType;
 import com.nyang.shop.model.Cart;
 import com.nyang.shop.model.Product;
 import com.nyang.shop.model.User;
@@ -90,13 +88,11 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/order" , method = RequestMethod.POST)
-	public String ordeRone(@SessionAttribute("user")User user, @RequestParam Map<String,String> param, Model model) {
-		List<Cart> list = pService.orderList(param);
+	public String orderOne(@SessionAttribute("user")User user, @RequestParam Map<String,String> param, Model model) {
+		List<Cart> list = pService.orderProcess(param);
 		model.addAttribute("list",list);
 		model.addAttribute("user",user);
 		model.addAttribute("cartInfo",pService.cartInfo(list));
-		System.out.println(list);
-		System.out.println(pService.cartInfo(list));
 		return "/product/order";
 	}
 	

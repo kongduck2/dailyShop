@@ -30,9 +30,11 @@
 	    <input name="password2" type="password" class="form-control" id="password2" required>
 	    <label id="pwCheckMsg"></label>
 	  </div>
-	  <div class="col-12">
+	  <div class="col-10">
+	  	<label for="zipCode" class="form-label">우편번호</label>
+	    <input name="zipCode" type="text" class="form-control" id="zipCode" readonly style="width: 80px;" value="${user.zipCode }">
 	    <label for="address" class="form-label">* 주소</label> <!-- 카카오 주소 api 사용 -->
-	    <input name="address" type="text" class="form-control" id="address" value="${user.address }" required>
+	    <input name="address" type="text" class="form-control" id="address" value="${user.address }" required readonly>
 	    <label for="addressDetail" class="form-label">상세주소</label> 
 	    <input name="addressDetail" type="text" class="form-control" id="addressDetail" value="${user.addressDetail }" >
 	  </div>
@@ -45,7 +47,7 @@
 	    <input name="phone" type="text" class="form-control" id="phone" maxlength="11" value="${user.phone }">
 	     <label id="pnCheckMsg"></label>
 	  </div>
-	  <div class="col-12" >
+	  <div class="col-12" id="infoUpBtnDiv">
 	    <button type="submit" class="btn btn-primary" >정보 수정</button>
 	    <button type="button" class="btn btn-primary" onclick="location.href='/dailyshop'">취소</button>
 	  </div>

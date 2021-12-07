@@ -11,11 +11,15 @@
 #regist-btn{
 	width : 200px;
 	justify-content: center;
-	margin 0 auto;
+	margin : 0 auto;
 	align-items: center;
+	background-color: #67b08f;
+	border: none;
 }
 #checkbtn{
 	margin-top: 8px;
+	background-color: #67b08f;
+	border:none;
 }
 h3{
 	margin-top: 100px;

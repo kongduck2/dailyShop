@@ -303,8 +303,10 @@
 	
 	//비로그인시 alert
 	function loginAlert(){
-		alert('로그인 후 이용가능합니다.');
-		location.href='login';
+    	Swal.fire({icon: 'info',
+    		text: '로그인 후 이용가능합니다.',	}).then(function(){
+    			location.href='login';
+    		})
 	}
 	
 	//장바구니에 추가 및 추가상품 중복검사
@@ -376,7 +378,7 @@
 					param[option +'Quantity'] = $('.quantity')[i].value;
 				}
 			}else{
-				for (let i = 0; i < 4; i++) { //단독상품일때 값 초기화 
+				for (let i = 1; i < 4; i++) { //단독상품일때 값 초기화 
 					let option = 'option'+(i+1); 
 					param[option] = ''; 
 					param[option +'Quantity'] = 0;

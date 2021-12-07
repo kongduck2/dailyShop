@@ -1,7 +1,9 @@
 package com.nyang.shop.service;
 
 import java.util.List;
+import java.util.Map;
 
+import com.nyang.shop.model.OrderList;
 import com.nyang.shop.model.User;
 
 public interface UserService {
@@ -13,4 +15,7 @@ public interface UserService {
 	int delete(int idx);
 	int emailCheck(String email);
 	boolean pwCheck(User vo,String password);
+	void addOrderList(Map<String,String> param);
+	List<OrderList> getOrderList(int userIdx);
+
 }

@@ -15,7 +15,7 @@
 	 <div class="container">
 	 	<div class="row">	
 	 		<h2 class="text-center">장바구니</h2>
-	 		<div class="col">
+	 		<div class="col" id="cartTable">
 	 		<div class="qlText">
 	 			<h5>상품목록(${count })</h5>
 	 		</div>
@@ -189,7 +189,7 @@
 				type="button" class="selectBtn" onclick="removeAll()">장바구니 비우기</button></div>
 				<div style="text-align: left;">
 				<button style="width: 150px; height: 27px; font-size: 14px" 
-				type="button" class="selectBtn" onclick="location.href='order'" >전체상품주문</button></div>
+				type="button" class="selectBtn" onclick="moveOrder()" >전체상품주문</button></div>
 			</c:if>	
 	 		</div>
 	 	</div>
@@ -491,21 +491,45 @@
 	
 	  // 장바구니 전체삭제
  	function removeAll(){
+		
+	Swal.fire({
+		  text: "장바구니를 비우시겠습니까?",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '예',
+		  cancelButtonText: '아니오'
+		}).then((result) => {
+		  if (result.isConfirmed) {
+		    Swal.fire({
+		      text:'장바구니를 비웠습니다.',
+		      icon:'success'
+		    }).then(function(){
 			let param = new Object();
-		$.ajax({
-			type: 'POST',
-			url: 'delAllCart',
-			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-			data:param, 
-				success: function(){
-					location.reload();
-				Swal.fire({icon: 'success',text: '장바구니를 비웠습니다.'});
-				},
-				error:function(request,status,error){
-			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-			    }
-	  })//ajax end
-  }  
+			$.ajax({
+				type: 'POST',
+				url: 'delAllCart',
+				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+				data:param, 
+					success: function(){
+						location.reload();
+					},
+					error:function(request,status,error){
+				        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				    }
+		  })//ajax end
+	    })
+	  }
+	})
+ }//removeAll end  
+	
+	function moveOrder(){
+    	Swal.fire({icon: 'info',
+    		text: '주문서 작성 페이지로 이동합니다.',	}).then(function(){
+    			location.href='order';
+    		})
+	}
 	
 	
 </script>

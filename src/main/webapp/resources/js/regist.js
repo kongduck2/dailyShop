@@ -68,16 +68,16 @@ function registCheck(){
 	var phoneRule = /^[0-9]{11}$/;
 	
 	if(!emailRule.test(email)){
-		Swal.fire({icon: 'warning',text: '이메일 형식이 올바르지 않습니다.'})
+		Swal.fire({icon: 'error',text: '이메일 형식이 올바르지 않습니다.'})
 		return false;
 	}else if(!passRule.test(password)){
-		Swal.fire({icon: 'warning',text: '비밀번호 형식이 올바르지 않습니다.'})
+		Swal.fire({icon: 'error',text: '비밀번호 형식이 올바르지 않습니다.'})
 		return false;
   	}else if(password != password2){
-		Swal.fire({icon: 'warning',text: '비밀번호가 일치하지 않습니다.'})
+		Swal.fire({icon: 'error',text: '비밀번호가 일치하지 않습니다.'})
 		return false;
   	}else if(!phoneRule.test(phone)){
-  		Swal.fire({icon: 'warning',text: '휴대전화 형식이 올바르지 않습니다.'})
+  		Swal.fire({icon: 'error',text: '휴대전화 형식이 올바르지 않습니다.'})
   		return false;
   	}else{
   		return true;

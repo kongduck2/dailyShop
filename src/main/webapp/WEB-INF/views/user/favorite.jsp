@@ -94,7 +94,6 @@
 			data:param, 
 				success: function(){
 					location.reload();
-					alert('관심상품이 삭제되었습니다.');
 				},
 				error:function(request,status,error){
 			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -103,20 +102,36 @@
   }  
   // 관심목록 전체삭제
  	function removeAll(){
+	  Swal.fire({
+		  text: "관심상품 목록을 비우시겠습니까?",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '예',
+		  cancelButtonText: '아니오'
+		}).then((result) => {
+		  if (result.isConfirmed) {
+		    Swal.fire({
+		      text:'관심상품 목록을 비웠습니다.',
+		      icon:'success'
+		    }).then(function(){
 			let param = new Object();
-		$.ajax({
-			type: 'POST',
-			url: 'delAllFavorite',
-			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-			data:param, 
-				success: function(){
-					location.reload();
-				alert('관심상품 목록을 비웠습니다.');
-				},
-				error:function(request,status,error){
-			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-			    }
-	  })//ajax end
+			$.ajax({
+				type: 'POST',
+				url: 'delAllFavorite',
+				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+				data:param, 
+					success: function(){
+						location.reload();
+					},
+					error:function(request,status,error){
+				        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				    }
+		  })//ajax end
+	    })
+	  }
+	})
   }  
 		  
 </script>

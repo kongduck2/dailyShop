@@ -8,10 +8,10 @@
 	width: 70%;
 	align-items: center;
 }
-.col-12 > .btn {
+#infoUpBtnDiv > .btn {
 	width : 200px;
 	justify-content: center;
-	margin 0 auto;
+	margin: 0 auto;
 	margin-right: 8px;
 	align-items: center;
 	background-color: #67b08f;
