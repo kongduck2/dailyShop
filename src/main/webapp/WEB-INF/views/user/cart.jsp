@@ -43,7 +43,9 @@
 		  		    <c:forEach var="item" items="${list}" varStatus="status">
 					  <c:if test="${item.option1 == null}"> <!-- 옵션값 없는 단독상품 -->
 			    		<tr class="cartListTr" id="cartListTr">
-				  		    <td><input type="checkbox" name="check" class="check"></td>
+				  		    <td><input type="checkbox" name="check" class="check">
+				  		    	<input type="hidden" value="${item.idx }">
+				  		    </td>
 			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}">
 			  				</a></td>
 					        <td class="pInfo"><a href="detail?idx=${cartInfo[status.index].idx }"><span>${cartInfo[status.index].name}</span></a>
@@ -60,8 +62,7 @@
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice"></td>
-					        <td class="selectBtnTd"><div><button type="button" class="selectBtn" onclick="">주문하기</button>
-					        </div>
+					        <td class="selectBtnTd">
 					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="0"/>
 					        	<input type="hidden" value="${cartInfo[status.index].idx}">
@@ -71,7 +72,9 @@
 				  	  
 				  	  <c:if test="${!(item.option1 eq '') && item.option1 != null }"> <!-- 옵션값 있는 상품 -->
 			    		<tr class="cartListTr">
-				  		    <td><input type="checkbox" name="check1" class="check"></td>
+				  		    <td><input type="checkbox" name="check1" class="check">
+				  		    	<input type="hidden" value="${item.idx }">
+				  		    </td>
 			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}"></a></td>
 					        <td class="pInfo"><a href="detail?idx=${cartInfo[status.index].idx }"><span>${cartInfo[status.index].name}</span></a>
 					        	<div class="cartOpText">[옵션 : ${item.option1 }]</div></td>
@@ -86,8 +89,7 @@
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice1"></td>
-					        <td class="selectBtnTd"><div><button type="button" class="selectBtn" onclick="">주문하기</button>
-					        </div>
+					        <td class="selectBtnTd">
 					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="1"/>
 					        	<input type="hidden" value="${item.idx}">
@@ -97,7 +99,9 @@
 				  	  
 				  	  <c:if test="${!(item.option2 eq '') && item.option2 != null }"> <!-- 옵션값 있는 상품 -->
 			    		<tr class="cartListTr">
-				  		    <td><input type="checkbox" name="check2" class="check"></td>
+				  		    <td><input type="checkbox" name="check2" class="check">
+				  		    	<input type="hidden" value="${item.idx }">
+				  		    </td>
 			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}">
 			  				</a></td>
 					        <td class="pInfo"><a href="detail?idx=${cartInfo[status.index].idx }"><span>${cartInfo[status.index].name}</span></a>
@@ -113,8 +117,7 @@
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice2"></td>
-					        <td class="selectBtnTd"><div><button type="button" class="selectBtn" onclick="">주문하기</button>
-					        </div>
+					        <td class="selectBtnTd">
 					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="2"/>
 					        	<input type="hidden" value="${item.idx}">
@@ -124,7 +127,9 @@
 				  	  
 				  	  <c:if test="${!(item.option3 eq '') && item.option3 != null }"> <!-- 옵션값 있는 상품 -->
 			    		<tr class="cartListTr">
-				  		    <td><input type="checkbox" name="check3" class="check"></td>
+				  		    <td><input type="checkbox" name="check3" class="check">
+				  		    	<input type="hidden" value="${item.idx }">
+				  		    </td>
 			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}">
 			  				</a></td>
 					        <td class="pInfo"><a href="detail?idx=${cartInfo[status.index].idx }"><span>${cartInfo[status.index].name}</span></a>
@@ -140,8 +145,7 @@
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice3"></td>
-					        <td class="selectBtnTd"><div><button type="button" class="selectBtn" onclick="">주문하기</button>
-					        </div>
+					        <td class="selectBtnTd">
 					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="3"/>
 					        	<input type="hidden" value="${item.idx}">
@@ -151,7 +155,9 @@
 				  	  
 				  	  <c:if test="${!(item.option4 eq '') && item.option4 != null }"> <!-- 옵션값 있는 상품 -->
 			    		<tr class="cartListTr">
-				  		    <td><input type="checkbox" name="check4" class="check"></td>
+				  		    <td><input type="checkbox" name="check4" class="check">
+				  		    	<input type="hidden" value="${item.idx }">
+				  		    </td>
 			  				<td><a href="detail?idx=${cartInfo[status.index].idx }"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${cartInfo[status.index].thumbnailImg}">
 			  				</a></td>
 					        <td class="pInfo"><a href="detail?idx=${cartInfo[status.index].idx }"><span>${cartInfo[status.index].name}</span></a>
@@ -167,8 +173,7 @@
 					        <td>기본배송</td>
 					        <td class="delChargeText">3,000원</td>
 					        <td class="sumPrice4"></td>
-					        <td class="selectBtnTd"><div><button type="button" class="selectBtn" onclick="">주문하기</button>
-					        </div>
+					        <td class="selectBtnTd">
 					        <div><button type="button" class="selectBtn" onclick="remove(this)">삭제</button>
 					        	<input type="hidden" value="4"/>
 					        	<input type="hidden" value="${item.idx}">
@@ -185,11 +190,13 @@
 			  </tfoot>
 			</table>
 			<c:if test="${count > 0 }">
-				<div style="text-align: left;"><button style="width: 150px; height: 27px; font-size: 14px" 
-				type="button" class="selectBtn" onclick="removeAll()">장바구니 비우기</button></div>
 				<div style="text-align: left;">
-				<button style="width: 150px; height: 27px; font-size: 14px" 
-				type="button" class="selectBtn" onclick="moveOrder()" >전체상품주문</button></div>
+				<button style="width: 150px; height: 29px; font-size: 14px" 
+				type="button" class="selectBtn" onclick="selectOrder()" >선택상품주문</button>
+				<button style="width: 150px; height: 29px; font-size: 14px" 
+				type="button" class="selectBtn" onclick="allOrder()" >전체상품주문</button></div>
+				<div style="text-align: left;"><button style="width: 150px; height: 29px; font-size: 14px" 
+				type="button" class="selectBtn" onclick="removeAll()">장바구니 비우기</button></div>
 			</c:if>	
 	 		</div>
 	 	</div>
@@ -524,14 +531,52 @@
 	})
  }//removeAll end  
 	
-	function moveOrder(){
+	function allOrder(){
     	Swal.fire({icon: 'info',
-    		text: '주문서 작성 페이지로 이동합니다.',	}).then(function(){
+    		text: '주문서 작성 페이지로 이동합니다.',}).then(function(){
     			location.href='order';
-    		})
+   		})
 	}
+ 
+	function selectOrder(){ //선택상품 주문
+		let check = $("input[class=check]:checked");
+			if(check.length > 0){
+		    	Swal.fire({icon: 'info',
+	    		text: '주문서 작성 페이지로 이동합니다.',}).then(function(){
+	    			
+				let form = $('<form></form>');
+				form.attr('action', 'selectOrder');
+				form.attr('method', 'post');
+				form.appendTo('body');
+				for (let i = 0; i < check.length; i++) {
+					let idx = check[i].nextSibling.nextSibling.value; //카트 idx값
+					form.append($('<input type="hidden" value="' + idx + '" name="order'+(i+1)+'">'));
+				}
+				form.submit();
+    		})
+    		}else{
+		    	Swal.fire({icon: 'warning',
+		    		text: '선택된 상품이 없습니다.',})
+			}
+    			
+   		
+	}//selectOrder end 
 	
-	
+	/* 
+	for (let i = 0; i < quantity.length; i++) { //주문한 제품번호,옵션명,수량,제품별합계 가져오기
+		let totalPrice = quantity[i].previousSibling.previousSibling.value;
+		let pIdx = quantity[i].nextSibling.nextSibling.value;
+		let opName = quantity[i].parentNode.parentNode.childNodes[5].childNodes[2].innerText;
+		let order = 'order'+(i+1);
+		
+		if(opName == ''){
+			param[order] = pIdx + '/' + quantity[i].value + '/' + comma(totalPrice) + '/ ';//옵션값 없을때
+		}else{
+			param[order] = pIdx + '/' + quantity[i].value + '/' + comma(totalPrice) + '/' + opName;
+		}
+	}
+	console.log(param);
+	 */
 </script>
 </body>
 </html>

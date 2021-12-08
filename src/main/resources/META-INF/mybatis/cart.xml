@@ -47,5 +47,9 @@
   	<update id="quanUpdate" parameterType="java.util.Map"> 
   		update cart set option${opNum}Quantity = #{quantity} where idx = #{idx} 
   	</update>
+  	
+  	<select id="orderGetOne" resultType="Cart" parameterType="int"> <!-- 장바구니 선택상품 주문으로 이동할때 필요함 -->
+  		select * from cart where idx = #{idx} and userIdx = #{userIdx}
+  	</select>
   
   </mapper>

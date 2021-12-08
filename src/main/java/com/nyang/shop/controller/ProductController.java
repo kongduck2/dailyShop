@@ -7,9 +7,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.nyang.shop.model.Cart;
@@ -87,15 +89,25 @@ public class ProductController {
 		return "/product/order";
 	}
 	
+	
 	@RequestMapping(value = "/order" , method = RequestMethod.POST)
-	public String orderOne(@SessionAttribute("user")User user, @RequestParam Map<String,String> param, Model model) {
-		List<Cart> list = pService.orderProcess(param);
+	public String buyNow(@SessionAttribute("user")User user, @RequestParam Map<String,String> param, Model model) {
+		List<Cart> list = pService.buyNowProcess(param);
 		model.addAttribute("list",list);
 		model.addAttribute("user",user);
 		model.addAttribute("cartInfo",pService.cartInfo(list));
 		return "/product/order";
 	}
 	
+	@RequestMapping(value = "/selectOrder" , method = RequestMethod.POST)
+	public String selectOrder(@SessionAttribute("user")User user, @RequestParam Map<String,String> param, Model model) {
+		param.put("userIdx",String.valueOf(user.getIdx()));
+		List<Cart> list = pService.selectOrderProcess(param);
+		model.addAttribute("list",list);
+		model.addAttribute("user",user);
+		model.addAttribute("cartInfo",pService.cartInfo(list));
+		return "/product/order";
+	}
 }//ProductController end
 
 

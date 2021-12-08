@@ -70,8 +70,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void addOrderList(Map<String, String> param) {
-		System.out.println(param);
-		System.out.println(param.size());
 		for (int i = 0; i < param.size()-1; i++) {
 			String[] temp = param.get("order"+(i+1)).split("/");
 			String productIdx = temp[0]; //제품 인덱스
@@ -83,13 +81,11 @@ public class UserServiceImpl implements UserService {
 			Product pVo = pDao.productInfo(Integer.parseInt(productIdx));
 			
 			OrderList vo = OrderList.builder().userIdx(Integer.parseInt(param.get("userIdx")))
-					.productIdx(Integer.parseInt(productIdx)).thumbnailImg(pVo.getThumbnailImg())
+					.productIdx(Integer.parseInt(productIdx)).thumbnailImg(pVo.getThumbnailImg().substring(0, pVo.getThumbnailImg().length()-1))
 					.productName(pVo.getName()).productOpName(productOpName).quantity(Integer.parseInt(quantity))
 					.totalPrice(totalPrice).build();
 			dao.addOrderList(vo);
 		}
-		//OrderList vo = OrderList.builder().
-		//dao.addOrderList(null);
 	}
 
 	@Override

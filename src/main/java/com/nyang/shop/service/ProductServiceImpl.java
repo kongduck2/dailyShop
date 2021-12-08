@@ -10,6 +10,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.nyang.shop.dao.CartMapper;
 import com.nyang.shop.dao.ProductMapper;
 import com.nyang.shop.model.Cart;
 import com.nyang.shop.model.Favorite;
@@ -22,8 +23,11 @@ public class ProductServiceImpl implements ProductService {
 
 	private final ProductMapper dao;
 	
-	public ProductServiceImpl(ProductMapper dao) {
+	private final CartMapper cDao;
+	
+	public ProductServiceImpl(ProductMapper dao,CartMapper cDao) {
 		this.dao = dao;
+		this.cDao = cDao;
 	}
 	
 
@@ -183,7 +187,7 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public List<Cart> orderProcess(Map<String, String> param) {
+	public List<Cart> buyNowProcess(Map<String, String> param) {
 		List<Cart> list = new ArrayList<Cart>();
 		Cart vo = Cart.builder().productIdx(Integer.parseInt(param.get("pIdx"))).
 				option1(param.get("option1")).option2(param.get("option2")).option3(param.get("option3")).
@@ -193,7 +197,6 @@ public class ProductServiceImpl implements ProductService {
 		
 		if(vo.getOption1().equals("undefined")) vo.setOption1(null);//단독상품 구별값 option1값이 null이면 단독상품 표시
 		list.add(vo);
-		System.out.println(list);
 		return list;
 	}
 
@@ -201,6 +204,17 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void upCount(int idx) {
 		dao.upCount(idx);
+	}
+
+
+	@Override
+	public List<Cart> selectOrderProcess(Map<String, String> param) {
+		List<Cart> list = new ArrayList<Cart>();
+		for (int i = 0; i < param.size()-1; i++) {
+			Cart vo = cDao.orderGetOne(Integer.parseInt(param.get("order"+(i+1))), Integer.parseInt(param.get("userIdx")));
+			list.add(vo);
+		}
+		return list;
 	}
 
 	

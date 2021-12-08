@@ -84,4 +84,9 @@ public class CartServiceImpl implements CartService {
 		dao.quanUpdate(param);
 	}
 
+	@Override
+	public Cart orderGetOne(int idx, int uIdx) {
+		return dao.orderGetOne(idx, uIdx);
+	}
+
 }

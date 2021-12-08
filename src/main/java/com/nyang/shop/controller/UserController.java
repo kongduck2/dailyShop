@@ -94,6 +94,7 @@ public class UserController {
     public String moveOrderList(@SessionAttribute("user")User user, Model model) { 
     	List<OrderList> list = uService.getOrderList(user.getIdx());
     	model.addAttribute("list", list);
+    	System.out.println(list);
     	return "/user/orderList";
     }
     

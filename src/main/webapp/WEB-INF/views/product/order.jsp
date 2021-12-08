@@ -524,7 +524,6 @@
 				        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 				    }
 			  })//ajax end
-			
 		}	
 	
 </script>

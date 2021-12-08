@@ -3,6 +3,8 @@ package com.nyang.shop.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.nyang.shop.model.Cart;
 
 public interface CartService {
@@ -15,4 +17,5 @@ public interface CartService {
 	void opDelete(Map<String,String> param);
 	void deleteAll(int userIdx);
 	void quanUpdate(Map<String,String> param);
+	Cart orderGetOne(@Param("idx") int idx,@Param("userIdx")int uIdx);
 }

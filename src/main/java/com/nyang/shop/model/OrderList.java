@@ -15,7 +15,7 @@ public class OrderList {
 	private int idx;
 	private int userIdx;
 	private int productIdx;
-	private LocalDateTime createDate;
+	private LocalDateTime registDate;
 	private String thumbnailImg;
 	private String productName;
 	private String productOpName;

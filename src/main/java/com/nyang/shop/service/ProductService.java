@@ -22,6 +22,7 @@ public interface ProductService {
 	int listCount(String category);
 	int searchCount(String findText);
 	Map<String, Object> listProcess(Map<String, Object> param);
-	List<Cart> orderProcess(Map<String, String> param);
+	List<Cart> buyNowProcess(Map<String, String> param);
+	List<Cart> selectOrderProcess(Map<String, String> param);
 	void upCount(int idx); // 제품 팔렸을때 판매된 회수 증가
 }
