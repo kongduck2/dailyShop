@@ -17,5 +17,6 @@ public interface UserService {
 	boolean pwCheck(User vo,String password);
 	void addOrderList(Map<String,String> param);
 	List<OrderList> getOrderList(int userIdx);
+	OrderList getOrder(int productIdx);
 
 }

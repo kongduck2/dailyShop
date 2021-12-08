@@ -46,6 +46,10 @@
 	
 	<select id="getOrderList" parameterType="int" resultType="OrderList" > <!-- 주문목록 가져오기 -->
 		select * from orderList where userIdx = #{userIdx}
-	</select>	
-  
+	</select>
+	
+	<select id="getOrder" parameterType="int" resultType="OrderList" > <!-- 주문목록 가져오기 -->
+		select * from orderList where productIdx = #{productIdx}
+	</select>
+		
   </mapper>

@@ -42,7 +42,8 @@ public class ProductController {
 	//상품추가
 	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
 	public String addProduct(Product vo , Model model) {
-		if(vo.getCategory() == "x") {
+		System.out.println(vo);
+		if(vo.getCategory().equals("x")) {
 			model.addAttribute("message","카테고리 값을 입력해주세요.");
 			model.addAttribute("url","addProduct");
 		}else {

@@ -1,7 +1,6 @@
 package com.nyang.shop.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,8 +19,8 @@ public class Review {
 	private String productName;
 	private int starRating;
 	private String thumbnailImg;
-	private String contentImg;
 	private String content;
+	private String contentImg;
 	private LocalDateTime registDate;
-	private List<MultipartFile> files;
+	private MultipartFile file;
 }

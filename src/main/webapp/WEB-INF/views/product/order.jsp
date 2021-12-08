@@ -406,7 +406,6 @@
        $(document).ready(function(){
     	   $('input:radio[id=sameaddr1]').click(function(){
     		  $('#buyerInfoTable').find('input').val(''); 
-    		  addOrderList();
     	   })
        }) 
        
@@ -479,7 +478,7 @@
 			    	Swal.fire({icon: 'success',
 			    		title: '결제완료',
 			    		text: msg}).then(function(){
-			    			
+			    			addOrderList();
 			    		}) // sweetAlert2 api
 			    	
 			    } else {
@@ -495,10 +494,10 @@
 			    }
 			});
 		}//iamport end
+		
 	function addOrderList(){
 			let param = new Object;
 			let quantity = $('input[name=quantity]');
-			console.log(quantity[1].parentNode.parentNode.childNodes[5].childNodes[2].innerText);
 			for (let i = 0; i < quantity.length; i++) { //주문한 제품번호,옵션명,수량,제품별합계 가져오기
 				let totalPrice = quantity[i].previousSibling.previousSibling.value;
 				let pIdx = quantity[i].nextSibling.nextSibling.value;
@@ -511,7 +510,6 @@
 					param[order] = pIdx + '/' + quantity[i].value + '/' + comma(totalPrice) + '/' + opName;
 				}
 			}
-			console.log(param);
 			$.ajax({
 				type: 'POST',
 				url: 'addOrderList',

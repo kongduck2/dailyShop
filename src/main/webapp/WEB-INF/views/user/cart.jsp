@@ -562,21 +562,6 @@
    		
 	}//selectOrder end 
 	
-	/* 
-	for (let i = 0; i < quantity.length; i++) { //주문한 제품번호,옵션명,수량,제품별합계 가져오기
-		let totalPrice = quantity[i].previousSibling.previousSibling.value;
-		let pIdx = quantity[i].nextSibling.nextSibling.value;
-		let opName = quantity[i].parentNode.parentNode.childNodes[5].childNodes[2].innerText;
-		let order = 'order'+(i+1);
-		
-		if(opName == ''){
-			param[order] = pIdx + '/' + quantity[i].value + '/' + comma(totalPrice) + '/ ';//옵션값 없을때
-		}else{
-			param[order] = pIdx + '/' + quantity[i].value + '/' + comma(totalPrice) + '/' + opName;
-		}
-	}
-	console.log(param);
-	 */
 </script>
 </body>
 </html>

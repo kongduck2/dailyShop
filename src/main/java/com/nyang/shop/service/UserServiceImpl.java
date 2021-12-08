@@ -93,4 +93,9 @@ public class UserServiceImpl implements UserService {
 		return dao.getOrderList(userIdx);
 	}
 
+	@Override
+	public OrderList getOrder(int productIdx) {
+		return dao.getOrder(productIdx);
+	}
+
 }

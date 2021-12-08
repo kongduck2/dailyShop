@@ -45,7 +45,7 @@
 						
 						<div class="reviewWriter">
 							<div>
-								<span>${item.starRating }</span>
+								<span>${item.starRating }</span><!-- 수정해야할부분 -->
 							</div>
 							<div>
 								<span>${item.writer }</span>

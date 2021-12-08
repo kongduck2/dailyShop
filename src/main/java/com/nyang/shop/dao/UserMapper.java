@@ -16,4 +16,5 @@ public interface UserMapper {
 	int pwCheck(User user);
 	void addOrderList(OrderList vo);
 	List<OrderList> getOrderList(int userIdx);
+	OrderList getOrder(int productIdx);
 }

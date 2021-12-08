@@ -26,15 +26,15 @@
 				    <td scope="col">수량</td>
 				    <td scope="col">상품구매금액</td>
 				    <td scope="col">주문처리상태</td>
+				    <td scope="col">선택</td>
 			    </tr>
 			  </thead>
 			  <tbody>
-			  <c:if test="${list == null}"> <!-- 주문목록 비었을때 -->
+			  <c:if test="${fn:length(list) == 0}"> <!-- 주문목록 비었을때 -->
 			  	<tr class="emptyCart">
 			  		<td colspan="9"> <i class="fas fa-shopping-basket fa-2x"></i> 주문목록이 비어 있습니다.</td>
 			  	</tr>
 			  </c:if>
-			  
 		  		    <c:forEach var="item" items="${list}" varStatus="status">
 					  <c:if test="${list != null}">
 			    		<tr class="cartListTr" id="cartListTr">
@@ -47,6 +47,10 @@
 					        <td class="quantityTd"><div>${item.quantity }</div></td>
 					        <td id="sellPriceText">${item.totalPrice}원</td>
 					        <td>제품준비중</td>
+					        <td class="selectBtnTd">
+					        <div><button type="button" class="selectBtn" onclick="writeReview('${list[status.index].productIdx}')">리뷰남기기</button>
+					        </div>
+					        </td>
 			 		   </tr>
 				  	  </c:if>
 		  		    </c:forEach>
@@ -57,6 +61,17 @@
 	 </div>
 	 
 <%@ include file="../footer.jsp"%>
+<script type="text/javascript">
+function writeReview(pIdx){
+	let form = $('<form></form>');
+	form.attr('action', 'writeReview');
+	form.attr('method', 'get');
+	form.appendTo('body');
+	form.append($('<input type="hidden" value="' + pIdx + '" name="pIdx">'));
+	form.submit();
+}
+
+</script>
 	
 </body>
 </html>

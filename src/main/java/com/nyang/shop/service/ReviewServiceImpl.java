@@ -1,8 +1,11 @@
 package com.nyang.shop.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.nyang.shop.dao.ReviewMapper;
 import com.nyang.shop.model.Review;
@@ -19,14 +22,24 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public List<Review> getAll() {
-		List<Review> list = dao.getAll();
-		for (int i = 0; i < list.size(); i++) {
-			String thumbnailImg = list.get(i).getThumbnailImg();
-			String contentImg = list.get(i).getContentImg();
-			list.get(i).setThumbnailImg(thumbnailImg.substring(0, thumbnailImg.length()-1));
-			list.get(i).setContentImg(contentImg.substring(0, contentImg.length()-1));
+		return dao.getAll();
+	}
+
+	@Override
+	public void insert(Review vo) {
+		MultipartFile file = vo.getFile();
+		if(file != null) {
+			String fileName = "cImg_" + file.getOriginalFilename();
+			File upfile = new File("c:\\upload\\" + fileName);
+			try {
+				file.transferTo(upfile);
+			} catch (IllegalStateException | IOException e) {
+				System.out.println("파일 전송 오류 " + e.getMessage());
+				e.printStackTrace();
+			}
+			vo.setContentImg(fileName);
 		}
-		return list;
+		dao.insert(vo);
 	}
 
 }

@@ -7,4 +7,9 @@
   	<select id="getAll" resultType="Review">
   		select * from review 
   	</select>
+  	
+  	<insert id="insert" parameterType="Review">
+  		insert into review(writer,productName,starRating,thumbnailImg,contentImg,content)
+  		values(#{writer},#{productName},#{starRating},#{thumbnailImg},#{contentImg},#{content})
+  	</insert>
   </mapper>
