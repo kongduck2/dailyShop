@@ -44,7 +44,7 @@
 		<beans:property name="host" value="smtp.naver.com"/> <!-- 메이서버 호스트 -->
 		<beans:property name="port" value="587"/> <!-- 메이서버 포트번호 -->
 		<beans:property name="username" value="아이디"/>
-		<beans:property name="password" value="비번"/><!-- ddd -->
+		<beans:property name="password" value="비번"/>
 		<!-- 보안연결 SSL과 관련된 설정 -->
 		<beans:property name="javaMailProperties">
 			<beans:props>
