@@ -21,7 +21,8 @@
 	    <label for="email" class="form-label">* 이메일(아이디)</label>
 	    <input name="email" type="email" class="form-control" id="email" required>
 	    <div id="idCheckMsg"></div>
-	  <button type="button" id="checkbtn" class="btn btn-primary">중복확인</button>
+	  <button type="button" id="checkbtn" onclick="openPopUp()" class="btn btn-primary">중복확인</button>
+	  
 	  </div>
 	  <div class="col-md-5">
 	    <label for="password" class="form-label">* 비밀번호</label>

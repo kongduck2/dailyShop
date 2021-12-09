@@ -29,7 +29,6 @@ public class ReviewController {
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	public String review(Model model) {
 		List<Review> list = service.getAll();
-		System.out.println(list);
 		model.addAttribute("list",list);
 		return "/user/review";
 	}

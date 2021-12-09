@@ -14,6 +14,7 @@
 
 <div class="container">
 	<div class="row">
+	<h2 class="text-center">사용후기</h2>
 		<div class="col">
 		<!-- foreach -->
 			<c:forEach var="item" items="${list }">
@@ -28,24 +29,38 @@
 								<span class="productName">${item.productName }</span>
 							</div>
 							<div>
-								<div id="foldedText">
+								<div class="foldedText">
 									<div class="shortText"><span>${item.content }</span>
 									</div>
-									<a href="javascript:open();" class="more">-더보기</a>
+									<a href="javascript:void(0);" class="more">-더보기</a>
 								</div>
-								<div id="openText">
+								<div class="openText">
 									<div class="longText"><span>${item.content }</span>
 									<div><a href="#"><img alt="유저이미지" src="/upload/${item.contentImg }"></a>
 									</div>
-									<a href="javascript:fold();" class="fold">-접기</a>
+									<a href="javascript:void(0);" class="fold">-접기</a>
 								</div>
 								 </div>
 							</div>
 						</div>
 						
-						<div class="reviewWriter">
+						<div class="reviewWriter"> <!-- 별점 표시 -->
 							<div>
-								<span>${item.starRating }</span><!-- 수정해야할부분 -->
+							<c:if test="${item.starRating ==1}">
+								<span><label></label></span>
+							</c:if>	
+							<c:if test="${item.starRating ==2}">
+								<span><label></label><label></label></span>
+							</c:if>	
+							<c:if test="${item.starRating ==3}">
+								<span><label></label><label></label><label></label></span>
+							</c:if>	
+							<c:if test="${item.starRating ==4}">
+								<span><label></label><label></label><label></label><label></label></span>
+							</c:if>	
+							<c:if test="${item.starRating ==5}">
+								<span><label></label><label></label><label></label><label></label><label></label></span>
+							</c:if>	
 							</div>
 							<div>
 								<span>${item.writer }</span>
@@ -65,18 +80,21 @@
 
 <%@ include file="../footer.jsp"%>
 <script type="text/javascript">
-	let foldText = document.getElementById('foldedText');
-	let openText = document.getElementById('openText');
+
+	$(document).ready(function () { //더보기
+		$('.more').on('click',function(){
+			$(this).parent().css('display','none');
+			$(this).parent().next().css('display','block');
+		})
+	})
 	
-	function open() {
-		foldText.style.display = 'none';
-		openText.style.display = 'block';
-	}
+	$(document).ready(function () { //접기
+		$('.fold').on('click',function(){
+			$(this).parent().parent().css('display','none');
+			$(this).parent().parent().prev().css('display','block');
+		})
+	})
 	
-	function fold() {
-		foldText.style.display = 'block';
-		openText.style.display = 'none';
-	}
 
 </script>
 </body>

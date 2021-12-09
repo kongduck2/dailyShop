@@ -11,9 +11,10 @@
 							if(email == ""){
 								$('#idCheckMsg').html('<p style="color:red">이메일을 입력해주세요.</p>');
 							}else if(!emailRule.test(email)){
-								$('#idCheckMsg').html('<p style="color:red">이메일 형식이 올바르지 않습니다.</p>')
+								$('#idCheckMsg').html('<p style="color:red">이메일 형식이 올바르지 않습니다.</p>');
 							}else if($.trim(data) == 0){
-								$('#idCheckMsg').html('<p style="color:green">사용가능한 아이디 입니다.</p>');
+								$('#idCheckMsg').html('<span style="color:green">사용가능한 아이디 입니다.</span>');
+								$('#idCheckMsg').append('<span><button type="button"class="emailCertBtn" onclick="openPopUp()">이메일 인증</button><span>');
 							}else{ 
 								$('#idCheckMsg').html('<p style="color:red">이미 사용중인 아이디입니다.</p>');
 							}
@@ -21,6 +22,16 @@
 					}); //end ajax 
 				}); //end on 
 			}); 
+			
+			function openPopUp(){ //공통 옵션일 때만 이렇고 서로 다른 옵션일경우 그것도 매개변수로 받자
+				 var options = 'width=500, height=600, top=30, left=30, resizable=no, scrollbars=no, location=no';
+				 window.open('emailCheck', 'name', options);
+			 
+			  }
+
+			
+			
+			
 //패스워드 체크
 		$(document).ready(function(){ 
 				 var password = $('#password').val();
@@ -116,4 +127,6 @@ $(document).ready(function(){
 		}
 	});
 });      
+      
+      
       

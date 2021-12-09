@@ -62,11 +62,24 @@
 	text-overflow: ellipsis;
 }
 
-#openText{
+.openText{
 	display: none;	
 }
 
 .more , .fold{
 	font-size: 13px;
 	color: #67b08f;
+}
+
+.reviewWriter label {
+    position: relative;
+    display: inline-block;
+    margin-left: 0px;
+    z-index: 10;
+    width: 15px;
+    height: 15px;
+    background-image: url('../image/starrate.png');
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-color: #ffc84b;
 }

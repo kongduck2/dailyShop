@@ -40,5 +40,14 @@ ul.join_box{border: 1px solid #ddd;background-color: #fff;}
 .checkBox>ul>li:nth-child(2){position: absolute;top: 50%;right: 30px;margin-top: -12px;}
 .checkBox textarea{width: 96%;height: 90px; margin: 10px 2%;background-color: #f7f7f7;color: #888; border: none;}
 
-
+.emailCertBtn{
+	margin-left: 13px;
+	margin-top: 8px;
+	background-color: #67b08f;
+	border:none;
+	border-radius:3px;
+	color: white;
+	width: 90px;
+	height: 26px;
+}
 

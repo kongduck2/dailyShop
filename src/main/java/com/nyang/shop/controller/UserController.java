@@ -97,5 +97,10 @@ public class UserController {
     	return "/user/orderList";
     }
     
+    @RequestMapping(value = "/emailCheck" , method = RequestMethod.GET)
+    public String emailCheck() { 
+    	return "/user/emailCheck";
+    }
+    
     
 }//UserController end
