@@ -88,7 +88,7 @@ function registCheck(){
 	var phone = document.getElementById('phone').value;
 	var phoneRule = /^[0-9]{11}$/;
 	var emailSucChk = document.getElementById('emailSucChk').value;
-	
+	console.log(emailSucChk);
 	if(!emailRule.test(email)){
 		Swal.fire({icon: 'error',text: '이메일 형식이 올바르지 않습니다.'})
 		return false;
@@ -101,7 +101,7 @@ function registCheck(){
   	}else if(!phoneRule.test(phone)){
   		Swal.fire({icon: 'error',text: '휴대전화 형식이 올바르지 않습니다.'})
   		return false;
-  	}else if(emailSucChk == false){
+  	}else if(emailSucChk == 'false'){
   		Swal.fire({icon: 'error',text: '이메일 인증을 완료하셔야 합니다.'})
   		return false;
   	}else{

@@ -16,21 +16,28 @@
 <div class="regist-form">
 	<form class="row g-4" action="userRegist" onsubmit="return registCheck()" id="joinForm" method="post">
 	<h3>회원등록</h3>
-	<input type="hidden" name="regist_type" value="${kakao}"/> <!-- 카카오 회원가입시 넘어가는값 1 기본 회원가입시 0  -->
-	<c:if test="${kakao != null}"> <!-- 카카오 회원가입 -->
-	<input type="hidden" id="emailSucChk" name="emailSucChk" value="true"/> <!-- 카카오 회원가입시 기본 이메일 인증 완료-->
-	</c:if>
-	<c:if test="${kakao == null}"> <!-- 일반 회원가입 -->
-	<input type="hidden" id="emailSucChk" name="emailSucChk" value="false"/> <!-- 이메일 인증성공시 자식창에서 true값 넘어옴 -->
-	</c:if>
+	<input type="hidden" name="regist_type" value="${param.kakao}"/> <!-- 카카오 회원가입시 넘어가는값 kakao 기본 회원가입시 ""  -->
 	
+	<c:if test="${param.kakao != null}"> <!-- 카카오 회원가입 -->
+	<input type="hidden" id="emailSucChk" name="emailSucChk" value="true"/> <!-- 카카오 회원가입시 기본 이메일 인증 완료-->
+	  <div class="col-md-6"><!-- 카카오일때는 값 넣고 disable로 -->
+	    <label for="email" class="form-label">* 이메일(아이디)</label>
+	    <input name="email" type="email" class="form-control" id="email" value="${param.kEmail}" readonly required>
+	    <div id="idCheckMsg"></div>
+	  </div>
+	
+	</c:if>
+	<c:if test="${param.kakao == null}"> <!-- 일반 회원가입 -->
+	<input type="hidden" id="emailSucChk" name="emailSucChk" value="false"/> <!-- 이메일 인증성공시 자식창에서 true값 넘어옴 -->
 	  <div class="col-md-6"><!-- 카카오일때는 값 넣고 disable로 -->
 	    <label for="email" class="form-label">* 이메일(아이디)</label>
 	    <input name="email" type="email" class="form-control" id="email" required>
 	    <div id="idCheckMsg"></div>
 	  <button type="button" id="checkbtn" class="btn btn-primary">중복확인</button>
-	  
 	  </div>
+	</c:if>
+	
+	  
 	  <div class="col-md-6">
 	    <label for="password" class="form-label">* 비밀번호</label>
 	    <input name="password" type="password" class="form-control" id="password" required>
@@ -48,7 +55,7 @@
 	  </div>
 	  <div class="col-md-6">
 	    <label for="name" class="form-label">* 이름</label>
-	    <input name="name" type="text" class="form-control" id="name" required>
+	    <input name="name" type="text" class="form-control" id="name" required value="${param.kNickname }">
 	  </div>
 	  <div class="col-md-3">
 	    <label for="phone" class="form-label">* 휴대전화('-' 제외)</label>

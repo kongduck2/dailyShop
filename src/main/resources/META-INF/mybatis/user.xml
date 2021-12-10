@@ -4,8 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.nyang.shop.dao.UserMapper">
 	<select id="login" parameterType="User" resultType="User">
+		<if test="password != null"> <!-- 일반 로그인 -->
 		select idx,email,phone,name,zipCode,address,addressDetail,regist_type,registDate 
 		from user where email=#{email} and password=sha2(#{password},256)
+		</if>
+		<if test="password == null"> <!-- 카카오 로그인 -->
+		select idx,email,phone,name,zipCode,address,addressDetail,regist_type,registDate 
+		from user where email=#{email}
+		</if>
 	</select>
 	
 	<select id="getAll" resultType="User" > <!-- 모든 유저정보 -->

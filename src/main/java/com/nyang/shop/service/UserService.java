@@ -1,5 +1,6 @@
 package com.nyang.shop.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,4 +20,6 @@ public interface UserService {
 	List<OrderList> getOrderList(int userIdx);
 	OrderList getOrder(int productIdx);
 	String validateEmail(String inputEmail);
+	public String kakaoGetAccessToken (String authorizeCode); //카카오 토큰 받기
+	public HashMap<String, Object> kakaoGetUserInfo (String accessToken); //카카오 유저정보 받기
 }

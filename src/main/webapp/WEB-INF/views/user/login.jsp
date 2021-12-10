@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -26,7 +27,7 @@
       </div>
 	      <!-- 카카오 로그인 -->
 	  <div class="kakaoLogo">
-	      <a href="https://kauth.kakao.com/oauth/authorize?client_id=d2b3ba824e744e5c470824907863b20b&redirect_uri=http://localhost:8089/Kkakdugi_Market/kakaoLogin.do&response_type=code">
+	      <a href="https://kauth.kakao.com/oauth/authorize?client_id=b80983683de548ac06ba30cff2c65ae1&redirect_uri=http://localhost:8082/dailyshop/kakaoLogin&response_type=code">
 	      <img src="${pageContext.request.contextPath}/resources/image/login_btn_ka.png" alt="카카오톡" >
 	      </a>
 	  </div>
