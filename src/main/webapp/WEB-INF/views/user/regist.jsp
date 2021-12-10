@@ -17,7 +17,7 @@
 <div class="regist-form">
 	<form class="row g-4" action="userRegist" onsubmit="return registCheck()" id="joinForm" method="post">
 	<h3>회원등록</h3>
-	<input type="text" name="regist_type" value="${kakao}"/> <!-- 카카오 회원가입시 넘어가는값 1 기본 회원가입시 0  -->
+	<input type="hidden" name="regist_type" value="${kakao}"/> <!-- 카카오 회원가입시 넘어가는값 1 기본 회원가입시 0  -->
 	<c:if test="${kakao != null}"> <!-- 카카오 회원가입 -->
 	<input type="hidden" id="emailSucChk" name="emailSucChk" value="true"/> <!-- 카카오 회원가입시 기본 이메일 인증 완료-->
 	</c:if>
