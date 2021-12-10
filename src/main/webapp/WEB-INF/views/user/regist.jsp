@@ -13,7 +13,6 @@
 <body>
 <!-- header -->
 <%@ include file="../header.jsp"%>
-
 <div class="regist-form">
 	<form class="row g-4" action="userRegist" onsubmit="return registCheck()" id="joinForm" method="post">
 	<h3>회원등록</h3>
