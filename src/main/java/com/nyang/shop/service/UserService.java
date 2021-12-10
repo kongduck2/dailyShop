@@ -18,5 +18,5 @@ public interface UserService {
 	void addOrderList(Map<String,String> param);
 	List<OrderList> getOrderList(int userIdx);
 	OrderList getOrder(int productIdx);
-
+	String validateEmail(String inputEmail);
 }

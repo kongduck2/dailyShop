@@ -8,6 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 카카오 주소 api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <body>
 <!-- header -->
@@ -16,22 +17,29 @@
 <div class="regist-form">
 	<form class="row g-4" action="userRegist" onsubmit="return registCheck()" id="joinForm" method="post">
 	<h3>회원등록</h3>
-	<input type="hidden" name="regist_type" value="${kakao}"/> <!-- 카카오 회원가입시 넘어가는값 1 기본 회원가입시 0  -->
-	  <div class="col-md-5">
+	<input type="text" name="regist_type" value="${kakao}"/> <!-- 카카오 회원가입시 넘어가는값 1 기본 회원가입시 0  -->
+	<c:if test="${kakao != null}"> <!-- 카카오 회원가입 -->
+	<input type="hidden" id="emailSucChk" name="emailSucChk" value="true"/> <!-- 카카오 회원가입시 기본 이메일 인증 완료-->
+	</c:if>
+	<c:if test="${kakao == null}"> <!-- 일반 회원가입 -->
+	<input type="hidden" id="emailSucChk" name="emailSucChk" value="false"/> <!-- 이메일 인증성공시 자식창에서 true값 넘어옴 -->
+	</c:if>
+	
+	  <div class="col-md-6"><!-- 카카오일때는 값 넣고 disable로 -->
 	    <label for="email" class="form-label">* 이메일(아이디)</label>
 	    <input name="email" type="email" class="form-control" id="email" required>
 	    <div id="idCheckMsg"></div>
-	  <button type="button" id="checkbtn" onclick="openPopUp()" class="btn btn-primary">중복확인</button>
+	  <button type="button" id="checkbtn" class="btn btn-primary">중복확인</button>
 	  
 	  </div>
-	  <div class="col-md-5">
+	  <div class="col-md-6">
 	    <label for="password" class="form-label">* 비밀번호</label>
 	    <input name="password" type="password" class="form-control" id="password" required>
 	    <label for="password2" class="form-label">* 비밀번호 확인</label>
 	    <input name="password2" type="password" class="form-control" id="password2" required>
 	    <label id="pwCheckMsg"></label>
 	  </div>
-	  <div class="col-10">
+	  <div class="col-12">
 	    <label for="zipCode" class="form-label">우편번호</label>
 	    <input name="zipCode" type="text" class="form-control" id="zipCode" readonly style="width: 80px;">
 	    <label for="address" class="form-label">* 주소</label> <!-- 카카오 주소 api 사용 -->
@@ -43,7 +51,7 @@
 	    <label for="name" class="form-label">* 이름</label>
 	    <input name="name" type="text" class="form-control" id="name" required>
 	  </div>
-	  <div class="col-md-4">
+	  <div class="col-md-3">
 	    <label for="phone" class="form-label">* 휴대전화('-' 제외)</label>
 	    <input name="phone" type="text" class="form-control" id="phone" maxlength="11">
 	     <label id="pnCheckMsg"></label>

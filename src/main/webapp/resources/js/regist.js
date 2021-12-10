@@ -9,25 +9,35 @@
 					data: { "email" : $('#email').val()},
 						success: function(data){
 							if(email == ""){
-								$('#idCheckMsg').html('<p style="color:red">이메일을 입력해주세요.</p>');
+								$('#idCheckMsg').html('<div style="color:red; margin-top:9px;">이메일을 입력해주세요.</div>');
 							}else if(!emailRule.test(email)){
-								$('#idCheckMsg').html('<p style="color:red">이메일 형식이 올바르지 않습니다.</p>');
+								$('#idCheckMsg').html('<div style="color:red; margin-top:9px;">이메일 형식이 올바르지 않습니다.</div>');
 							}else if($.trim(data) == 0){
 								$('#idCheckMsg').html('<span style="color:green">사용가능한 아이디 입니다.</span>');
-								$('#idCheckMsg').append('<span><button type="button"class="emailCertBtn" onclick="openPopUp()">이메일 인증</button><span>');
+								$('#idCheckMsg').append('<span><button type="button" id="emailChkBtn" class="emailChkBtn" onclick="openPopUp()">이메일 인증</button><span>');
 							}else{ 
-								$('#idCheckMsg').html('<p style="color:red">이미 사용중인 아이디입니다.</p>');
+								$('#idCheckMsg').html('<div style="color:red; margin-top:9px;">이미 사용중인 아이디입니다.</div>');
 							}
 						}
 					}); //end ajax 
 				}); //end on 
 			}); 
 			
-			function openPopUp(){ //공통 옵션일 때만 이렇고 서로 다른 옵션일경우 그것도 매개변수로 받자
-				 var options = 'width=500, height=600, top=30, left=30, resizable=no, scrollbars=no, location=no';
-				 window.open('emailCheck', 'name', options);
-			 
-			  }
+//이메일 인증 자식창 열기			
+		function openPopUp(){
+			window.name = 'registFrom';
+			let _width = '650';
+			let _height = '380';
+			// 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+			let _left = Math.ceil((window.screen.width - _width) / 2);
+			let _top = Math.ceil((window.screen.height - _height) / 2);
+			let emailChk = window.open('emailCheck', 'emailChk', 'width=' + _width + ', height=' + _height + ', left=' + _left + ', top=' + _top,'location=no');
+			let email = document.getElementById('email').value;
+			
+		    emailChk.addEventListener("DOMContentLoaded", () => { //자식창 페이지 로드후 값넣기
+		 	   emailChk.document.getElementById('inputEmail').value = email;
+		  });
+	  }
 
 			
 			
@@ -68,7 +78,7 @@
 			});
 		});
 		
-//onsubmit 검사		
+//onsubmit 검사
 function registCheck(){
 	var email = document.getElementById('email').value;
 	var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
@@ -77,6 +87,7 @@ function registCheck(){
 	var passRule = /^[A-Za-z0-9]{6,15}$/; //패스워드 정규식
 	var phone = document.getElementById('phone').value;
 	var phoneRule = /^[0-9]{11}$/;
+	var emailSucChk = document.getElementById('emailSucChk').value;
 	
 	if(!emailRule.test(email)){
 		Swal.fire({icon: 'error',text: '이메일 형식이 올바르지 않습니다.'})
@@ -89,6 +100,9 @@ function registCheck(){
 		return false;
   	}else if(!phoneRule.test(phone)){
   		Swal.fire({icon: 'error',text: '휴대전화 형식이 올바르지 않습니다.'})
+  		return false;
+  	}else if(emailSucChk == false){
+  		Swal.fire({icon: 'error',text: '이메일 인증을 완료하셔야 합니다.'})
   		return false;
   	}else{
   		return true;

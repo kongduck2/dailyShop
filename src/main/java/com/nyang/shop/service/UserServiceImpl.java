@@ -3,6 +3,10 @@ package com.nyang.shop.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.nyang.shop.dao.ProductMapper;
@@ -18,9 +22,12 @@ public class UserServiceImpl implements UserService {
 	
 	private final ProductMapper pDao;
 	
-	public UserServiceImpl(UserMapper dao,ProductMapper pDao) { 
+	private final JavaMailSender mailSender;
+	
+	public UserServiceImpl(UserMapper dao,ProductMapper pDao , JavaMailSender mailSender) { 
 		this.dao = dao;
 		this.pDao = pDao;
+		this.mailSender = mailSender;
 	}
 	
 	@Override
@@ -96,6 +103,40 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public OrderList getOrder(int productIdx) {
 		return dao.getOrder(productIdx);
+	}
+
+	@Override
+	public String validateEmail(String inputEmail) {
+		int serti = (int)((Math.random()* (99999 - 10000 + 1)) + 10000); //이메일 전송오류
+	    String num = "";
+		// 메일 제목, 내용
+		String subject = "회원가입시 필요한 인증번호 입니다.";
+		String content = "[인증번호] "+ serti +" 입니다. 인증번호 확인란에 기입해주세요.";
+		// 보내는 사람
+		String from = "댕냥이의 일상 <dn@dailyshop.com>";
+		// 받는 사람
+		String to = inputEmail;
+		try {
+			// 메일 내용 넣을 객체와, 이를 도와주는 Helper 객체 생성
+			MimeMessage mail = mailSender.createMimeMessage();
+			MimeMessageHelper mailHelper = new MimeMessageHelper(mail, "UTF-8");
+
+			// 메일 내용을 채워줌
+			mailHelper.setFrom(from);	// 보내는 사람 셋팅
+			mailHelper.setTo(to);		// 받는 사람 셋팅
+			mailHelper.setSubject(subject);	// 제목 셋팅
+			mailHelper.setText(content,true);	// 내용 셋팅
+
+			// 메일 전송
+			mailSender.send(mail);
+	        num = Integer.toString(serti);
+			
+		} catch(Exception e) {
+	    	System.out.println("이메일 전송 오류 : " + e.getMessage());
+	        num = "error";
+			e.printStackTrace();
+		}
+		 return num;
 	}
 
 }

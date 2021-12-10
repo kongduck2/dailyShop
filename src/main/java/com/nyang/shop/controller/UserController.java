@@ -82,14 +82,14 @@ public class UserController {
     	model.addAttribute("url", "/dailyshop");
     	return "/util/alertPage";
     }
-    
+    //결제 성공시 주문내역에 추가
     @ResponseBody
-    @RequestMapping(value = "/addOrderList" , method = RequestMethod.POST) // 결제 성공시 주문내역에 추가
+    @RequestMapping(value = "/addOrderList" , method = RequestMethod.POST) 
     public void orderList(@SessionAttribute("user")User user, @RequestParam Map<String,String> param) { 
     	param.put("userIdx", String.valueOf(user.getIdx()));
     	uService.addOrderList(param);
     }
-    
+    //주문목록 이동
     @RequestMapping(value = "/orderList" , method = RequestMethod.GET)
     public String moveOrderList(@SessionAttribute("user")User user, Model model) { 
     	List<OrderList> list = uService.getOrderList(user.getIdx());
@@ -97,9 +97,17 @@ public class UserController {
     	return "/user/orderList";
     }
     
+    //자식창 호출
     @RequestMapping(value = "/emailCheck" , method = RequestMethod.GET)
-    public String emailCheck() { 
+    public String openEmailCheck() { 
     	return "/user/emailCheck";
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/emailCheck" , method = RequestMethod.POST)
+    public String emailCheck(String inputEmail) {
+    	System.out.println(inputEmail);
+    	return uService.validateEmail(inputEmail);
     }
     
     
