@@ -1,0 +1,27 @@
+#errorContainer{
+	display: flex;
+	justify-content: center;
+	background-color: #f5f5f5;
+}
+#errorContainer div{
+	width:700px;
+	font-size: 25px;
+}
+
+#errorContainer button{
+	width:120px;
+	height:30px;
+	background-color: #67b08f;
+	border:none;
+	cursor: pointer;
+	color: white;
+	border-radius: 3px;
+	font-size: 18px;
+}
+
+#errorImg{
+	height: 400px;
+}
+.eText{
+	font-size: 15px;
+}

@@ -19,7 +19,7 @@ public class User {
 	private String zipCode; //우편번호
 	private String address; // 주소
 	private String addressDetail; // 상세 주소
-	private String regist_type; //회원가입 타입 카카오,일반
+	private String registType; //회원가입 타입 카카오,일반
 	private String name;
 	private LocalDateTime registDate;
 }

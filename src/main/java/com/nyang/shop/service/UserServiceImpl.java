@@ -191,7 +191,7 @@ public class UserServiceImpl implements UserService {
             br.close();
             bw.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+        	System.out.println("kakaoGetAccessToken 오류 : " + e.getMessage());
             e.printStackTrace();
         } 
         return access_Token;
@@ -210,9 +210,6 @@ public class UserServiceImpl implements UserService {
             //    요청에 필요한 Header에 포함될 내용
             conn.setRequestProperty("Authorization", "Bearer " + accessToken);
             
-            int responseCode = conn.getResponseCode();
-            System.out.println("responseCode : " + responseCode);
-            
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             
             String line = "";
@@ -221,7 +218,6 @@ public class UserServiceImpl implements UserService {
             while ((line = br.readLine()) != null) {
                 result += line;
             }
-            System.out.println("response body : " + result);
             
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
@@ -236,7 +232,7 @@ public class UserServiceImpl implements UserService {
             userInfo.put("email", email);
             
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+        	System.out.println("kakaoGetUserInfo 오류 :" + e.getMessage());
             e.printStackTrace();
         }
         

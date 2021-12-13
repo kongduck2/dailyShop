@@ -44,4 +44,25 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>*</url-pattern><!-- 모든 url요청에 대해 필터 적용한다.-->
 	</filter-mapping>
+	
+	<error-page>
+          <error-code>400</error-code>
+          <location>/WEB-INF/views/util/errorPage.jsp</location>
+ 	</error-page>
+	<error-page>
+          <error-code>404</error-code>
+          <location>/WEB-INF/views/util/errorPage.jsp</location>
+ 	</error-page> 
+ 	<error-page>
+          <error-code>405</error-code>
+          <location>/WEB-INF/views/util/errorPage.jsp</location>
+ 	</error-page>
+ 	<error-page>
+          <error-code>500</error-code>
+          <location>/WEB-INF/views/util/errorPage.jsp</location>
+ 	</error-page>
+ 	<error-page>
+          <error-code>503</error-code>
+          <location>/WEB-INF/views/util/errorPage.jsp</location>
+ 	</error-page>
 </web-app>

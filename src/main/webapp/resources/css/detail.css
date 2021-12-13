@@ -107,6 +107,9 @@
 #detailBtn > div{
 	margin-right: 27px;
 }
+#detailBtn{
+	margin-top: 10px;
+}
 .guideVar {
 	display:flex;
 	justify-content:center;

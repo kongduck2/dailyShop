@@ -59,7 +59,6 @@ public class LoginController {
 		String accessToken = uService.kakaoGetAccessToken(code);
 		HashMap<String, Object> userInfo = uService.kakaoGetUserInfo(accessToken);
         User result = uService.login(User.builder().email((String)userInfo.get("email")).build());
-        System.out.println(userInfo);
         if(result == null) {// 기존 카카오 아이디가 없을때
         	//카카오 이메일,kakao 이름 넘겨줘야함
         	String kakaoEmail = (String)userInfo.get("email");

@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Review {
 	private int idx;
+	private int productIdx;
 	private String writer;
 	private String productName;
 	private int starRating;

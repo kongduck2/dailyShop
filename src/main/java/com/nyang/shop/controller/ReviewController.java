@@ -25,26 +25,29 @@ public class ReviewController {
 		this.service = service;
 		this.uService = uService;
 	}
-	
+	//사용후기 페이지 이동
 	@RequestMapping(value = "/review", method = RequestMethod.GET)
 	public String review(Model model) {
 		List<Review> list = service.getAll();
 		model.addAttribute("list",list);
 		return "/user/review";
 	}
-	
+	//리뷰작성 페이지 이동
 	@RequestMapping(value = "/writeReview", method = RequestMethod.GET)
 	public String writeReview(int pIdx, Model model) {
 		OrderList vo = uService.getOrder(pIdx);
+		System.out.println(vo);
 		model.addAttribute("order",vo);
 		return "/user/writeReview";
 	}
-	
+	//리뷰 등록
 	@RequestMapping(value = "/writeReview", method = RequestMethod.POST)
 	public String saveReview(@SessionAttribute("user")User user, @ModelAttribute Review vo, Model model) {
 		vo.setWriter(user.getName());
 		service.insert(vo);
-		return "/user/writeReview";
+		model.addAttribute("message","사용후기가 등록되었습니다.");
+		model.addAttribute("url","review");
+    	return "/util/alertPage";
 	}
 	
 }//ReviewController end

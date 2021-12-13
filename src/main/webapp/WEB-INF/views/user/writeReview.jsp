@@ -14,6 +14,7 @@
 		<div class="col">
 			<form action="writeReview" method="post" enctype="multipart/form-data" id="writeForm">
 				<input type="hidden" value="${order.productName }" name="productName">     
+				<input type="hidden" value="${order.productIdx }" name="productIdx">     
 				<input type="hidden" value="${order.thumbnailImg }" name="thumbnailImg">
 				<input type="hidden" name="starRating" id="rate" value="0"/>
 			<div class="reviewOpBox"><img class="thumbnail" alt="썸네일 이미지" src="/upload/${order.thumbnailImg}">

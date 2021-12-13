@@ -9,7 +9,7 @@
   	</select>
   	
   	<insert id="insert" parameterType="Review">
-  		insert into review(writer,productName,starRating,thumbnailImg,contentImg,content)
-  		values(#{writer},#{productName},#{starRating},#{thumbnailImg},#{contentImg},#{content})
+  		insert into review(productIdx,writer,productName,starRating,thumbnailImg,contentImg,content)
+  		values(#{productIdx},#{writer},#{productName},#{starRating},#{thumbnailImg},#{contentImg},#{content})
   	</insert>
   </mapper>

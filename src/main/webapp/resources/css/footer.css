@@ -12,11 +12,39 @@ html, body {
 
 .wrapper {
    min-height: 100%;
-   margin: 0 auto -155px;
+   margin: 0 auto -120px;
 }
  /* 하단 마진은 푸터의 높이 값과 같다 */
 
 footer, .push {
-   height: 155px;
+   height: 120px;
 }
 /* '.push'는 'footer'와 높이가 같아야 한다. */
+
+footer{
+	background-color: #333;
+}
+footer > div{
+	background-color: #333;
+}
+
+.footerDiv{
+	display: flex;
+	justify-content: center;
+}
+
+.footerDiv > div{
+	margin-left: 30px;
+}
+
+.footerDiv p,h5{
+	text-align: center;
+	color: white;
+}
+.footerDiv a{
+	text-decoration: none;
+	color: white;
+}
+.footerDiv a:hover{
+	color: white;
+}
