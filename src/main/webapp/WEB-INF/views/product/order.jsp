@@ -33,12 +33,6 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			  <c:if test="${count == 0}"> <!-- 장바구니 비었을때 -->
-			  	<tr class="emptyCart">
-			  		<td colspan="9"> <i class="fas fa-shopping-basket fa-2x"></i> 장바구니가 비어 있습니다.</td>
-			  	</tr>
-			  </c:if>
-			  
 		  		    <c:forEach var="item" items="${list}" varStatus="status">
 					  <c:if test="${item.option1 == null}"> <!-- 옵션값 없는 단독상품 -->
 			    		<tr class="cartListTr" id="cartListTr">

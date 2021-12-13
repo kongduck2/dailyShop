@@ -25,10 +25,10 @@
 						  <a href="detail?idx=${item.idx}"><img src="/upload/${img }" class="card-img-top" alt="썸네일"></a>
 						  <div class="card-body">
 						    <div class="card-text">
-						    <c:if test="${fn:length(item.name) <= 20 }"> <!-- 한줄일때 경계선 높낮이 다름 -->
-						    	<div class="productName" style="line-height : 47px;"><a href="detail?idx=${item.idx}">${item.name }</a></div>
+						    <c:if test="${fn:length(item.name) <= 23 }"> <!-- 한줄일때 경계선 높낮이 다름 -->
+						    	<div class="productName" style="line-height : 40px;"><a href="detail?idx=${item.idx}">${item.name }</a></div>
 						    </c:if>
-						    <c:if test="${fn:length(item.name) > 20 }">
+						    <c:if test="${fn:length(item.name) > 23 }">
 						    	<div class="productName"><a href="detail?idx=${item.idx}">${item.name }</a></div>
 						    </c:if>	
 						    		<div class="productPrice">${item.price}원</div>

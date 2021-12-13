@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,28 +57,46 @@ public class ProductServiceImpl implements ProductService {
 	    String path = "c:\\upload";
 	    String newPath = null;
 	    String fileName = null;
-	    
 	    //이미지파일 전송 부분
     	if (files != null && files.size() > 0) { //첨부된 파일이 있을 때 첨부된 파일리스트에 하나씩 upload 폴더로 전송
-            for (MultipartFile f : files) {	
+            for (MultipartFile f : files) {
+            	
+      	      int leftLimit = 48; // 숫자 '0' 아스키코드값
+    	      int rightLimit = 122; // 알파벳 'z' 아스키코드값
+    	      int targetStringLength = 10;		//length를 10으로 설정
+    	      Random random = new Random();
+    	      String rString = random.ints(leftLimit,rightLimit + 1)
+    	  	    	.filter(i -> (i <= 57 || (i >= 65 && i <= 90) || i >= 97))
+    	  	        .limit(targetStringLength)
+    	  	        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+    	  	        .toString();
+            	
             	switch (dif) {
 				case 0:
-            		fileName = "tImg_" + f.getOriginalFilename();
+            		fileName = rString + "_" + f.getOriginalFilename();
             		newPath = path + "\\" + fileName;   //업로드경로+파일명
             		vo.setThumbnailImg(fileName+",");
 					break;
 				case 1:
-            		fileName = "dImg_" + f.getOriginalFilename();
+            		fileName = rString + "_" + f.getOriginalFilename();
             		newPath = path + "\\" + fileName;   //업로드경로+파일명
             		vo.setDetailImg1(fileName+",");
             		break;
 				case 2:
-					fileName = "dImg_" + f.getOriginalFilename();
+					if(f.getOriginalFilename().length() == 0 ) { //빈 파일일경우
+						fileName = "empty";
+					}else {
+						fileName = rString + "_" + f.getOriginalFilename();
+					}
 					newPath = path + "\\" + fileName;   //업로드경로+파일명
 					vo.setDetailImg2(fileName+",");
 					break;
 				case 3:
-					fileName = "dImg_" + f.getOriginalFilename();
+					if(f.getOriginalFilename().length() == 0 ) { //빈 파일일경우
+						fileName = "empty";
+					}else {
+						fileName = rString + "_" + f.getOriginalFilename();
+					}
 					newPath = path + "\\" + fileName;   //업로드경로+파일명
 					vo.setDetailImg3(fileName+",");
 					break;
@@ -97,7 +116,6 @@ public class ProductServiceImpl implements ProductService {
       
 		return dao.insert(vo);
 	}
-
 	
 	@Override
 	public String categoryName(String category) {

@@ -46,10 +46,10 @@
 		$(document).ready(function(){ 
 				 var password = $('#password').val();
 				 var password2 = $('#password2').val();
-				 var passRule = /^[A-Za-z0-9]{6,15}$/; //패스워드 정규식
+				 var passRule = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/; //패스워드 정규식
 		    $('#password').keyup(function(){
 			    	if(!passRule.test($('#password').val())){
-			          $('#pwCheckMsg').html('비밀번호는 영문+숫자 6~15자리만 가능합니다.');
+			          $('#pwCheckMsg').html('비밀번호는 영문 , 숫자, 특수문자 각 1회 이상 포함 6~15자리만 가능합니다.');
 			          $('#pwCheckMsg').css('color', 'red');
 			    	}else{
 			      $('#pwCheckMsg').html('');
@@ -84,7 +84,7 @@ function registCheck(){
 	var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
 	var password = document.getElementById('password').value;
 	var password2 = document.getElementById('password2').value;
-	var passRule = /^[A-Za-z0-9]{6,15}$/; //패스워드 정규식
+	var passRule = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/; //패스워드 정규식
 	var phone = document.getElementById('phone').value;
 	var phoneRule = /^[0-9]{11}$/;
 	var emailSucChk = document.getElementById('emailSucChk').value;

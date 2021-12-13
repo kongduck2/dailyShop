@@ -1,0 +1,69 @@
+#choiceContainer div{
+	border: none;
+	border-radius: 10px;
+}
+#choiceContainer span{
+	font-size: 25px;
+}
+#choiceTextRow{
+	border: 1px solid #eeeeee;
+	height: 300px;
+}
+#kakaoDiv{
+	width: 200px;
+	height:200px;
+	background-color: #fae100;
+	text-align: center;
+}
+
+#kakaoDiv span{
+	line-height:200px;
+	text-align: center;
+}
+
+#kakaoDiv a {
+	width: 660px;
+	height:200px;
+	text-decoration: none;
+	color: #443731;
+	font-size: 35px;
+	display: block;
+	
+}
+
+#kakaoDiv a:hover {
+	color: #443731;
+}
+
+#primaryDiv{
+	margin-left: 20px;
+	width: 200px;
+	height:200px;
+	background-color: #67b08f;
+	text-align: center;
+}
+
+#primaryDiv span{
+	line-height:200px;
+	text-align: center;
+}
+
+#primaryDiv a {
+	width: 660px;
+	height:200px;
+	text-decoration: none;
+	color: white;
+	font-size: 35px;
+	display: block;
+	
+}
+
+#primaryDiv a:hover {
+	color: #white;
+}
+
+
+#choiceText{
+	padding-top:100px;
+	
+}

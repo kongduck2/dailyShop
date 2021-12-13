@@ -66,6 +66,11 @@
 	display: none;	
 }
 
+.openText img{
+	width: 500px;
+	height: 500px;
+}
+
 .more , .fold{
 	font-size: 13px;
 	color: #67b08f;

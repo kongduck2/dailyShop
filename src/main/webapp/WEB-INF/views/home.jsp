@@ -15,13 +15,13 @@
 	<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
 	  <div class="carousel-inner">
 	    <div class="carousel-item active" data-bs-interval="5000">
-	      <img src="${pageContext.request.contextPath}/resources/image/feedTub.jpeg" class="d-block w-100" alt="사료통">
+	      <a href="detail?idx=83"><img src="${pageContext.request.contextPath}/resources/image/feedTub.jpeg" class="d-block w-100" alt="사료통"></a>
 	    </div>
 	    <div class="carousel-item" data-bs-interval="5000">
-	      <img src="${pageContext.request.contextPath}/resources/image/round.jpeg" class="d-block w-100" alt="스크래쳐">
+	      <a href="detail?idx=6"><img src="${pageContext.request.contextPath}/resources/image/round.jpeg" class="d-block w-100" alt="스크래쳐"></a>
 	    </div>
 	    <div class="carousel-item" data-bs-interval="5000">
-	      <img src="${pageContext.request.contextPath}/resources/image/catToy.jpeg" class="d-block w-100" alt="고양이장난감">
+	      <a href="detail?idx=18"><img src="${pageContext.request.contextPath}/resources/image/catToy.jpeg" class="d-block w-100" alt="고양이장난감"></a>
 	    </div>
 	  </div>
 	  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -39,13 +39,13 @@
 	 		<!-- 중간 배너 -->
 	<div class="row" >
 		<div class="col-md-4">
-			<a href="#"><img src="${pageContext.request.contextPath}/resources/image/mid-b1.jpeg" class="img-fluid" alt="중간배너"></a>
+			<a href="best"><img src="${pageContext.request.contextPath}/resources/image/mid-b1.jpeg" class="img-fluid" alt="중간배너"></a>
 		</div>
 		<div class="col-md-4">
-			<a href="#"><img src="${pageContext.request.contextPath}/resources/image/mid-b2.jpeg" class="img-fluid" alt="중간배너"></a>
+			<a href="review"><img src="${pageContext.request.contextPath}/resources/image/mid-b2.jpeg" class="img-fluid" alt="중간배너"></a>
 		</div>
 		<div class="col-md-4">
-			<a href="#"><img src="${pageContext.request.contextPath}/resources/image/mid-b3.jpeg" class="img-fluid" alt="중간배너"></a>
+			<a href="regist"><img src="${pageContext.request.contextPath}/resources/image/mid-b3.jpeg" class="img-fluid" alt="중간배너"></a>
 		</div>
 	</div>	
 	<!-- 신상품 -->
@@ -62,10 +62,10 @@
 						  <a href="detail?idx=${item.idx}"><img src="/upload/${img }" class="card-img-top" alt="thumbnailImg"></a>
 						  <div class="card-body">
 						    <div class="card-text">
-						    <c:if test="${fn:length(item.name) <= 20 }"> <!-- 한줄일때 경계선 높낮이 다름 -->
-						    	<div class="productName" style="line-height : 47px;"><a href="detail?idx=${item.idx}">${item.name }</a></div>
+						    <c:if test="${fn:length(item.name) <= 23 }"> <!-- 한줄일때 경계선 높낮이 다름 -->
+						    	<div class="productName" style="line-height : 40px;"><a href="detail?idx=${item.idx}">${item.name }</a></div>
 						    </c:if>
-						    <c:if test="${fn:length(item.name) > 20 }">
+						    <c:if test="${fn:length(item.name) > 23 }">
 						    	<div class="productName"><a href="detail?idx=${item.idx}">${item.name }</a></div>
 						    </c:if>	
 						    		<div class="productPrice">${item.price}원</div>
@@ -79,13 +79,13 @@
 		
 		<div class="row">
 			<div class="col-md-4">
-				<a href="#"><img src="${pageContext.request.contextPath}/resources/image/btm-b1.jpeg" class="img-fluid" alt="하단배너"></a>
+				<a href="detail?idx=85"><img src="${pageContext.request.contextPath}/resources/image/btm-b1.jpeg" class="img-fluid" alt="하단배너"></a>
 			</div>
 			<div class="col-md-4">
-				<a href="#"><img src="${pageContext.request.contextPath}/resources/image/btm-b2.jpeg" class="img-fluid" alt="하단배너"></a>
+				<a href="detail?idx=84"><img src="${pageContext.request.contextPath}/resources/image/btm-b2.jpeg" class="img-fluid" alt="하단배너"></a>
 			</div>
 			<div class="col-md-4">
-				<a href="#"><img src="${pageContext.request.contextPath}/resources/image/btm-b3.jpeg" class="img-fluid" alt="하단배너"></a>
+				<a href="list?category=d-walk"><img src="${pageContext.request.contextPath}/resources/image/btm-b3.jpeg" class="img-fluid" alt="하단배너"></a>
 			</div>
 		</div>
 	</div>

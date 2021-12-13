@@ -17,6 +17,7 @@ import com.nyang.shop.model.Product;
 import com.nyang.shop.model.User;
 import com.nyang.shop.service.CartService;
 import com.nyang.shop.service.ProductService;
+import com.nyang.shop.service.ReviewService;
 
 @Controller
 @RequestMapping({"/","/product"})
@@ -25,13 +26,16 @@ public class ProductController {
 	private final ProductService pService;
 	
 	private final CartService cService;
+	
+	private final ReviewService rService;
 
 	
-	public ProductController(ProductService pService, CartService cService) {
+	public ProductController(ProductService pService, CartService cService, ReviewService rService) {
 		this.pService = pService;
 		this.cService = cService;
+		this.rService = rService;
 	}
-
+	//관리자용 상품추가 페이지 이동
 	@RequestMapping(value = "/addProduct", method = RequestMethod.GET)
 	public String moveAddProduct() {
 		return "/product/addProduct";
@@ -69,16 +73,17 @@ public class ProductController {
 		return "/product/list";
 	}
 	
-	
+	//상품 상세 페이지 이동
 	@RequestMapping(value = "/detail",method = RequestMethod.GET)
 	public String detail(HttpSession session,int idx, Model model) {
 		if(session.getAttribute("user") != null) {
 			model.addAttribute("user", (User) session.getAttribute("user"));
 		}
-		model.addAttribute("product",pService.getOne(idx)); 
+		model.addAttribute("product",pService.getOne(idx));//상품 정보 
+		model.addAttribute("list",rService.getOne(idx));//후기 정보
 		return "/product/detail";
 	}
-	
+	//주문페이지 이동
 	@RequestMapping(value = "/order" , method = RequestMethod.GET)
 	public String moveOrder(@SessionAttribute("user")User user, @RequestParam Map<String,String> param, Model model) {
     	List<Cart> list = cService.getAll(user.getIdx());
@@ -88,7 +93,7 @@ public class ProductController {
 		return "/product/order";
 	}
 	
-	
+	//상품상세페이지 -> 바로구매
 	@RequestMapping(value = "/order" , method = RequestMethod.POST)
 	public String buyNow(@SessionAttribute("user")User user, @RequestParam Map<String,String> param, Model model) {
 		List<Cart> list = pService.buyNowProcess(param);
@@ -97,7 +102,7 @@ public class ProductController {
 		model.addAttribute("cartInfo",pService.cartInfo(list));
 		return "/product/order";
 	}
-	
+	//선택상품 주문
 	@RequestMapping(value = "/selectOrder" , method = RequestMethod.POST)
 	public String selectOrder(@SessionAttribute("user")User user, @RequestParam Map<String,String> param, Model model) {
 		param.put("userIdx",String.valueOf(user.getIdx()));

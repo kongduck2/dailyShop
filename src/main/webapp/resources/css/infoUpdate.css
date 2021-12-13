@@ -18,7 +18,9 @@
 	color: white;
 	border: none;
 }
-
+#infoUpBtnDiv {
+	margin-bottom: 50px;
+}
 .col-12 > .btn:hover {
 	background-color: #67b08f;
 	color: white;
@@ -26,5 +28,15 @@
 }
 h3{
 	margin-top: 100px;
+}
+#withdrawalBtn{
+	width : 90px;
+	margin: 0 auto;
+	margin-right: 8px;
+	align-items: center;
+	background-color: #67b08f;
+	color: white;
+	border: none;	
+	border
 }
 

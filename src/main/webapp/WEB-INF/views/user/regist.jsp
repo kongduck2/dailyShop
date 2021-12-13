@@ -40,6 +40,7 @@
 	  
 	  <div class="col-md-6">
 	    <label for="password" class="form-label">* 비밀번호</label>
+	    <span style="color: gray; font-size: 12px;">영문, 숫자, 특수문자 각 1회 이상 포함하여 입력해주세요.</span>
 	    <input name="password" type="password" class="form-control" id="password" required>
 	    <label for="password2" class="form-label">* 비밀번호 확인</label>
 	    <input name="password2" type="password" class="form-control" id="password2" required>

@@ -36,7 +36,7 @@
 								</div>
 								<div class="openText">
 									<div class="longText"><span>${item.content }</span>
-									<div><a href="#"><img alt="유저이미지" src="/upload/${item.contentImg }"></a>
+									<div><img alt="유저이미지" src="/upload/${item.contentImg }">
 									</div>
 									<a href="javascript:void(0);" class="fold">-접기</a>
 								</div>

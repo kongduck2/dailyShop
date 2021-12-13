@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.nyang.shop.model.OrderList;
 import com.nyang.shop.model.User;
@@ -26,6 +27,12 @@ public class UserController {
 	
 	public UserController(UserService uService) {
 		this.uService = uService;
+	}
+	
+	//회원가입 선택페이지 이동
+	@RequestMapping(value = "/choiceRegist", method = RequestMethod.GET)
+	public String choiceRegist() {
+		return "/user/choiceRegist";
 	}
 	
 	//회원가입 뷰페이지 이동
@@ -103,11 +110,21 @@ public class UserController {
     	return "/user/emailCheck";
     }
     
-    @ResponseBody
+    //인증메일 발송
+    @ResponseBody 
     @RequestMapping(value = "/emailCheck" , method = RequestMethod.POST)
     public String emailCheck(String inputEmail) {
-    	System.out.println(inputEmail);
     	return uService.validateEmail(inputEmail);
+    }
+    
+    //회원탈퇴
+    @RequestMapping(value = "/userDelete" , method = RequestMethod.GET)
+    public String userDelete(@SessionAttribute("user")User user , SessionStatus status , Model model) { 
+    	uService.delete(user.getIdx());
+    	status.setComplete();
+    	model.addAttribute("message", "회원탈퇴가 완료되었습니다. 그동안 이용해주셔서 감사합니다.");
+    	model.addAttribute("url", "/dailyshop");
+    	return "/util/alertPage";
     }
     
     

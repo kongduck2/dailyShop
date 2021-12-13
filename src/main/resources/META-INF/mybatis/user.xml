@@ -33,7 +33,7 @@
 		update user set phone=#{phone},address=#{address},addressDetail=#{addressDetail},password = sha2(#{password},256)
 		 where idx=#{idx}
 	</update>
-	<delete id="delete" parameterType="int" >
+	<delete id="delete" parameterType="int" > <!-- 회원탈퇴 -->
 		delete from user where idx=#{idx}
 	</delete>
 	
@@ -57,5 +57,5 @@
 	<select id="getOrder" parameterType="int" resultType="OrderList" > <!-- 주문목록 가져오기 -->
 		select * from orderList where productIdx = #{productIdx}
 	</select>
-		
+	
   </mapper>

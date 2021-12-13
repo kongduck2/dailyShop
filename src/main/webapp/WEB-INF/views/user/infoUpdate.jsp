@@ -51,7 +51,12 @@
 	    <button type="submit" class="btn btn-primary" >정보 수정</button>
 	    <button type="button" class="btn btn-primary" onclick="location.href='/dailyshop'">취소</button>
 	  </div>
+	  <div>
+		<button id="withdrawalBtn" type="button" class="btn btn-primary" onclick="deleteUser()">회원탈퇴</button>
+	  </div>
 	</form>
+	<div>
+	</div>
 </div>
 
 <%@ include file="../footer.jsp"%>

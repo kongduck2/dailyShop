@@ -138,7 +138,7 @@
     		
     		<c:if test="${user == null}"> <!-- 로그인 안된상태 -->
     		<div class="col-md-3">
-    		 	<button class="buyButton" type="button" onclick="loginAlert()">바로구매</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 -->
+    		 	<button class="buyButton" type="button" onclick="loginAlert()">바로구매</button>
     		</div>
     		<div class="col-md-3">
     			<button class="cartButton" type="button" onclick="loginAlert()">장바구니</button> 
@@ -206,14 +206,14 @@
 		<img alt="디테일 이미지1" src="/upload/${product.detailImg1 }">  	
   	</div>
   </div>
-  <c:if test="${!(product.detailImg2 eq 'dImg_') }"> <!-- 기본 설정이름 -->
+  <c:if test="${!(product.detailImg2 eq 'empty') }"> <!-- 사진없는경우 파일명 "empty" -->
 	  <div class="row" id="detailBox2">
   		<div class="col-md-12">
 			<img alt="디테일 이미지2" src="/upload/${product.detailImg2 }">  	
 	  	</div>
 	  </div>  
   </c:if>
-  <c:if test="${!(product.detailImg3 eq 'dImg_')}"> <!-- 기본 설정이름 -->
+  <c:if test="${!(product.detailImg3 eq 'empty')}">
 	  <div class="row" id="detailBox3">
   		<div class="col-md-12">
 			<img alt="디테일 이미지3" src="/upload/${product.detailImg3 }">  	
@@ -249,6 +249,75 @@
 		</ul>  		
   	</div>
   </div>
+  <div class="row">
+  	<c:if test="${!empty list}">
+		<div class="col"  style="margin-top: 100px">
+			<c:forEach var="item" items="${list }">
+				<ul class="reviewList">
+					<li>
+						<div class="reviewTuhmnail">
+							<a href="#"><img alt="썸네일" src="/upload/${item.thumbnailImg }"></a>		
+						</div>
+						
+						<div class="reviewText">
+							<div>
+								<span class="productName">${item.productName }</span>
+							</div>
+							<div>
+								<div class="foldedText">
+									<div class="shortText"><span>${item.content }</span>
+									</div>
+									<a href="javascript:void(0);" class="more">-더보기</a>
+								</div>
+								<div class="openText">
+									<div class="longText"><span>${item.content }</span>
+									<div><a href="#"><img alt="유저이미지" src="/upload/${item.contentImg }"></a>
+									</div>
+									<a href="javascript:void(0);" class="fold">-접기</a>
+								</div>
+								 </div>
+							</div>
+						</div>
+						
+						<div class="reviewWriter"> <!-- 별점 표시 -->
+							<div>
+							<c:if test="${item.starRating ==1}">
+								<span><label></label></span>
+							</c:if>	
+							<c:if test="${item.starRating ==2}">
+								<span><label></label><label></label></span>
+							</c:if>	
+							<c:if test="${item.starRating ==3}">
+								<span><label></label><label></label><label></label></span>
+							</c:if>	
+							<c:if test="${item.starRating ==4}">
+								<span><label></label><label></label><label></label><label></label></span>
+							</c:if>	
+							<c:if test="${item.starRating ==5}">
+								<span><label></label><label></label><label></label><label></label><label></label></span>
+							</c:if>	
+							</div>
+							<div>
+								<span>${item.writer }</span>
+							</div>
+							<c:if test="${item.contentImg != null}">
+							<div class="reviewContentImg">
+								<a href="#"><img alt="유저이미지" src="/upload/${item.contentImg }"></a>		
+							</div>
+							</c:if>
+						</div>
+					</li>
+				</ul>
+			</c:forEach>	
+		</div>
+	</c:if>
+	<c:if test="${empty list }">
+		<div class="col" style="margin-top: 100px">
+			<span><i class="fas fa-search fa-2x"></i>  아직 작성된 후기가 없습니다.</span>
+		</div>
+	</c:if>	
+	</div>
+  
 </div><!-- container end -->
 
 <%@ include file="../footer.jsp"%>
@@ -408,6 +477,23 @@
 				});
 			});
 
+	//상품후기
+		$(document).ready(function () { //더보기
+			$('.more').on('click',function(){
+				$(this).parent().css('display','none');
+				$(this).parent().next().css('display','block');
+			})
+		})
+		
+		$(document).ready(function () { //접기
+			$('.fold').on('click',function(){
+				$(this).parent().parent().css('display','none');
+				$(this).parent().parent().prev().css('display','block');
+			})
+		})
+		
+
+	
 </script>
 </body>
 </html>

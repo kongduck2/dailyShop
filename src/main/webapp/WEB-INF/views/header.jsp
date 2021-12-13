@@ -35,7 +35,7 @@
 				<li class="top-text"><a href="addProduct" >상품추가(관리자)</a></li>
 			<c:if test="${sessionScope.user == null}"> 	<!-- 비로그인 상태 -->
 				<li class="top-text"><a href="login" >로그인</a></li>
-				<li class="top-text"><a href="regist" >회원가입</a></li>
+				<li class="top-text"><a href="choiceRegist" >회원가입</a></li>
 			</c:if>
 			
 			<c:if test="${sessionScope.user != null}"> <!-- 로그인 상태 -->

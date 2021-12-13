@@ -1,6 +1,7 @@
 package com.nyang.shop.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.nyang.shop.model.Product;
 import com.nyang.shop.model.User;
 import com.nyang.shop.service.CartService;
+import com.nyang.shop.service.ProductService;
 import com.nyang.shop.service.UserService;
 
 @Controller
@@ -23,10 +26,13 @@ public class LoginController {
 	
 	private final CartService cService;
 	
+	private final ProductService pService;
 	
-	public LoginController(UserService uService, CartService cService) {
+	
+	public LoginController(UserService uService, CartService cService, ProductService pService) {
 		this.uService = uService;
 		this.cService= cService;
+		this.pService = pService;
 	}
 	
 	@RequestMapping(value = "/login",method = RequestMethod.GET)
@@ -40,6 +46,8 @@ public class LoginController {
 			if(result != null) { //로그인 성공
 				model.addAttribute("user",result);
 				model.addAttribute("count",cService.count(result.getIdx()));
+				List<Product> list = pService.newGetAll();
+				model.addAttribute("list",list);
 				return "home";
 			}else { //로그인 실패
 				model.addAttribute("message","로그인 정보가 올바르지 않습니다.");
@@ -49,8 +57,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/logout")
-	public String logout(SessionStatus status) {
-		status.setComplete(); 
+	public String logout(SessionStatus status , Model model) {
+		status.setComplete();
+		List<Product> list = pService.newGetAll();
+		model.addAttribute("list",list);
 		return "home";
 	}
 	

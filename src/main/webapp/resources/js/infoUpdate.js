@@ -70,3 +70,19 @@ function registCheck(){
   		return true;
   	}
 }//registCheck end		
+
+function deleteUser(){
+	Swal.fire({
+		  text: "정말 회원탈퇴를 하시겠습니까?",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '예',
+		  cancelButtonText: '아니오'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				location.href='userDelete';
+				}
+		})
+}

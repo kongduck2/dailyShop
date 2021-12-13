@@ -8,6 +8,11 @@
   		select * from review 
   	</select>
   	
+  	<select id="getOne" resultType="Review" parameterType="int"> <!-- 상품상세 페이지에서 필요한정보 -->
+  		select * from review where productIdx = #{productIdx}
+  	</select>
+  	
+  	
   	<insert id="insert" parameterType="Review">
   		insert into review(productIdx,writer,productName,starRating,thumbnailImg,contentImg,content)
   		values(#{productIdx},#{writer},#{productName},#{starRating},#{thumbnailImg},#{contentImg},#{content})
