@@ -36,7 +36,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/login",method = RequestMethod.GET)
-	public String login(Model model) {
+	public String login(Model model ,String pIdx) {
+		model.addAttribute("pIdx", pIdx); //상품상세에서 넘어오는값
 		return "/user/login"; 
 	}
 	
@@ -48,7 +49,11 @@ public class LoginController {
 				model.addAttribute("count",cService.count(result.getIdx()));
 				List<Product> list = pService.newGetAll();
 				model.addAttribute("list",list);
-				return "home";
+				if(param.get("pIdx").equals("")) {
+					return "home";
+				}else {//상품상세페이지에서 로그인시
+					return "redirect:detail?idx=" + param.get("pIdx");
+				}
 			}else { //로그인 실패
 				model.addAttribute("message","로그인 정보가 올바르지 않습니다.");
 				model.addAttribute("url","login");

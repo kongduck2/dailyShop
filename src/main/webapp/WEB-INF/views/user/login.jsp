@@ -13,6 +13,7 @@
 <div class="login-div">
 <!-- 기본 로그인 form 태그 -->
  <form action="login" method="post" class="loginForm">
+ 	<input type="hidden" name="pIdx" value="${param.pIdx }">
       <h2>로그인</h2>
       <div class="idForm">
         <input type="text" name="email" class="id" placeholder="아이디" required>

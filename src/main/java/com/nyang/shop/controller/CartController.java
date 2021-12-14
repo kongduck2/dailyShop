@@ -36,6 +36,7 @@ public class CartController {
     	List<Cart> list = cService.getAll(user.getIdx());
     	model.addAttribute("list",list);
     	model.addAttribute("cartInfo",pService.cartInfo(list));
+    	model.addAttribute("count",cService.count(user.getIdx()));
     	return "/user/cart";
     }
     
@@ -44,7 +45,6 @@ public class CartController {
     @RequestMapping(value = "/addCart" , method = RequestMethod.POST)
     public void addCart(@RequestParam Map<String,String> param, Model model,
     		@SessionAttribute("user")User user) { //@RequestParam로 파라미터 형식으로 받기
-    	System.out.println(param);
     	if(cService.findProduct(Integer.parseInt(param.get("pIdx")))) { //장바구니에 같은 상품이 있는경우
     		cService.delete(user.getIdx(),Integer.parseInt(param.get("pIdx")));
     		cService.insert(param);
@@ -58,7 +58,6 @@ public class CartController {
     @ResponseBody //장바구니에서 상품 삭제
     @RequestMapping(value = "/delCart" , method = RequestMethod.POST)
     public String delCart(@RequestParam Map<String,String> param, Model model,@SessionAttribute("user")User user) {
-    	System.out.println(user.getIdx());
     	cService.delete(user.getIdx(),Integer.parseInt(param.get("pIdx")));
     	model.addAttribute("count",cService.count(user.getIdx()));
     	return "/user/cart";

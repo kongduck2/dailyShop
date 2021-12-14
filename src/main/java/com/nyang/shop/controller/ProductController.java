@@ -69,7 +69,7 @@ public class ProductController {
 	public String list(@RequestParam Map<String, Object> param , Model model) {
 			param = pService.listProcess(param);
 			model.addAllAttributes(param);
-			System.out.println(param); // 토탈카운트 8이고 페이지 2일때 페이지 오류
+			//System.out.println(param); // 토탈카운트 8이고 페이지 2일때 페이지 오류
 		return "/product/list";
 	}
 	

@@ -9,7 +9,7 @@
   	</select>
   	
   	<select id="bestGetAll" resultType="Product" > <!-- BEST 목록 가져오기 -->
-  		select * from product order by soldCount desc
+  		select * from product order by soldCount desc limit 20
   	</select>
   
   	<select id="newGetAll" resultType="Product" > <!-- 신상품 목록 가져오기 -->

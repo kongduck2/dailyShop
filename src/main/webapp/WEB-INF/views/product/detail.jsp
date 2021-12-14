@@ -122,9 +122,10 @@
     	<div class="row" id="detailBtn">
     		
     		<!-- 장바구니 버튼 -->
+   			
+   			<input type="hidden" name="pIdx" id="pIdx" value="${product.idx }"><!-- 로그인 페이지 이동시필요 -->
     		<c:if test="${user != null}"> <!-- 로그인 상태 -->
     		<div class="col-md-3">
-	    			<input type="hidden" name="pIdx" id="pIdx" value="${product.idx }">
 	    			<input type="hidden" name="uIdx" id="uIdx" value="${user.idx }">
 	    		 	<button class="buyButton" id="buyBtn" type="button">바로구매</button> <!-- 넘겨줄정보 제품 idx ,유저 선택수량 -->
     		</div>
@@ -372,9 +373,11 @@
 	
 	//비로그인시 alert
 	function loginAlert(){
+		let pIdx = document.getElementById('pIdx').value;
+		console.log(pIdx);
     	Swal.fire({icon: 'info',
     		text: '로그인 후 이용가능합니다.',	}).then(function(){
-    			location.href='login';
+    			location.href='login?pIdx='+pIdx;
     		})
 	}
 	

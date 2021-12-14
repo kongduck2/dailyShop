@@ -15,7 +15,7 @@
 <!-- container 시작 -->
 	 <div class="container">	
 		<div class="row">
-			<h2 class="text-center">BEST</h2>
+			<h2 class="text-center">BEST</h2> <!-- soldCount 높은순 상위 20개 -->
 			<c:forEach var="item" items="${list }">
 				<c:set var="fileArr" value="${fn:split(item.thumbnailImg,',')}"/>
 				<div class="col-md-3" id="cardList">

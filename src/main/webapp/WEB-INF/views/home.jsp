@@ -14,13 +14,13 @@
 	<!-- 배너 -->
 	<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
 	  <div class="carousel-inner">
-	    <div class="carousel-item active" data-bs-interval="5000">
+	    <div class="carousel-item active" data-bs-interval="3000">
 	      <a href="detail?idx=83"><img src="${pageContext.request.contextPath}/resources/image/feedTub.jpeg" class="d-block w-100" alt="사료통"></a>
 	    </div>
-	    <div class="carousel-item" data-bs-interval="5000">
+	    <div class="carousel-item" data-bs-interval="3000">
 	      <a href="detail?idx=6"><img src="${pageContext.request.contextPath}/resources/image/round.jpeg" class="d-block w-100" alt="스크래쳐"></a>
 	    </div>
-	    <div class="carousel-item" data-bs-interval="5000">
+	    <div class="carousel-item" data-bs-interval="3000">
 	      <a href="detail?idx=18"><img src="${pageContext.request.contextPath}/resources/image/catToy.jpeg" class="d-block w-100" alt="고양이장난감"></a>
 	    </div>
 	  </div>
@@ -45,7 +45,7 @@
 			<a href="review"><img src="${pageContext.request.contextPath}/resources/image/mid-b2.jpeg" class="img-fluid" alt="중간배너"></a>
 		</div>
 		<div class="col-md-4">
-			<a href="regist"><img src="${pageContext.request.contextPath}/resources/image/mid-b3.jpeg" class="img-fluid" alt="중간배너"></a>
+			<a href="choiceRegist"><img src="${pageContext.request.contextPath}/resources/image/mid-b3.jpeg" class="img-fluid" alt="중간배너"></a>
 		</div>
 	</div>	
 	<!-- 신상품 -->

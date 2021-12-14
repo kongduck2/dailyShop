@@ -17,7 +17,7 @@
 	 		<h2 class="text-center">장바구니</h2>
 	 		<div class="col" id="cartTable">
 	 		<div class="qlText">
-	 			<h5>상품목록(${count })</h5>
+	 			<h4>상품목록(${count })</h4>
 	 		</div>
 	 		<table class="table table-borderless">
 			  <thead>
@@ -261,6 +261,8 @@
 			contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 			data:param, 
 				success: function(){
+			    	Swal.fire({icon: 'info',
+			    		text: '상품 수량이 변경되었습니다.',})
 				},
 				error:function(request,status,error){
 			        console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
