@@ -66,7 +66,7 @@
 								<span>${item.writer }</span>
 							</div>
 							<c:if test="${item.contentImg != null}">
-							<div class="reviewContentImg">
+							<div class="reviewContentImg"> 
 								<a href="#"><img alt="유저이미지" src="/upload/${item.contentImg }"></a>		
 							</div>
 							</c:if>
