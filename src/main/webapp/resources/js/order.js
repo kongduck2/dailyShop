@@ -185,7 +185,7 @@
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
 			    name : pName , //결제창에서 보여질 이름
-			    amount : parseInt($('#pTotalText').text().replace(',','')), //100, //실제 결제되는 가격
+			    amount : 100,//parseInt($('#pTotalText').text().replace(',','')), //100, //실제 결제되는 가격
 			    buyer_email : email,
 			    buyer_name : bName,
 			    buyer_tel : phone,

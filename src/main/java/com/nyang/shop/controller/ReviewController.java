@@ -34,10 +34,9 @@ public class ReviewController {
 	}
 	//리뷰작성 페이지 이동
 	@RequestMapping(value = "/writeReview", method = RequestMethod.GET)
-	public String writeReview(int pIdx, Model model) {
-		OrderList vo = uService.getOrder(pIdx);
-		System.out.println(vo);
-		model.addAttribute("order",vo);
+	public String writeReview(@ModelAttribute OrderList vo, Model model) {
+		OrderList resultVo = uService.getOrder(vo);
+		model.addAttribute("order",resultVo);
 		return "/user/writeReview";
 	}
 	//리뷰 등록

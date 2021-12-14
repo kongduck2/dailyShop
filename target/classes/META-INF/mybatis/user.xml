@@ -51,11 +51,11 @@
 	</insert>
 	
 	<select id="getOrderList" parameterType="int" resultType="OrderList" > <!-- 주문목록 가져오기 -->
-		select * from orderList where userIdx = #{userIdx}
+		select * from orderList where userIdx = #{userIdx} order by idx desc
 	</select>
 	
-	<select id="getOrder" parameterType="int" resultType="OrderList" > <!-- 주문목록 가져오기 -->
-		select * from orderList where productIdx = #{productIdx}
+	<select id="getOrder" parameterType="OrderList" resultType="OrderList" > <!-- 주문목록 가져오기 -->
+		select * from orderList where productIdx = #{productIdx} and productOpName = #{productOpName}
 	</select>
 	
 	<select id="findId" parameterType="User" resultType="String">

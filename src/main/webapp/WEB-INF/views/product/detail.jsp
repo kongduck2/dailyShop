@@ -252,7 +252,7 @@
   </div>
   <div class="row">
   	<c:if test="${!empty list}">
-		<div class="col"  style="margin-top: 100px">
+		<div class="col"  style="margin-top: 100px; height: 1100px; overflow : auto;">
 			<c:forEach var="item" items="${list }">
 				<ul class="reviewList">
 					<li>

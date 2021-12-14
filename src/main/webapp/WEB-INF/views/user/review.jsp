@@ -12,7 +12,7 @@
 
 <%@ include file="../header.jsp"%>
 
-<div class="container">
+<div class="container" style="height: 1300px; overflow : auto;">
 	<div class="row">
 	<h2 class="text-center">사용후기</h2>
 		<div class="col">
@@ -65,7 +65,7 @@
 							<div>
 								<span>${item.writer }</span>
 							</div>
-							<c:if test="${item.contentImg != null}">
+							<c:if test="${item.contentImg != null}"> 
 							<div class="reviewContentImg"> 
 								<a href="#"><img alt="유저이미지" src="/upload/${item.contentImg }"></a>		
 							</div>

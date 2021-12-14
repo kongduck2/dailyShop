@@ -6,7 +6,7 @@
 	padding :17px;
 	text-align: center;
 }
-#findIdForm input[type="text"],input[type="number"]{
+#findIdForm input[type="text"],#findIdForm input[type="number"]{
 	text-align : center;
 	width: 250px;
 	height: 40px;

@@ -18,7 +18,7 @@ public interface UserService {
 	boolean pwCheck(User vo,String password);
 	void addOrderList(Map<String,String> param);
 	List<OrderList> getOrderList(int userIdx);
-	OrderList getOrder(int productIdx);
+	OrderList getOrder(OrderList vo);
 	String validateEmail(String inputEmail); //인증메일
 	public String kakaoGetAccessToken (String authorizeCode); //카카오 토큰 받기
 	public HashMap<String, Object> kakaoGetUserInfo (String accessToken); //카카오 유저정보 받기

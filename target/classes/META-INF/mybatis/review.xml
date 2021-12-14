@@ -5,7 +5,7 @@
   <mapper namespace="com.nyang.shop.dao.ReviewMapper">
   
   	<select id="getAll" resultType="Review">
-  		select * from review 
+  		select * from review order by idx desc
   	</select>
   	
   	<select id="getOne" resultType="Review" parameterType="int"> <!-- 상품상세 페이지에서 필요한정보 -->

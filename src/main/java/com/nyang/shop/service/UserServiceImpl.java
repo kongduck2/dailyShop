@@ -112,8 +112,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public OrderList getOrder(int productIdx) {
-		return dao.getOrder(productIdx);
+	public OrderList getOrder(OrderList vo) {
+		return dao.getOrder(vo);
 	}
 
 	 //이메일 인증번호 발송

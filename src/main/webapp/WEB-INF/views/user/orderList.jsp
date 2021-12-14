@@ -48,7 +48,10 @@
 					        <td id="sellPriceText">${item.totalPrice}원</td>
 					        <td>제품준비중</td>
 					        <td class="selectBtnTd">
-					        <div><button type="button" class="selectBtn" onclick="writeReview('${list[status.index].productIdx}')">리뷰남기기</button>
+					        <div>
+					        	<input type="hidden" value="${item.productOpName }">
+						        <button type="button" class="selectBtn" onclick="writeReview(this)">리뷰남기기</button>
+					        	<input type="hidden" value="${list[status.index].productIdx}">
 					        </div>
 					        </td>
 			 		   </tr>
@@ -62,12 +65,15 @@
 	 
 <%@ include file="../footer.jsp"%>
 <script type="text/javascript">
-function writeReview(pIdx){
+function writeReview(btn){
+	let pIdx = btn.nextSibling.nextSibling.value;
+	let opName = btn.previousSibling.previousSibling.value;
 	let form = $('<form></form>');
 	form.attr('action', 'writeReview');
 	form.attr('method', 'get');
 	form.appendTo('body');
-	form.append($('<input type="hidden" value="' + pIdx + '" name="pIdx">'));
+	form.append($('<input type="hidden" value="' + pIdx + '" name="productIdx">'));
+	form.append($('<input type="hidden" value="' + opName + '" name="productOpName">'));
 	form.submit();
 }
 
