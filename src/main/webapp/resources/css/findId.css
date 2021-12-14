@@ -1,0 +1,30 @@
+#findIdDiv {
+	text-align: center;
+}
+
+#findIdDiv div{
+	padding :17px;
+	text-align: center;
+}
+#findIdForm input[type="text"],input[type="number"]{
+	text-align : center;
+	width: 250px;
+	height: 40px;
+}
+
+#findIdForm input[type="number"]::-webkit-outer-spin-button,
+#findIdForm input[type="number"]::-webkit-inner-spin-button{
+	-webkit-appearance: none;
+    margin: 0;
+	
+}
+.findBtnDiv input {
+	margin-left: 8px;
+	width: 90px;
+	height: 23px;
+	background-color: #67b08f;
+	color:white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}

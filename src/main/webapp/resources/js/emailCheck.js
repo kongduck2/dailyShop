@@ -15,14 +15,14 @@ $(document).ready(function(){
 					Swal.fire({icon: 'info',
 						text: '인증번호 발송이 완료되었습니다.입력한 이메일에서 인증번호 확인을 해주십시오.'}).then(function(){
 						$('.loader').css('display','none');
-		        		$("#inputEmail2").attr("disabled",false);
-		        		$("#emailChk2").css("display","inline-block");
-		        		$(".successEmailChk").text("인증번호를 입력한 뒤 이메일 인증을 눌러주십시오.");
-		        		$(".successEmailChk").css("color","green");
+		        		$('#inputEmail2').attr('disabled',false);
+		        		$('#emailChk2').css('display','inline-block');
+		        		$('.successEmailChk').text('인증번호를 입력한 뒤 이메일 인증을 눌러주십시오.');
+		        		$('.successEmailChk').css('color','green');
 		        		let code = data;
 		        		
-		        		$("#emailChk2").click(function(){
-		        			if($("#inputEmail2").val() == code){
+		        		$('#emailChk2').click(function(){
+		        			if($('#inputEmail2').val() == code){
 		        				Swal.fire({icon: 'success',
 		    						text: '인증번호가 일치합니다. 이메일 인증 완료'}).then(function(){
 		    							//부모창으로 이메일 인증 완료했다는 값 넘기기
@@ -32,9 +32,9 @@ $(document).ready(function(){
 										window.close(); //창닫기
 		    						})
 		        			}else{
-		        				$(".successEmailChk").text("인증번호가 일치하지 않습니다.");
-		        				$(".successEmailChk").css("color","red");
-		        				$("#inputEmail2").attr("autofocus",true);
+		        				$('.successEmailChk').text('인증번호가 일치하지 않습니다.');
+		        				$('.successEmailChk').css('color','red');
+		        				$('#inputEmail2').attr('autofocus',true);
 		        			}
 		        		});
 		    		});

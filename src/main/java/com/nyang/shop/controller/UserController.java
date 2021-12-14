@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -126,6 +127,49 @@ public class UserController {
     	model.addAttribute("url", "/dailyshop");
     	return "/util/alertPage";
     }
+    
+    //아이디 찾기
+    @RequestMapping(value = "/findId" , method = RequestMethod.GET)
+    public String openFindId(){
+    	return "/user/findId";
+    }
+    
+    @RequestMapping(value = "/findId" , method = RequestMethod.POST)
+    public String findId(@ModelAttribute User user,Model model){
+    	String userId = uService.findId(user); //리턴값 이메일
+    	if(userId != null) {
+    		model.addAttribute("result","1");
+    		model.addAttribute("id",userId);
+    	}else {
+    		model.addAttribute("result","0");
+    	}
+    	return "/user/findId";
+    }
+    
+    //비밀번호 찾기창 열기
+    @RequestMapping(value = "/findPw" , method = RequestMethod.GET)
+    public String openFindPw(){
+    	return "/user/findPw";
+    }
+    
+    //비밀번호 찾기 이메일 인증 후 업데이트
+    @RequestMapping(value = "/updatePw" , method = RequestMethod.POST)
+    public String findPw(@ModelAttribute User user,Model model){
+    	System.out.println(uService.emailCheck(user.getEmail()));
+    	if(uService.emailCheck(user.getEmail()) > 0) { //유효한 이메일인지 먼저 체크
+    		uService.pWUpdate(user);
+    		model.addAttribute("message", "비밀번호가 변경되었습니다.");
+    		model.addAttribute("url", "home");
+    		model.addAttribute("chk", "close");
+    		return "/util/alertPage";
+    	}else {
+        	model.addAttribute("message", "등록된 이메일이 아닙니다.");
+        	model.addAttribute("url", "login");
+        	model.addAttribute("chk", "close");
+    		return "/util/alertPage";
+    	}
+    }
+    
     
     
 }//UserController end

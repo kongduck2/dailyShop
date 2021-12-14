@@ -9,13 +9,21 @@
 </head>
 <body>
 <script type="text/javascript">
-Swal.fire({icon: 'info',
-	text: '${message}',	}).then(function(){
-if ('${url}'=='')
-	history.back();
-else 
-	location.href='${url}'
-	})
+if ('${chk}'=='close') { //비밀번호 찾기 창닫기시 필요
+	Swal.fire({icon: 'info',
+		text: '${message}',	}).then(function(){
+		window.close();
+		})
+}else{
+	Swal.fire({icon: 'info',
+		text: '${message}',	}).then(function(){
+	if ('${url}'=='')
+		history.back();
+	else 
+		location.href='${url}'
+		})
+	
+}
 </script>
 </body>
 </html>

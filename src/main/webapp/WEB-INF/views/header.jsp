@@ -32,7 +32,9 @@
 			</ul>
 			<ul class="top-ul">
 				<!-- admin용 상품추가 -->
+				<c:if test="${sessionScope.user.email == 'admin'}"> <!-- 관리자 로그인 -->
 				<li class="top-text"><a href="addProduct" >상품추가(관리자)</a></li>
+				</c:if>
 			<c:if test="${sessionScope.user == null}"> 	<!-- 비로그인 상태 -->
 				<li class="top-text"><a href="login" >로그인</a></li>
 				<li class="top-text"><a href="choiceRegist" >회원가입</a></li>
@@ -96,9 +98,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="review">사용후기</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">고객센터</a>
         </li>
       </ul>
       <form class="d-flex" action="list?category=search&page=">

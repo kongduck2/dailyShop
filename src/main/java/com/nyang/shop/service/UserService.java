@@ -19,7 +19,10 @@ public interface UserService {
 	void addOrderList(Map<String,String> param);
 	List<OrderList> getOrderList(int userIdx);
 	OrderList getOrder(int productIdx);
-	String validateEmail(String inputEmail);
+	String validateEmail(String inputEmail); //인증메일
 	public String kakaoGetAccessToken (String authorizeCode); //카카오 토큰 받기
 	public HashMap<String, Object> kakaoGetUserInfo (String accessToken); //카카오 유저정보 받기
+	String findId(User user);
+	void pWUpdate(User user);
+
 }

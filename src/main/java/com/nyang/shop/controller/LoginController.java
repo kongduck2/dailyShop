@@ -56,7 +56,11 @@ public class LoginController {
 				}
 			}else { //로그인 실패
 				model.addAttribute("message","로그인 정보가 올바르지 않습니다.");
-				model.addAttribute("url","login");
+				if(param.get("pIdx").equals("")) {
+					model.addAttribute("url","login");
+				}else {//상품상세페이지 ->로그인 페이지 유저 입력정보 틀렸을때 파라미터값 가져가기 
+					model.addAttribute("url","login?pIdx="+param.get("pIdx"));
+				}
 				return "/util/alertPage";
 			}
 	}

@@ -239,4 +239,14 @@ public class UserServiceImpl implements UserService {
         return userInfo;
     } // getUserInfo end
 
+	@Override
+	public String findId(User user) {
+		return dao.findId(user);
+	}
+
+	@Override
+	public void pWUpdate(User user) {
+		dao.pWUpdate(user);
+	}
+
 }

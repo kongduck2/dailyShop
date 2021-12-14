@@ -23,8 +23,8 @@
       </div>
       <input type="submit" class="btn" value="로그인">
       <div class="bottomText">
-       <a href="regist" >회원 가입</a>  |  <a href='javascript:void(0);' onclick="#" >아이디 찾기</a>  |  
-       <a href='javascript:void(0);' onclick="#" >비밀번호 찾기</a>
+       <a href="regist" >회원 가입</a>  |  <a href='javascript:void(0);' onclick="findId()" >아이디 찾기</a>  |  
+       <a href='javascript:void(0);' onclick="findPw()" >비밀번호 찾기</a>
       </div>
 	      <!-- 카카오 로그인 -->
 	  <div class="kakaoLogo">
@@ -37,5 +37,25 @@
 
 <!-- footer -->
 <%@ include file="../footer.jsp"%>
+<script type="text/javascript">
+	function findId(){
+		window.name = 'findId';
+		let _width = '650';
+		let _height = '380';
+		let _left = Math.ceil((window.screen.width - _width) / 2);
+		let _top = Math.ceil((window.screen.height - _height) / 2);
+		let findId = window.open('findId', 'Id', 'width=' + _width + ', height=' + _height + ', left=' + _left + ', top=' + _top,'location=no');
+	}
+	
+	function findPw(){
+		window.name = 'findPw';
+		let _width = '650';
+		let _height = '380';
+		let _left = Math.ceil((window.screen.width - _width) / 2);
+		let _top = Math.ceil((window.screen.height - _height) / 2);
+		let findPw = window.open('findPw', 'Pw', 'width=' + _width + ', height=' + _height + ', left=' + _left + ', top=' + _top,'location=no');
+	}
+
+</script>
 </body>
 </html>

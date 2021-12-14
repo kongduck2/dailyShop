@@ -58,4 +58,12 @@
 		select * from orderList where productIdx = #{productIdx}
 	</select>
 	
+	<select id="findId" parameterType="User" resultType="String">
+		select email from user where name = #{name} and phone = #{phone}
+	</select>
+	
+	<update id="pWUpdate" parameterType="User">
+		update user set password = sha2(#{password},256) where email =#{email}
+	</update>
+	
   </mapper>

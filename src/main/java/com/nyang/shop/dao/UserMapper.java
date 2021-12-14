@@ -17,4 +17,6 @@ public interface UserMapper {
 	void addOrderList(OrderList vo);
 	List<OrderList> getOrderList(int userIdx);
 	OrderList getOrder(int productIdx);
+	String findId(User user);
+	void pWUpdate(User user);
 }

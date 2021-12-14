@@ -1,4 +1,5 @@
-body{
+/*findPw 같이 사용중*/
+#emailCheckBody{
 	background-color: white;
 }
 #emailChckDiv{
@@ -64,5 +65,21 @@ body{
 @keyframes spin {
 	 0% { transform: rotate(0deg); }
 	 100% { transform: rotate(360deg); }
+}
+
+.updatePwDiv input{
+	margin-left: 8px;
+	width: 90px;
+	height: 23px;
+	background-color: #67b08f;
+	color:white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+#pw1,#pw2{
+	text-align : center;
+	width: 250px;
+	height: 40px;
 }
 
