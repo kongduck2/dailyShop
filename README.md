@@ -137,6 +137,7 @@ create table orderList(
     foreign key(productIdx) references product(idx)
 );
 ```
+---
 ## 5. 뷰 페이지 및 구현한 기능
 #### 5-1. 홈화면 구성
 ![홈화면](https://user-images.githubusercontent.com/90165630/146361851-dbf504f4-bbeb-4717-abd9-7f08f2da18da.jpg)
@@ -174,7 +175,8 @@ create table orderList(
 
 #### 5-3. 로그인
 ![로그인](https://user-images.githubusercontent.com/90165630/146365479-e4e800ca-324f-4bbb-9140-61edd0a7ca45.jpg)
-- 로그인 화면입니다. 제품상세에서 로그인이 필요하여 로그인 화면이동시 로그인이 성공하면 제품상세 페이지로 바로 이동할 수 있게 하였습니다. <br/>
+- 로그인 화면입니다.
+- 제품상세 페이지에서 로그인이 필요하여 화면이동시 로그인이 성공하면 제품상세 페이지로 바로 이동할 수 있게 하였습니다. <br/>
 
 ![로그인1 아이디찾기](https://user-images.githubusercontent.com/90165630/146365493-3673c57c-a495-4ff1-b766-616a59c8ba87.jpg)
  <br/>
