@@ -46,16 +46,16 @@
 ### 유저 테이블
 ```mysql
 CREATE TABLE USER(
-idx int primary key auto_increment,
-email varchar(60) not null,
-password varchar(64) not null,
-phone varchar(13) not null,
-address varchar(500) not null,
-zipCode varchar(10) not null,
-addressDetail varchar(500),
-registType varchar(5), 
-name varchar(30) not null, 
-registDate timestamp default now()
+	idx int primary key auto_increment,
+	email varchar(60) not null,
+	password varchar(64) not null,
+	phone varchar(13) not null,
+	address varchar(500) not null,
+	zipCode varchar(10) not null,
+	addressDetail varchar(500),
+	registType varchar(5), 
+	name varchar(30) not null, 
+	registDate timestamp default now()
 );
 ```
 ### 상품 테이블
