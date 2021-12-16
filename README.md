@@ -1,5 +1,5 @@
 # Spring 애완용품 쇼핑몰 프로젝트
-![header](https://capsule-render.vercel.app/api?type=wave&text=Spring)
+![header](https://capsule-render.vercel.app/api?type=wave&text=Spring&color=auto&height=250)
 ### 프로젝트 수행자 : 유일상(dlftkddl94@gmail.com) 
 ### 프로젝트 기간 : 2021-11-12 ~ 2021-12-14
 ### AWS를 이용한 EC2 프로젝트 배포 : http://3.129.96.101:8080/dailyshop
@@ -244,3 +244,4 @@ create table orderList(
   
 ![회원정보수정2](https://user-images.githubusercontent.com/90165630/146370925-c514057a-87aa-4eb7-88c6-e374f909b39e.jpg)
 
+### 감사합니다.
