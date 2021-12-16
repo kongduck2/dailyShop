@@ -186,6 +186,7 @@ create table orderList(
 #### 5-4. 리스트 
 ![리스트 카테고리](https://user-images.githubusercontent.com/90165630/146366647-a2edb3df-90c4-4963-96d8-44e36fe7d5a8.jpg) 
 - 카테고리에 맞는 리스트 항목들이 출력됩니다.
+- Best 카테고리는 soldCount가 높은 순으로 출력됩니다.
   
 #### 5-5. 제품상세
 ![디테일1](https://user-images.githubusercontent.com/90165630/146367061-f198168c-3428-4618-8fa3-fdd622cecd0a.jpg)
@@ -222,7 +223,7 @@ create table orderList(
 - 결제실패시 알림창입니다.
   
 ![오더3_1결제성공](https://user-images.githubusercontent.com/90165630/146368847-e49f1e04-5c20-4bf0-a4f0-c0fda2d30281.jpg)
-- 결제성공시 알림창을 띄우고 주문목록으로 이동됩니다.
+- 결제성공시 해당제품 soldCount가 증가합니다. 알림창을 띄우고 주문목록으로 이동됩니다.
   
 ![bandicam 2021-12-16 21-21-46-882](https://user-images.githubusercontent.com/90165630/146371253-1aa400da-6039-46cd-b7bd-40327b63f45c.jpg)
 - 결제 내역입니다.
