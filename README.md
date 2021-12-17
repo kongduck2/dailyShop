@@ -2,7 +2,7 @@
 ![header](https://capsule-render.vercel.app/api?type=wave&text=Spring&color=auto&height=250)
 ### 프로젝트 작성자 : 유일상(dlftkddl94@gmail.com) 
 ### 프로젝트 기간 : 2021-11-12 ~ 2021-12-14
-### AWS를 이용한 EC2 프로젝트 배포 : http://3.129.96.101:8080/dailyshop
+### AWS를 이용한 EC2 프로젝트 배포 : http://52.79.61.138:8080/dailyshop/
 ### 프로젝트 시연 영상 : https://www.youtube.com/watch?v=0JLMZCIoROk
 ---
 ## 1. 개발환경 및 사용언어
@@ -208,7 +208,24 @@ create table orderList(
 ![장바구니1](https://user-images.githubusercontent.com/90165630/146367976-ed0201bb-52ab-46d4-862a-110cfa6d1e43.jpg)
 - 자바스크립트,제이쿼리를 이용하여 제품,수량에따라 금액을 동적으로 계산되게 하였습니다.
 - 체크박스를 이용해 선택상품주문을 할수있게 하였습니다.
-  
+- 장바구니는 mysql 이벤트를 이용하여 5일후면 자동으로 삭제되게 하였습니다.
+   
+ ```mysql
+ DROP EVENT IF EXISTS `cartAutoDel`;
+DELIMITER $
+CREATE EVENT IF NOT EXISTS `cartAutoDel`
+ON SCHEDULE
+	EVERY 1 day -- 하루마다 실행                  
+	STARTS now()
+ON COMPLETION PRESERVE
+ENABLE
+COMMENT 'delete'
+DO 
+BEGIN
+   delete from cart where registDate < date(subdate(now(), INTERVAL 5 DAY));
+END$
+DELIMITER ;
+ ```
 ![장바구니2 배송비 동적계산](https://user-images.githubusercontent.com/90165630/146368002-cb20a369-b14a-497c-b94a-03661ff39264.jpg)
 
 #### 5-7. 주문서 작성
