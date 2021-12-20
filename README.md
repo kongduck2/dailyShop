@@ -8,6 +8,7 @@
 ## 1. 개발환경 및 사용언어
 - Window 10
 - STS 3
+- SpringFramework-Version 5.1.5
 - Maven
 - jdk 11
 - Tomcat 9.0
@@ -43,100 +44,13 @@
 ---
 
 ## 4. MySql DB 구성
-### 유저 테이블
-```mysql
-CREATE TABLE USER(
-	idx int primary key auto_increment,
-	email varchar(60) not null,
-	password varchar(64) not null,
-	phone varchar(13) not null,
-	address varchar(500) not null,
-	zipCode varchar(10) not null,
-	addressDetail varchar(500),
-	registType varchar(5), 
-	name varchar(30) not null, 
-	registDate timestamp default now()
-);
-```
-### 상품 테이블
-```mysql
-CREATE TABLE PRODUCT(
-	idx int primary key auto_increment,
-	category varchar(100) not null,
-	name varchar(200) not null,
-	soldCount int default 0,
-	thumbnailImg varchar(1000) not null,
-	detailImg1 varchar(1000) not null,
-	detailImg2 varchar(1000) ,
-	detailImg3 varchar(1000) ,
-	option1 varchar(100),
-	option2 varchar(100),
-	option3 varchar(100),
-	option4 varchar(100),
-	price varchar(100) not null
-);
-```
-### 관심목록 테이블 
-```mysql
-CREATE TABLE favorite(
-	idx int primary key auto_increment,
-	userIdx int not null,
-	productIdx int not null,
-	createDate timestamp default now(),
-	foreign key(userIdx) references user(idx),
-	foreign key(productIdx) references product(idx)
-);
-```
-### 장바구니 테이블
-```mysql
-CREATE TABLE cart(
-	idx int primary key auto_increment,
-	userIdx int not null,
-	productIdx int not null,
-	registDate timestamp default now(),
-	option1 varchar(100) default '',
-	option2 varchar(100) default '',
-	option3 varchar(100) default '',
-	option4 varchar(100) default '',
-	option1Quantity varchar(10) default '0',
-	option2Quantity varchar(10) default '0',
-	option3Quantity varchar(10) default '0',
-	option4Quantity varchar(10) default '0',
-	foreign key(userIdx) references user(idx),
-	foreign key(productIdx) references product(idx)
-);
-```
-### 리뷰 테이블
-```mysql
-CREATE TABLE review(
-	idx int primary key auto_increment,
-	productIdx int not null,
-	writer varchar(30) not null, 
-	productName varchar(200) not null,
-	starRating int default 0,
-	thumbnailImg varchar(1000) not null, 
-	contentImg varchar(1000), 
-	content varchar(1500) not null,
-	registDate timestamp default now(),
-	foreign key(productIdx) references product(idx)
-);
-```
-### 주문목록 테이블
-```mysql
-create table orderList(
-	idx int primary key auto_increment,
-	userIdx int not null,
-	productIdx int not null,
-	registDate timestamp default now(),
-	thumbnailImg varchar(1000) not null,
-	productName varchar(200) not null,
-	productOpName varchar(200) not null,
-	quantity int not null,
-	totalPrice varchar(100) not null,
-	foreign key(userIdx) references user(idx),
-	foreign key(productIdx) references product(idx)
-);
-```
+- #### DB 테이블은 유저, 상품, 리뷰, 장바구니, 관심목록, 주문목록 총 6개의 테이블로 구성되어 있습니다.
+### 유저 테이블 다이어그램
+![다이어그램 유저](https://user-images.githubusercontent.com/90165630/146722665-8c943074-418c-467a-9d68-f67181aa40c4.jpg)
+  
+### 상품 테이블 다이어그램
+![다이어그램 상품](https://user-images.githubusercontent.com/90165630/146722671-8497bf08-30be-4b15-928a-552d61b48944.jpg)
+  
 ---
 ## 5. 뷰 페이지 및 구현한 기능
 #### 5-1. 홈화면 구성
